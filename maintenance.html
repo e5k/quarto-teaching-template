@@ -79,9 +79,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2a367172f4fe7d9182ebf8e09f85cb4e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b332074f8c45958fd2117fbbe7135bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-773776e6a2009302a2d265d789688fee.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-b332074f8c45958fd2117fbbe7135bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-317a33e75a495f52a7b497dde54feb95.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-18b9321db17e788c7f069c1c9f714faa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-317a33e75a495f52a7b497dde54feb95.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome-7-free-7.2.0/fontawesome.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
@@ -406,15 +406,16 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
   <li><a href="#verification" id="toc-verification" class="nav-link" data-scroll-target="#verification"><span class="header-section-number">5</span> Verify an update</a></li>
   <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">6</span> Troubleshooting</a></li>
   <li><a href="#maintain-this-manual" id="toc-maintain-this-manual" class="nav-link" data-scroll-target="#maintain-this-manual"><span class="header-section-number">7</span> Maintain this manual</a></li>
-  <li><a href="#changelog" id="toc-changelog" class="nav-link" data-scroll-target="#changelog"><span class="header-section-number">8</span> Changelog</a>
+  <li><a href="#publication" id="toc-publication" class="nav-link" data-scroll-target="#publication"><span class="header-section-number">8</span> Documentation publication</a></li>
+  <li><a href="#changelog" id="toc-changelog" class="nav-link" data-scroll-target="#changelog"><span class="header-section-number">9</span> Changelog</a>
   <ul>
-  <li><a href="#november-2026" id="toc-november-2026" class="nav-link" data-scroll-target="#november-2026"><span class="header-section-number">8.1</span> 4 November 2026</a></li>
-  <li><a href="#november-2026-1" id="toc-november-2026-1" class="nav-link" data-scroll-target="#november-2026-1"><span class="header-section-number">8.2</span> 3 November 2026</a></li>
-  <li><a href="#november-2026-2" id="toc-november-2026-2" class="nav-link" data-scroll-target="#november-2026-2"><span class="header-section-number">8.3</span> 2 November 2026</a></li>
+  <li><a href="#november-2026" id="toc-november-2026" class="nav-link" data-scroll-target="#november-2026"><span class="header-section-number">9.1</span> 4 November 2026</a></li>
+  <li><a href="#november-2026-1" id="toc-november-2026-1" class="nav-link" data-scroll-target="#november-2026-1"><span class="header-section-number">9.2</span> 3 November 2026</a></li>
+  <li><a href="#november-2026-2" id="toc-november-2026-2" class="nav-link" data-scroll-target="#november-2026-2"><span class="header-section-number">9.3</span> 2 November 2026</a></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">9</span> References</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">10</span> References</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/e5k/_quarto-teaching-template/edit/main/doc/maintenance.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/e5k/_quarto-teaching-template/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/e5k/quarto-teaching-template/edit/main/doc/maintenance.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/e5k/quarto-teaching-template/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -492,7 +493,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </tr>
 </tbody>
 </table>
-<p>All three use <code>main</code>. The new connections are local paths on this computer. They are not portable to another computer without updating the remote URLs. No GitHub repository or push was created for the template or Analyse géospatiale during setup.</p>
+<p>All three use <code>main</code>. The initial setup used local paths. The central template is now public at <a href="https://github.com/e5k/quarto-teaching-template">e5k/quarto-teaching-template</a>. Its <code>origin</code> points to that GitHub repository, and the two courses’ <code>template</code> remotes now use the same URL. The template’s course-source remotes remain local paths; update those separately when the source course has a published repository. Analyse géospatiale has not been published by this setup.</p>
 <p>Check the repository you are about to edit:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> status <span class="at">--short</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">git</span> branch <span class="at">--show-current</span></span>
@@ -835,25 +836,32 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <p>The documentation is an independent Quarto website under <code>doc/</code> in the template repository. Its render list names exactly four guide pages and the index. The manual loads a local copy of the course’s shared <code>_template.yml</code>, including its actual <code>assets/custom.css</code> and <code>assets/dark.scss</code>, profile files, notebook-link filter, CSL and after-body scripts. Supporting assets also include the custom-callout extension and exercise files required by live examples. These are local snapshots: refresh the shared YAML and its companion files together when the source theme changes. Keep <code>assets/docs.css</code> limited to documentation layout so that it does not replace the course palette or typography. Directory-level <code>_metadata.yml</code> keeps the documentation language and table-of-contents label in English and disables external comments after the shared project metadata has been loaded.</p>
 <p>The embedded slide deck is a pre-rendered demonstration made with the real slide project. Rebuild it when the slide theme changes, keeping the HTML and its dependency directory together under <code>doc/assets/demos/slides/</code>. Its downloadable source is supplied there as <code>demo.qmd.txt</code> to preserve the five-page QMD structure. To rebuild, copy that source into an isolated copy of the template’s slide project, rename it <code>demo.qmd</code>, include <code>demo.qmd</code> in that copy’s <code>project.render</code> list, add the supplied SVG, then render with Quarto. The documentation’s ordinary render does not rebuild the embedded deck.</p>
 </section>
-<section id="changelog" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="changelog"><span class="header-section-number">8</span> Changelog</h2>
-<section id="november-2026" class="level3" data-number="8.1">
-<h3 data-number="8.1" class="anchored" data-anchor-id="november-2026"><span class="header-section-number">8.1</span> 4 November 2026</h3>
+<section id="publication" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="publication"><span class="header-section-number">8</span> Documentation publication</h2>
+<p>The public website is <a href="https://e5k.github.io/quarto-teaching-template/">https://e5k.github.io/quarto-teaching-template/</a>. Sources live on <code>main</code>; only <code>doc/</code> is rendered by <code>.github/workflows/publish-docs.yml</code>. A push affecting <code>doc/**</code> or that workflow starts a build with Quarto 1.8.27. The action updates <code>gh-pages</code> and explicitly deploys the rendered <code>doc/_site/</code> artifact using GitHub Pages. It can also be run manually from the repository’s Actions tab.</p>
+<p>GitHub Pages uses the GitHub Actions publishing method. The <code>gh-pages</code> branch is maintained as the rendered publication output; <code>doc/_site/</code> stays ignored on <code>main</code>. The course starter book at the repository root is not published as this website.</p>
+<p>For a manual local publication, run <code>quarto render doc</code> followed by <code>quarto publish gh-pages doc --no-render --no-browser</code> from the repository root. The automated workflow is preferred for regular updates because it also performs the explicit Pages deployment.</p>
+</section>
+<section id="changelog" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="changelog"><span class="header-section-number">9</span> Changelog</h2>
+<section id="november-2026" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="november-2026"><span class="header-section-number">9.1</span> 4 November 2026</h3>
 <ul>
-<li>Applied the same shared website theme as the course, including its actual typography, light/dark styles, code highlighting and navigation styling.</li>
-<li>Added the five-page Quarto documentation draft, with code examples, live callout/exercise examples and an embedded slide demonstration.</li>
-<li>Established local two-way Git transfer using remotes and reviewed cherry-picks, starting from 53 matching shared files. The initial commits are recorded above.</li>
+<li><p>Published the public template repository and documentation; configured automatic <code>doc/</code> builds, the <code>gh-pages</code> output branch and GitHub Pages deployment.</p></li>
+<li><p>Applied the same shared website theme as the course, including its actual typography, light/dark styles, code highlighting and navigation styling.</p></li>
+<li><p>Added the five-page Quarto documentation draft, with code examples, live callout/exercise examples and an embedded slide demonstration.</p></li>
+<li><p>Established local two-way Git transfer using remotes and reviewed cherry-picks, starting from 53 matching shared files. The initial commits are recorded above.</p></li>
 </ul>
 </section>
-<section id="november-2026-1" class="level3" data-number="8.2">
-<h3 data-number="8.2" class="anchored" data-anchor-id="november-2026-1"><span class="header-section-number">8.2</span> 3 November 2026</h3>
+<section id="november-2026-1" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="november-2026-1"><span class="header-section-number">9.2</span> 3 November 2026</h3>
 <ul>
 <li>Recorded the standalone-slide correction: both courses and the template contain local dependencies, including bibliography copies.</li>
 <li>Added configurable author profile links and applied teal icons at 55% opacity with full-opacity hover/focus behaviour.</li>
 </ul>
 </section>
-<section id="november-2026-2" class="level3" data-number="8.3">
-<h3 data-number="8.3" class="anchored" data-anchor-id="november-2026-2"><span class="header-section-number">8.3</span> 2 November 2026</h3>
+<section id="november-2026-2" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="november-2026-2"><span class="header-section-number">9.3</span> 2 November 2026</h3>
 <ul>
 <li>Adopted the native <code>_quarto.yml</code> / <code>_template.yml</code> split for book and slides.</li>
 <li>Removed custom template-management layers in favour of ordinary local assets and scripts.</li>
@@ -862,8 +870,8 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <p>These entries record the project discussion and setup history, rather than upstream extension release dates. Add a dated entry when a reusable behaviour changes, and note any migration required in existing courses.</p>
 </section>
 </section>
-<section id="references" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="references"><span class="header-section-number">9</span> References</h2>
+<section id="references" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="references"><span class="header-section-number">10</span> References</h2>
 <p>The procedures use native Git: <a href="https://git-scm.com/docs/git-fetch">fetch</a>, <a href="https://git-scm.com/docs/git-cherry-pick">cherry-pick</a>, <a href="https://git-scm.com/docs/git-remote">remotes</a> and <a href="https://git-scm.com/docs/git-add">interactive staging</a>. Keep the repository’s <code>GIT_WORKFLOW.md</code> available as the compact command reference.</p>
 
 
@@ -1310,7 +1318,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/e5k\.github\.io\/_quarto-teaching-template\/");
+        var filterRegex = new RegExp("https:\/\/e5k\.github\.io\/quarto-teaching-template\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1698,7 +1706,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/e5k/_quarto-teaching-template/edit/main/doc/maintenance.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/e5k/_quarto-teaching-template/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/e5k/quarto-teaching-template/edit/main/doc/maintenance.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/e5k/quarto-teaching-template/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Documentation draft · 4 November 2026</p>
 </div>
