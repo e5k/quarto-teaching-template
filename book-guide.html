@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Profiles, numbered questions, interactive exercises, notebooks, references and appearance.">
+
+<title>Book guide – Quarto teaching template</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./slide-guide.html" rel="next">
+<link href="./getting-started.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2a367172f4fe7d9182ebf8e09f85cb4e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2ff81c2e5dfd9e56c4f590b9591e1eb8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2a367172f4fe7d9182ebf8e09f85cb4e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b332074f8c45958fd2117fbbe7135bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-773776e6a2009302a2d265d789688fee.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b332074f8c45958fd2117fbbe7135bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome-7-free-7.2.0/fontawesome.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll('.quarto-other-links a[href$=".ipynb"]')
+    .forEach((link) => link.setAttribute("download", ""));
+});
+</script>
+<style>
+div.callout-answer.callout {
+  border-left-color: #2e8b57;
+}
+div.callout-answer.callout-style-default .callout-header {
+  background-color: rgba(46, 139, 87, 0.13);
+}
+div.callout-answer .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-answer.callout-style-default .callout-icon::before, div.callout-answer.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 7 Free';
+  font-weight: 900;
+  font-style: normal;
+  content: '\f058' !important;
+  background-image: none;
+}
+div.callout-question.callout {
+  border-left-color: #6f42c1;
+}
+div.callout-question.callout-style-default .callout-header {
+  background-color: rgba(111, 66, 193, 0.13);
+}
+div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 7 Free';
+  font-weight: 900;
+  font-style: normal;
+  content: '\f059' !important;
+  background-image: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="assets/docs.css">
+<link rel="stylesheet" href="assets/custom.css">
+<link rel="stylesheet" href="assets/webex.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./book-guide.html">Book guide</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quarto teaching template</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./book-guide.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Book guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./slide-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slide guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maintenance</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#profiles" id="toc-profiles" class="nav-link active" data-scroll-target="#profiles"><span class="header-section-number">1</span> Profiles</a>
+  <ul>
+  <li><a href="#written-content-and-execution-are-separate" id="toc-written-content-and-execution-are-separate" class="nav-link" data-scroll-target="#written-content-and-execution-are-separate"><span class="header-section-number">1.1</span> Written content and execution are separate</a></li>
+  <li><a href="#check-document-overrides" id="toc-check-document-overrides" class="nav-link" data-scroll-target="#check-document-overrides"><span class="header-section-number">1.2</span> Check document overrides</a></li>
+  </ul></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">2</span> Questions and answers</a>
+  <ul>
+  <li><a href="#number-a-question-and-its-answer" id="toc-number-a-question-and-its-answer" class="nav-link" data-scroll-target="#number-a-question-and-its-answer"><span class="header-section-number">2.1</span> Number a question and its answer</a></li>
+  <li><a href="#titles-and-header-numbering" id="toc-titles-and-header-numbering" class="nav-link" data-scroll-target="#titles-and-header-numbering"><span class="header-section-number">2.2</span> Titles and header numbering</a></li>
+  </ul></li>
+  <li><a href="#interactive-exercises" id="toc-interactive-exercises" class="nav-link" data-scroll-target="#interactive-exercises"><span class="header-section-number">3</span> Interactive exercises</a>
+  <ul>
+  <li><a href="#text-and-numeric-responses" id="toc-text-and-numeric-responses" class="nav-link" data-scroll-target="#text-and-numeric-responses"><span class="header-section-number">3.1</span> Text and numeric responses</a></li>
+  <li><a href="#dropdowns-and-radio-buttons" id="toc-dropdowns-and-radio-buttons" class="nav-link" data-scroll-target="#dropdowns-and-radio-buttons"><span class="header-section-number">3.2</span> Dropdowns and radio buttons</a></li>
+  <li><a href="#check-a-group-and-reveal-an-explanation" id="toc-check-a-group-and-reveal-an-explanation" class="nav-link" data-scroll-target="#check-a-group-and-reveal-an-explanation"><span class="header-section-number">3.3</span> Check a group and reveal an explanation</a></li>
+  </ul></li>
+  <li><a href="#notebooks" id="toc-notebooks" class="nav-link" data-scroll-target="#notebooks"><span class="header-section-number">4</span> Notebook links and conversion</a></li>
+  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations"><span class="header-section-number">5</span> Citations and references</a></li>
+  <li><a href="#appearance" id="toc-appearance" class="nav-link" data-scroll-target="#appearance"><span class="header-section-number">6</span> Appearance and authoring helpers</a>
+  <ul>
+  <li><a href="#code-annotations-and-figures" id="toc-code-annotations-and-figures" class="nav-link" data-scroll-target="#code-annotations-and-figures"><span class="header-section-number">6.1</span> Code annotations and figures</a></li>
+  <li><a href="#navigation-and-small-fixes" id="toc-navigation-and-small-fixes" class="nav-link" data-scroll-target="#navigation-and-small-fixes"><span class="header-section-number">6.2</span> Navigation and small fixes</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/e5k/_quarto-teaching-template/edit/main/doc/book-guide.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/e5k/_quarto-teaching-template/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Book guide</h1>
+</div>
+
+<div>
+  <div class="description">
+    Profiles, numbered questions, interactive exercises, notebooks, references and appearance.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="profiles" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="profiles"><span class="header-section-number">1</span> Profiles</h2>
+<p><span class="origin">Native profiles · Local settings</span></p>
+<p>The book is one project with two mutually exclusive profiles, <code>answer</code> and <code>question</code>. The profile group is declared in root <code>_template.yml</code>; profile values live in <code>_quarto-answer.yml</code> and <code>_quarto-question.yml</code>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Answer profile</th>
+<th>Question profile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>answers</code></td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+</tr>
+<tr class="even">
+<td><code>execute.echo</code></td>
+<td><code>true</code></td>
+<td><code>true</code></td>
+</tr>
+<tr class="odd">
+<td><code>execute.output</code></td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+</tr>
+<tr class="even">
+<td>Written answer content</td>
+<td>Visible when wrapped with <code>when-meta="answers"</code></td>
+<td>Removed from rendered output by the same condition</td>
+</tr>
+<tr class="odd">
+<td>Notebook and other links</td>
+<td>Displayed; <code>.ipynb</code> links receive <code>download</code></td>
+<td>Entire <code>.quarto-other-links</code> region hidden by CSS</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">quarto</span> render <span class="at">--profile</span> answer</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="ex">quarto</span> render <span class="at">--profile</span> question</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Root <code>_template.yml</code> defaults to <code>answers: true</code>. Both builds normally use the same <code>_book/</code> directory, so the most recent render replaces the corresponding output. Archive or copy a completed build if you need to retain both variants.</p>
+<section id="written-content-and-execution-are-separate" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="written-content-and-execution-are-separate"><span class="header-section-number">1.1</span> Written content and execution are separate</h3>
+<p>Wrap every written answer that should disappear from the question version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a>::: {.content-visible when-meta="answers"}</span>
+<span id="cb2-2"><a href="#cb2-2"></a>The pattern supports an association, but does not establish causation.</span>
+<span id="cb2-3"><a href="#cb2-3"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Hiding output does not hide ordinary Markdown or Python source. Conditional content also does <strong>not prevent execution</strong> of wrapped cells. For a specific cell, use native execution options deliberately:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#| output: true</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="bu">print</span>(<span class="st">"A displayed result without the source code"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>echo</code> controls source display, <code>output</code> controls results and <code>eval</code> controls whether the cell runs. An explicit cell option can override project defaults. Do not use visibility rules as a substitute for execution control.</p>
+</section>
+<section id="check-document-overrides" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="check-document-overrides"><span class="header-section-number">1.2</span> Check document overrides</h3>
+<p>A chapter containing the following metadata can behave differently from its selected profile:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">answers</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="at">  </span><span class="fu">output</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This combination is present in some existing course material: written answers can remain visible while cell results stay hidden. Remove overrides when you want profile values to govern the page. Render the actual chapter under both profiles and inspect the result; do not infer visibility only from the command name.</p>
+</section>
+</section>
+<section id="questions" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="questions"><span class="header-section-number">2</span> Questions and answers</h2>
+<p><span class="origin">Extension: custom-callout · Native cross-references · Local header integration</span></p>
+<p>The custom-callout extension reads the definitions in <code>_template.yml</code>. Use <strong><code>.question</code></strong> or <strong><code>.answer</code></strong> in the source. The extension converts these into rendered <code>.callout-question</code> and <code>.callout-answer</code> elements. Writing <code>.callout-question</code> directly bypasses this class-to-definition conversion.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Configured label</th>
+<th>Icon</th>
+<th>Colour</th>
+<th>Default collapse</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.question</code></td>
+<td>Question</td>
+<td><code>fa-circle-question</code></td>
+<td><code>#6f42c1</code></td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td><code>.answer</code></td>
+<td>Réponse</td>
+<td><code>fa-circle-check</code></td>
+<td><code>#2e8b57</code></td>
+<td>Yes in HTML</td>
+</tr>
+</tbody>
+</table>
+<section id="number-a-question-and-its-answer" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="number-a-question-and-its-answer"><span class="header-section-number">2.1</span> Number a question and its answer</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a>::: {#exr-compare .question title="Compare the two distributions"}</span>
+<span id="cb5-2"><a href="#cb5-2"></a>Which feature changes when the extreme value is removed?</span>
+<span id="cb5-3"><a href="#cb5-3"></a>:::</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>:::: {.content-visible when-meta="answers"}</span>
+<span id="cb5-6"><a href="#cb5-6"></a>::: {#sol-compare .answer title="Réponse"}</span>
+<span id="cb5-7"><a href="#cb5-7"></a>Return to @exr-compare.</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a>The median changes less than the mean.</span>
+<span id="cb5-10"><a href="#cb5-10"></a>:::</span>
+<span id="cb5-11"><a href="#cb5-11"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>exr-</code> activates native exercise numbering. <code>sol-</code> activates a solution; the matching suffix <code>compare</code> lets the local header script associate the answer with the question. IDs must be unique throughout the book. Use stable descriptive IDs so links survive title edits. Put the whole answer, including its title and source cells, inside the conditional wrapper. The outer wrapper uses four colons to make nesting clear.</p>
+<p>Rendered example, with answers visible in this manual:</p>
+<div id="exr-docs-compare" class="callout callout-style-default callout-question callout-titled theorem exercise">
+<p><span class="theorem-title"><strong>Question 1</strong></span> &nbsp;</p>
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Question</span>Compare the two distributions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Which summary is usually less sensitive to one extreme value: the mean or the median?</p>
+</div>
+</div>
+<div id="sol-docs-compare" class="callout callout-style-default callout-answer callout-titled proof solution">
+<p><span class="proof-title"><em>Solution 1</em>. </span></p>
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Réponse
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The median is usually less sensitive. Return to <a href="#exr-docs-compare" class="quarto-xref">question&nbsp;1</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="titles-and-header-numbering" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="titles-and-header-numbering"><span class="header-section-number">2.2</span> Titles and header numbering</h3>
+<p>Supply <code>title="..."</code> on the source div, or use a first heading inside it. If both are present, the <code>title</code> attribute wins. The extension also accepts <code>icon</code>, <code>appearance</code> and <code>collapse</code> div attributes; the global settings supply defaults.</p>
+<p>The local <code>assets/theme-toggle.html</code> script finds native question/solution labels and moves them into the coloured header. An answer with the matching suffix receives the corresponding question number, with “Question” replaced by “Réponse”. It removes a redundant answer title when that title is simply “Réponse” or “Answer”. Root <code>assets/custom.css</code> suppresses the original separate numbering line.</p>
+<p>Transfer <strong>all three layers</strong> together: the custom-callout extension, the <code>custom-callout</code> definitions in <code>_template.yml</code>, and the CSS/JS header integration. A styled block without an <code>exr-</code> ID is a callout, but is not a numbered exercise.</p>
+<p>The book’s custom types are not configured in <code>slides/_template.yml</code>. To use them in slides, you would need to add their extension and definitions to the slide project; ordinary Quarto callouts already work there.</p>
+</section>
+</section>
+<section id="interactive-exercises" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="interactive-exercises"><span class="header-section-number">3</span> Interactive exercises</h2>
+<p><span class="origin">Third-party webexercises assets · Course Python integration</span></p>
+<p>Root <code>_template.yml</code> loads <code>assets/webex.css</code> and includes <code>assets/webex.js</code> after the document. These files are derived from <strong>webexercises</strong> and run in the browser. Outils informatique II additionally uses <code>pywebexercises.exercises</code> to generate exercise HTML from Python. That Python package is a separate dependency, not bundled in the template.</p>
+<p>The raw HTML interface below works without Python and describes the contract used by the included JavaScript.</p>
+<section id="text-and-numeric-responses" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="text-and-numeric-responses"><span class="header-section-number">3.1</span> Text and numeric responses</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1"></a><span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">"crs-answer"</span><span class="dt">&gt;</span>LV95 EPSG code<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> id</span><span class="op">=</span><span class="st">"crs-answer"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-solveme"</span><span class="ot"> data-answer</span><span class="op">=</span><span class="st">'["2056"]'</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="demo">
+<p><label for="docs-crs-answer">Try it — enter the EPSG code for LV95</label> <input id="docs-crs-answer" class="webex-solveme" data-answer="[&quot;2056&quot;]"></p>
+</div>
+<p><code>data-answer</code> must contain a valid JSON array. Matching is exact by default. Add <code>.ignorecase</code> for case-insensitive input or <code>.nospaces</code> to remove ordinary space characters before matching. The current <code>.nospaces</code> implementation removes spaces, not all whitespace.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> aria-label</span><span class="op">=</span><span class="st">"Rock type"</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="ot">       class</span><span class="op">=</span><span class="st">"webex-solveme ignorecase nospaces"</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="ot">       data-answer</span><span class="op">=</span><span class="st">'["basalt", "basalte"]'</span><span class="dt">&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> aria-label</span><span class="op">=</span><span class="st">"Approximate result"</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="ot">       class</span><span class="op">=</span><span class="st">"webex-solveme"</span><span class="ot"> data-answer</span><span class="op">=</span><span class="st">'[10]'</span><span class="ot"> data-tol</span><span class="op">=</span><span class="st">"0.1"</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Positive <code>data-tol</code> accepts a numeric difference <strong>strictly smaller</strong> than the tolerance. <code>.regex</code> interprets the joined answer strings as a JavaScript regular expression. Use anchored patterns such as <code>^basalt$</code> if a whole response must match. For routine exercises, prefer explicit accepted strings over regular expressions.</p>
+</section>
+<section id="dropdowns-and-radio-buttons" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="dropdowns-and-radio-buttons"><span class="header-section-number">3.2</span> Dropdowns and radio buttons</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1"></a><span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">"unit-choice"</span><span class="dt">&gt;</span>Choose a projected coordinate unit<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> id</span><span class="op">=</span><span class="st">"unit-choice"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-select"</span><span class="dt">&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"blank"</span><span class="dt">&gt;</span>Choose an answer<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"wrong"</span><span class="dt">&gt;</span>Degrees<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"answer"</span><span class="dt">&gt;</span>Metres<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-radiogroup"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"unit-radio"</span><span class="dt">&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="dt">&lt;</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"radio"</span><span class="ot"> name</span><span class="op">=</span><span class="st">"unit-radio"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"wrong"</span><span class="dt">&gt;</span>Degrees<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="dt">&lt;</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"radio"</span><span class="ot"> name</span><span class="op">=</span><span class="st">"unit-radio"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"answer"</span><span class="dt">&gt;</span>Metres<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The correct option must have the literal value <code>answer</code>; dropdown placeholders use <code>blank</code>. Give each radio group a unique, simple ID and use exactly that ID as the <code>name</code> of its inputs. Avoid spaces or punctuation in these IDs because the current script builds a CSS selector from them.</p>
+</section>
+<section id="check-a-group-and-reveal-an-explanation" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="check-a-group-and-reveal-an-explanation"><span class="header-section-number">3.3</span> Check a group and reveal an explanation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-check webex-box"</span><span class="dt">&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">"group-answer"</span><span class="dt">&gt;</span>LV95 EPSG code<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> id</span><span class="op">=</span><span class="st">"group-answer"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-solveme"</span><span class="ot"> data-answer</span><span class="op">=</span><span class="st">'["2056"]'</span><span class="dt">&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-solution"</span><span class="dt">&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> type</span><span class="op">=</span><span class="st">"button"</span><span class="dt">&gt;</span>Explanation<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>LV95 uses EPSG:2056.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>.webex-check</code> adds a “Show Answers” / “Hide Answers” button and a correct-count indicator. It changes feedback visibility; it does not fill the correct responses into empty controls. <code>.webex-solution</code> requires a button directly inside the container; clicking it toggles the container’s <code>open</code> class.</p>
+<p>These controls provide local feedback, not stored assessment results. The answer values are delivered to the browser in the HTML. Native book profiles do not automatically remove webex answer keys. The current JavaScript also resets response boxes when a page loads and assigns <code>window.onload</code>; another script that replaces that handler can stop exercise setup.</p>
+</section>
+</section>
+<section id="notebooks" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="notebooks"><span class="header-section-number">4</span> Notebook links and conversion</h2>
+<p><span class="origin">Local Lua filter and Python builder</span></p>
+<p>Add the download link in a chapter’s YAML:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">other-links</span><span class="kw">:</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Notebook Jupyter</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="at">    </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> file-earmark-code</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> class_02.ipynb</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The notebook sits beside its source chapter, so the link is relative to that page. The Lua filter <code>scripts/notebook-links.lua</code> inspects the effective <code>answers</code> metadata:</p>
+<ul>
+<li>When it is <code>true</code>, JavaScript adds <code>download</code> to links in <code>.quarto-other-links</code> whose <code>href</code> ends exactly with <code>.ipynb</code>.</li>
+<li>Otherwise, CSS hides <strong>all</strong> <code>.quarto-other-links</code>, including any unrelated links placed there. Links elsewhere in the page are unaffected.</li>
+</ul>
+<p>The filter does not generate notebooks or prevent someone opening a known notebook URL. A query suffix such as <code>.ipynb?download=1</code> does not match its current end-of-string selector.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="ex">python</span> scripts/render_notebooks.py 2</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="ex">python</span> scripts/render_notebooks.py course/class_02.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The script runs <code>quarto convert</code>, writes an IPYNB next to each chapter, then clears outputs, execution counts and cell metadata. It sets a generic Python 3 kernelspec. It removes <code>#|</code> cell-option lines, selected Quarto div wrappers, heading attributes, image attributes, pagebreak shortcodes and Font Awesome shortcodes.</p>
+<p><strong>Answer source remains in converted notebooks.</strong> The script does not evaluate <code>when-meta="answers"</code> or apply the question profile. It strips wrappers while retaining their content. Its wrapper-cleaning expression recognises exactly three-colon fences; longer nested fences can remain. Inspect a representative notebook before distribution, particularly chapters with nested answers and HTML exercises.</p>
+<p>The book’s <code>resources</code> list must include <code>course/*.ipynb</code> if the generated notebooks should be copied into the published output. <code>keep-ipynb: false</code> concerns Quarto’s execution intermediates; it is separate from notebooks deliberately generated by this script.</p>
+</section>
+<section id="citations" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="citations"><span class="header-section-number">5</span> Citations and references</h2>
+<p><span class="origin">Native Pandoc citations · Local Zotero convention</span></p>
+<p>Keep each course’s Zotero export in root <code>assets/</code>. Choose its own filename: <code>OI2.bib</code>, <code>geospatial.bib</code> or another appropriate name. Set that path in root <code>_quarto.yml</code>; the shared <code>_template.yml</code> sets the CSL to <code>assets/bulletin-of-volcanology.csl</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a>The interpretation follows previous work <span class="co">[</span><span class="ot">@yourCitationKey</span><span class="co">]</span>.</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>@yourCitationKey provides the original method.</span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="fu">## References</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a>::: {#refs}</span>
+<span id="cb12-8"><a href="#cb12-8"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use a real key from the bibliography. The <code>#refs</code> container chooses where references appear. A whole-book references appendix can be listed in <code>book.appendices</code>; the filename and chapter organisation belong to the course.</p>
+<p>Do not manually edit Zotero-synchronised entries. Import new references into Zotero and refresh its export. The slide script copies root bibliography files into <code>slides/assets/</code>; see <a href="./slide-guide.html#standalone">standalone slides</a>.</p>
+</section>
+<section id="appearance" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="appearance"><span class="header-section-number">6</span> Appearance and authoring helpers</h2>
+<p><span class="origin">Local CSS and JavaScript · Native HTML theming</span></p>
+<p>The book uses <strong>Cosmo</strong> in light mode and <strong>Darkly plus <code>assets/dark.scss</code></strong> in dark mode. Syntax highlighting is <code>atom-one</code> / <code>dracula</code>. Root <code>assets/custom.css</code> sets Source Sans Pro for text and Roboto Slab for headings, loaded from Google Fonts with local fallback fonts.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Helper or behaviour</th>
+<th>Usage</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.bg</code></td>
+<td><code>[key phrase]{.bg}</code></td>
+<td>Teal translucent marker effect, including wrapped lines. It is orange in slides.</td>
+</tr>
+<tr class="even">
+<td><code>.btn .btn-download</code></td>
+<td>Apply to a Markdown link</td>
+<td>Rounded orange-outline button; the <code>download</code> attribute is separate.</td>
+</tr>
+<tr class="odd">
+<td><code>.nowrap-first-col</code></td>
+<td>Apply to a table or wrapping div</td>
+<td>Prevents wrapping in the first table column. Long content can overflow a narrow screen.</td>
+</tr>
+<tr class="even">
+<td><code>.reveal-embed</code></td>
+<td>Apply to an iframe</td>
+<td>Full-width 16:9 embedded deck; 4:3 on narrow screens.</td>
+</tr>
+<tr class="odd">
+<td>Documentation icon links</td>
+<td>A link containing <code>.fa-book</code> or <code>.fa-graduation-cap</code></td>
+<td>Compact raised icon beside a function name; not applied inside <code>sup</code>.</td>
+</tr>
+<tr class="even">
+<td>Table stripes</td>
+<td>Automatic on <code>table.table</code> rows</td>
+<td>Alternates odd rows using light/dark CSS variables.</td>
+</tr>
+<tr class="odd">
+<td>Figure alignment</td>
+<td>Automatic</td>
+<td>Left-aligns ordinary Quarto figure images.</td>
+</tr>
+</tbody>
+</table>
+<p>Live book highlight: <span class="bg">a shared scientific question</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">[</span><span class="ot">Download data</span><span class="co">](data/samples.csv)</span>{.btn .btn-download download="samples.csv"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The CSS styles the link; it does not provide the file. To add a Font Awesome icon, enable the bundled <code>fontawesome</code> shortcode extension in that page or project’s <code>filters</code>, then use:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">[</span><span class="ot">{{&lt; fa download &gt;}} Download data</span><span class="co">](data/samples.csv)</span>{.btn .btn-download}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The root starter’s shared filter list contains <code>notebook-links.lua</code> and <code>custom-callout</code>; it does <strong>not</strong> enable <code>fontawesome</code> globally. The installed extension folder alone does not activate its shortcode.</p>
+<section id="code-annotations-and-figures" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="code-annotations-and-figures"><span class="header-section-number">6.1</span> Code annotations and figures</h3>
+<p>Line numbers and hover annotations are enabled in the HTML book. Use native <code>&lt;1&gt;</code> comments and an immediately following annotation list. The local CSS moves the copy button away from annotations.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>values <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>]  <span class="co"># &lt;1&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>mean <span class="op">=</span> <span class="bu">sum</span>(values) <span class="op">/</span> <span class="bu">len</span>(values)  <span class="co"># &lt;2&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="in">```</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="ss">1. </span>The observations used in the calculation.</span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="ss">2. </span>The arithmetic mean.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For Matplotlib figures, load the supplied style explicitly; copying the file does not activate it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-2"><a href="#cb16-2"></a>plt.style.use(<span class="st">"assets/plots.mplstyle"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>With Quarto’s normal document-relative execution, use <code>../assets/plots.mplstyle</code> from a chapter in <code>course/</code>. If the course sets a project execution directory, adjust the path accordingly. The style sets Roboto, teal labels and a <code>#fafafa</code> figure background; it does not automatically switch plot colours in book dark mode.</p>
+</section>
+<section id="navigation-and-small-fixes" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="navigation-and-small-fixes"><span class="header-section-number">6.2</span> Navigation and small fixes</h3>
+<p>The template enables section numbering, page navigation, book search and a right-hand table of contents to depth 4. Sidebar chapter numbers are hidden visually; this does not disable section numbering elsewhere. <code>assets/book-index-link.html</code> turns the first sidebar part label into a home link <strong>when the book uses the matching first-part structure</strong>; it does nothing when that element is absent.</p>
+<p><code>assets/theme-toggle.html</code> also wraps Quarto’s colour toggle to restore the scroll position after a theme switch. The same file currently contains the question/answer header integration, so keep it when transferring either feature. Hypothesis comments are enabled under <code>comments.hypothesis</code> in shared YAML and depend on the external service.</p>
+<p>For native behaviour beyond the local configuration, consult <a href="https://quarto.org/docs/authoring/conditional.html">conditional content</a>, <a href="https://quarto.org/docs/authoring/code-annotation.html">code annotations</a> and <a href="https://quarto.org/docs/authoring/citations.html">citations</a>.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+
+/*
+Acknowledgments. This file is from webexercises:
+  Barr D, DeBruine L (2023). webexercises: Create Interactive Web Exercises in
+  'R Markdown' (Formerly 'webex'). R package version 1.1.0.9000,
+  https://github.com/psyteachr/webexercises.
+*/
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script>
+(() => {
+  const quartoToggle = window.quartoToggleColorScheme;
+
+  if (typeof quartoToggle !== "function") {
+    return;
+  }
+
+  window.quartoToggleColorScheme = function () {
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const restorePosition = () => window.scrollTo(scrollX, scrollY);
+
+    quartoToggle();
+    restorePosition();
+    window.requestAnimationFrame(restorePosition);
+    window.setTimeout(restorePosition, 80);
+  };
+})();
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const questionNumbers = new Map(
+    Array.from(document.querySelectorAll(".callout-question.theorem"))
+      .map((callout) => {
+        const number = callout.querySelector(
+          ":scope > p:first-child > .theorem-title"
+        );
+        return [
+          callout.id.replace(/^exr-/, ""),
+          number ? number.textContent.trim() : "",
+        ];
+      })
+  );
+
+  const callouts = document.querySelectorAll(
+    ".callout-question.theorem, .callout-answer.solution"
+  );
+
+  callouts.forEach((callout) => {
+    const number = callout.querySelector(
+      ":scope > p:first-child > .theorem-title, " +
+      ":scope > p:first-child > .proof-title"
+    );
+    const title = callout.querySelector(
+      ":scope > .callout-header .callout-title-container"
+    );
+
+    if (!number || !title) return;
+
+    const numberLine = number.parentElement;
+    const screenReaderLabel = title.querySelector(".screen-reader-only");
+    if (screenReaderLabel) screenReaderLabel.remove();
+
+    let label = number.textContent
+      .trim()
+      .replace(/^Solution\b/, "Réponse");
+
+    if (callout.classList.contains("callout-answer")) {
+      const questionKey = callout.id.replace(/^sol-/, "");
+      const questionLabel = questionNumbers.get(questionKey);
+      if (questionLabel) {
+        label = questionLabel.replace(/^Question\b/, "Réponse");
+      }
+    }
+
+    let description = title.textContent.trim();
+
+    if (callout.classList.contains("callout-answer") &&
+        /^(Réponse|Answer)$/.test(description)) {
+      description = "";
+    }
+
+    title.textContent = description
+      ? `${label} : ${description}`
+      : label;
+    numberLine.remove();
+  });
+});
+</script>
+<script>
+(() => {
+  const normalizePath = (url) => {
+    const path = new URL(url, window.location.href).pathname;
+
+    return path
+      .replace(/\/index\.html$/, "/")
+      .replace(/\/+$/, "/");
+  };
+
+  const makeIndexPartClickable = () => {
+    const sidebar = document.querySelector("#quarto-sidebar");
+
+    if (!sidebar) return;
+
+    // Le titre du livre fournit l'adresse correcte de la page d'accueil,
+    // y compris depuis les pages placées dans un sous-dossier.
+    const homeLink = sidebar.querySelector(".sidebar-title a");
+
+    // index.qmd est déclaré comme première partie du livre. Quarto génère
+    // donc son libellé sous forme de <span> plutôt que de lien.
+    const indexPart = sidebar.querySelector(
+      ".sidebar-menu-container > ul > li.sidebar-item-section:first-child > span.sidebar-item-text"
+    );
+
+    if (!homeLink || !indexPart) return;
+
+    const container = document.createElement("div");
+    const link = document.createElement("a");
+
+    container.className = "sidebar-item-container";
+    link.href = homeLink.href;
+    link.className = "sidebar-item-text sidebar-link";
+    link.innerHTML = indexPart.innerHTML;
+
+    // Quarto peut attribuer la classe active au libellé de la partie sur
+    // toutes les pages. On la retire avant de recalculer l'état courant.
+    link.classList.remove("active");
+    link.removeAttribute("aria-current");
+
+    const currentPath = normalizePath(window.location.href);
+    const homePath = normalizePath(homeLink.href);
+
+    if (currentPath === homePath) {
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
+    }
+
+    container.appendChild(link);
+    indexPart.replaceWith(container);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", makeIndexPartClickable);
+  } else {
+    makeIndexPartClickable();
+  }
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/e5k\.github\.io\/_quarto-teaching-template\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./getting-started.html" class="pagination-link" aria-label="Getting started">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Getting started</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./slide-guide.html" class="pagination-link" aria-label="Slide guide">
+        <span class="nav-page-text">Slide guide</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Book and slide themes</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/e5k/_quarto-teaching-template/edit/main/doc/book-guide.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/e5k/_quarto-teaching-template/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Documentation draft · 4 November 2026</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

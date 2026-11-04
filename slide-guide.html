@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="The clean theme, local layout helpers, animation, profile icons and standalone projects.">
+
+<title>Slide guide – Quarto teaching template</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./maintenance.html" rel="next">
+<link href="./book-guide.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2a367172f4fe7d9182ebf8e09f85cb4e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2ff81c2e5dfd9e56c4f590b9591e1eb8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2a367172f4fe7d9182ebf8e09f85cb4e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b332074f8c45958fd2117fbbe7135bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-773776e6a2009302a2d265d789688fee.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b332074f8c45958fd2117fbbe7135bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome-7-free-7.2.0/fontawesome.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll('.quarto-other-links a[href$=".ipynb"]')
+    .forEach((link) => link.setAttribute("download", ""));
+});
+</script>
+<style>
+div.callout-answer.callout {
+  border-left-color: #2e8b57;
+}
+div.callout-answer.callout-style-default .callout-header {
+  background-color: rgba(46, 139, 87, 0.13);
+}
+div.callout-answer .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-answer.callout-style-default .callout-icon::before, div.callout-answer.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 7 Free';
+  font-weight: 900;
+  font-style: normal;
+  content: '\f058' !important;
+  background-image: none;
+}
+div.callout-question.callout {
+  border-left-color: #6f42c1;
+}
+div.callout-question.callout-style-default .callout-header {
+  background-color: rgba(111, 66, 193, 0.13);
+}
+div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 7 Free';
+  font-weight: 900;
+  font-style: normal;
+  content: '\f059' !important;
+  background-image: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="assets/docs.css">
+<link rel="stylesheet" href="assets/custom.css">
+<link rel="stylesheet" href="assets/webex.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./slide-guide.html">Slide guide</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quarto teaching template</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./book-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Book guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./slide-guide.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Slide guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maintenance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maintenance</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-presentation-project" id="toc-the-presentation-project" class="nav-link active" data-scroll-target="#the-presentation-project"><span class="header-section-number">1</span> The presentation project</a>
+  <ul>
+  <li><a href="#working-demonstration" id="toc-working-demonstration" class="nav-link" data-scroll-target="#working-demonstration"><span class="header-section-number">1.1</span> Working demonstration</a></li>
+  </ul></li>
+  <li><a href="#layouts" id="toc-layouts" class="nav-link" data-scroll-target="#layouts"><span class="header-section-number">2</span> Headings, columns and content</a>
+  <ul>
+  <li><a href="#code-beside-its-result" id="toc-code-beside-its-result" class="nav-link" data-scroll-target="#code-beside-its-result"><span class="header-section-number">2.1</span> Code beside its result</a></li>
+  </ul></li>
+  <li><a href="#highlighting" id="toc-highlighting" class="nav-link" data-scroll-target="#highlighting"><span class="header-section-number">3</span> Text highlighting</a></li>
+  <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images"><span class="header-section-number">4</span> Images, captions and video</a></li>
+  <li><a href="#fragments" id="toc-fragments" class="nav-link" data-scroll-target="#fragments"><span class="header-section-number">5</span> Fragments and stacked content</a></li>
+  <li><a href="#animation" id="toc-animation" class="nav-link" data-scroll-target="#animation"><span class="header-section-number">6</span> Animation</a>
+  <ul>
+  <li><a href="#native-auto-animation" id="toc-native-auto-animation" class="nav-link" data-scroll-target="#native-auto-animation"><span class="header-section-number">6.1</span> Native auto-animation</a></li>
+  <li><a href="#svg-animation-with-the-animate-extension" id="toc-svg-animation-with-the-animate-extension" class="nav-link" data-scroll-target="#svg-animation-with-the-animate-extension"><span class="header-section-number">6.2</span> SVG animation with the animate extension</a></li>
+  </ul></li>
+  <li><a href="#navigation" id="toc-navigation" class="nav-link" data-scroll-target="#navigation"><span class="header-section-number">7</span> Navigation and repeated headings</a>
+  <ul>
+  <li><a href="#repeated-slide-titles" id="toc-repeated-slide-titles" class="nav-link" data-scroll-target="#repeated-slide-titles"><span class="header-section-number">7.1</span> Repeated slide titles</a></li>
+  <li><a href="#links-in-new-tabs" id="toc-links-in-new-tabs" class="nav-link" data-scroll-target="#links-in-new-tabs"><span class="header-section-number">7.2</span> Links in new tabs</a></li>
+  </ul></li>
+  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations"><span class="header-section-number">8</span> Citations and mathematics</a></li>
+  <li><a href="#author-icons" id="toc-author-icons" class="nav-link" data-scroll-target="#author-icons"><span class="header-section-number">9</span> Author profile icons</a></li>
+  <li><a href="#standalone" id="toc-standalone" class="nav-link" data-scroll-target="#standalone"><span class="header-section-number">10</span> Extract a standalone slide project</a></li>
+  <li><a href="#export-behaviour" id="toc-export-behaviour" class="nav-link" data-scroll-target="#export-behaviour"><span class="header-section-number">11</span> Export behaviour</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/e5k/_quarto-teaching-template/edit/main/doc/slide-guide.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/e5k/_quarto-teaching-template/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Slide guide</h1>
+</div>
+
+<div>
+  <div class="description">
+    The clean theme, local layout helpers, animation, profile icons and standalone projects.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="the-presentation-project" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-presentation-project"><span class="header-section-number">1</span> The presentation project</h2>
+<p><span class="origin">Extension: clean 1.4.1 · Local customisation</span></p>
+<p><code>slides/_quarto.yml</code> loads <code>slides/_template.yml</code>. The shared file selects <code>format: clean-revealjs</code>, supplies plugin settings and references local resources. The clean extension lives under <code>slides/_extensions/grantmcdermott/clean/</code>; its <code>clean.scss</code> contains both upstream styling and local modifications.</p>
+<p>The palette uses dark teal <code>#23373b</code>, teal <code>#2F4647</code>, orange <code>#EB811B</code> and a <code>#fafafa</code> slide background. Body text uses Roboto and headings Roboto Slab. The shared format enables a fast fade transition, simple callouts, hover code annotations, a chalkboard and the Font Awesome stylesheet.</p>
+<section id="working-demonstration" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="working-demonstration"><span class="header-section-number">1.1</span> Working demonstration</h3>
+<p>The deck below was rendered with a local copy of the actual slide theme and extensions. Click inside it, then use the arrow keys. Open it separately for full-screen use.</p>
+<iframe class="reveal-embed" src="assets/demos/slides/demo.html" title="Working demonstrations of the slide theme and custom features" loading="lazy" allowfullscreen="">
+</iframe>
+<p><a href="assets/demos/slides/demo.html" target="_blank">Open the demonstration deck</a> · <a href="assets/demos/slides/demo.qmd.txt" download="demo.qmd.txt">Download its source</a></p>
+</section>
+</section>
+<section id="layouts" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="layouts"><span class="header-section-number">2</span> Headings, columns and content</h2>
+<p><span class="origin">Native layouts · Local helpers</span></p>
+<p>Use <code>##</code> for a normal content slide. A <code>#</code> heading introduces a higher-level section and can create a vertical stack, depending on the surrounding heading structure. Put speaker-only content inside <code>.notes</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">## A scientific comparison</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>:::: {.columns}</span>
+<span id="cb1-4"><a href="#cb1-4"></a>::: {.column width="40%"}</span>
+<span id="cb1-5"><a href="#cb1-5"></a>Describe the prediction.</span>
+<span id="cb1-6"><a href="#cb1-6"></a>:::</span>
+<span id="cb1-7"><a href="#cb1-7"></a>::: {.column width="60%"}</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="al">![](assets/example.png)</span>{width=100%}</span>
+<span id="cb1-9"><a href="#cb1-9"></a>:::</span>
+<span id="cb1-10"><a href="#cb1-10"></a>::::</span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a>::: {.notes}</span>
+<span id="cb1-13"><a href="#cb1-13"></a>Ask students to identify the evidence before discussing the mechanism.</span>
+<span id="cb1-14"><a href="#cb1-14"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="code-beside-its-result" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="code-beside-its-result"><span class="header-section-number">2.1</span> Code beside its result</h3>
+<p>The theme includes <code>.columns3070</code>, <code>.columns7030</code>, <code>.columns4060</code> and <code>.columns6040</code>. They set the widths of direct <code>.column</code> children; the first number is the first column’s percentage. They are particularly useful with Quarto’s code-output column layout:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="in">```{python}</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#| output-location: column</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#| classes: columns4060</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="bu">print</span>(<span class="st">"A result beside the code"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>These classes are layout helpers, not standalone commands that generate columns. Use native <code>.columns</code> / <code>.column</code> markup or <code>output-location: column</code> to create the structure first.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Helper</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.right</code></td>
+<td>Applies <code>text-align: right</code> to the element’s content.</td>
+</tr>
+<tr class="even">
+<td><code>.small-gap</code></td>
+<td>A block with <code>0.25em</code> top and bottom margins; useful for small spacing adjustments.</td>
+</tr>
+<tr class="odd">
+<td><code>.no-title</code> on a slide heading</td>
+<td>Hides <code>h1</code>, <code>h2</code> and <code>h3</code> descendants of that slide. It hides subheadings too, not just the slide title.</td>
+</tr>
+<tr class="even">
+<td><code>.etable</code> wrapping an image</td>
+<td>Fits table images within the available box using contained image dimensions.</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">## A descriptive source heading {.no-title}</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="al">![](assets/example.png)</span>{width=85%}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Keep source headings meaningful even when hidden. Menu, navigation and accessibility behaviour should be checked for the resulting deck.</p>
+</section>
+</section>
+<section id="highlighting" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="highlighting"><span class="header-section-number">3</span> Text highlighting</h2>
+<p><span class="origin">Local theme rules</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">[</span><span class="ot">Important phrase</span><span class="co">]</span>{.bg}</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">[</span><span class="ot">Main emphasis</span><span class="co">]</span>{.alert}</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">[</span><span class="ot">Alternative</span><span class="co">]</span>{.alert-blue}</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">[</span><span class="ot">Positive result</span><span class="co">]</span>{.alert-green}</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">[</span><span class="ot">Caution</span><span class="co">]</span>{.alert-red}</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">[</span><span class="ot">Another category</span><span class="co">]</span>{.alert-purple}</span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">[</span><span class="ot">Custom colour</span><span class="co">]</span>{.fg style="--col: #007b83"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Configured value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.bg</code></td>
+<td>Orange gradient at approximately 40–50% opacity; wraps across lines.</td>
+</tr>
+<tr class="even">
+<td><code>.alert</code></td>
+<td>Theme orange, <code>#EB811B</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>.alert-blue</code></td>
+<td><code>#5858a1</code>.</td>
+</tr>
+<tr class="even">
+<td><code>.alert-green</code></td>
+<td><code>#67b06a</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>.alert-red</code></td>
+<td><code>#d7191c</code>.</td>
+</tr>
+<tr class="even">
+<td><code>.alert-purple</code></td>
+<td><code>#9a26b0</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>.fg</code></td>
+<td>CSS variable <code>--col</code>, falling back to <code>#131516</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Bold text uses teal. Inline code also uses teal with a translucent background and a monospace font stack. <code>.bg</code> in the <strong>book</strong> uses teal instead of this slide orange; the source syntax is shared but the appearance is intentionally format-specific.</p>
+<p>For a compact action link, the theme also supplies <code>.button</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">[</span><span class="ot">Open the published course</span><span class="co">](https://example.org)</span>{.button}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It renders an orange button with a triangle prefix and a blue hover state. It is distinct from the book’s <code>.btn-download</code> style.</p>
+</section>
+<section id="images" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="images"><span class="header-section-number">4</span> Images, captions and video</h2>
+<p><span class="origin">Native media · Local positioning</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="al">![A caption explaining the evidence](assets/example.png)</span>{width=80% .img-up-25}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Class</th>
+<th>Relative vertical offset</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.img-up-0</code></td>
+<td><code>0px</code></td>
+</tr>
+<tr class="even">
+<td><code>.img-up-25</code>, <code>.img-up-50</code>, <code>.img-up-75</code></td>
+<td><code>-25px</code>, <code>-50px</code>, <code>-75px</code></td>
+</tr>
+<tr class="odd">
+<td><code>.img-up-100</code>, <code>.img-up-150</code></td>
+<td><code>-100px</code>, <code>-150px</code></td>
+</tr>
+<tr class="even">
+<td><code>.img-down-25</code>, <code>.img-down-50</code>, <code>.img-down-75</code></td>
+<td><code>25px</code>, <code>50px</code>, <code>75px</code></td>
+</tr>
+</tbody>
+</table>
+<p>Apply a class directly to the image or to a wrapper containing it. These offsets use <code>position: relative</code>: they shift the visible element while retaining its original layout space. They do not resize an image or reserve extra room for overlapping content. Use ordinary width/height controls first, then inspect the finished slide before adjusting an offset.</p>
+<p>Quarto’s native automatic stretching primarily applies to non-nested images. Images inside columns, fragment wrappers or stacks often need explicit size controls. For image enlargement, add <code>.lightbox</code> <strong>and</strong> enable <code>lightbox: true</code> in the document or local project metadata. Existing course sources use <code>.lightbox</code>, but the central shared YAML does not currently enable lightbox globally.</p>
+<p>The current theme sets figure captions to Roboto, centred, with a <code>-15px</code> relative top offset and a very small <code>0.07em</code> font size. This is the implemented value, not a recommended readable caption size. Override it in course-specific CSS if captions must be legible in a lecture room; do not assume a standard Quarto caption size.</p>
+<p>For a local video, use an HTML element when you need the theme’s <code>r-stretch</code> rule:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1"></a><span class="dt">&lt;</span><span class="kw">video</span><span class="ot"> class</span><span class="op">=</span><span class="st">"r-stretch"</span><span class="ot"> controls src</span><span class="op">=</span><span class="st">"assets/process.mp4"</span><span class="dt">&gt;&lt;/</span><span class="kw">video</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The CSS constrains width to 100%, bounds the maximum height and centres the video. The theme also sets all slide-section padding to zero. Neither rule guarantees an oversized video fits every surrounding layout. Include the video file when extracting the slide project.</p>
+</section>
+<section id="fragments" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="fragments"><span class="header-section-number">5</span> Fragments and stacked content</h2>
+<p><span class="origin">Native fragments and r-stack · Local stack-top alignment</span></p>
+<p><code>.fragment</code> reveals an element when you advance the slide. <code>.fade-out</code> starts visible and disappears. Assigning the same <code>data-fragment-index</code> synchronises changes.</p>
+<p>For a replacement at the same position, use this pattern:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">## Compare observations</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a>:::: {.r-stack .stack-top}</span>
+<span id="cb8-4"><a href="#cb8-4"></a>::: {.fragment .fade-out data-fragment-index="1"}</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="al">![](assets/first.png)</span>{width=85%}</span>
+<span id="cb8-6"><a href="#cb8-6"></a>:::</span>
+<span id="cb8-7"><a href="#cb8-7"></a>::: {.fragment data-fragment-index="1"}</span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="al">![](assets/second.png)</span>{width=85%}</span>
+<span id="cb8-9"><a href="#cb8-9"></a>:::</span>
+<span id="cb8-10"><a href="#cb8-10"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>At first the first layer is visible. On the next step it fades out as the second appears. Without <code>fade-out</code>, the first image remains behind the second. Use the same mechanism for a callout replaced by a list.</p>
+<p>The local <code>.stack-top</code> helper aligns direct layers to the top left, fills their width, removes common paragraph/figure margins, limits images to <code>70vh</code>, and keeps captions in normal positioning. It also gives fragment-contained callouts and lists full width. It does not create fragment sequencing: <code>r-stack</code>, <code>.fragment</code>, effect classes and indices supply that behaviour.</p>
+</section>
+<section id="animation" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="animation"><span class="header-section-number">6</span> Animation</h2>
+<section id="native-auto-animation" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="native-auto-animation"><span class="header-section-number">6.1</span> Native auto-animation</h3>
+<p><span class="origin">Native Reveal.js</span></p>
+<p>Use adjacent slides with <code>auto-animate=true</code> to animate matching elements. Explicit <code>data-id</code> values make the intended match clear:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">## First position {auto-animate=true}</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a>::: {data-id="concept" style="margin-left: 0;"}</span>
+<span id="cb9-4"><a href="#cb9-4"></a>A scientific concept</span>
+<span id="cb9-5"><a href="#cb9-5"></a>:::</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="fu">## Second position {auto-animate=true}</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a></span>
+<span id="cb9-9"><a href="#cb9-9"></a>::: {data-id="concept" style="margin-left: 120px;"}</span>
+<span id="cb9-10"><a href="#cb9-10"></a>A scientific concept</span>
+<span id="cb9-11"><a href="#cb9-11"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This does not require the animate extension. The working demonstration includes a matching two-slide sequence.</p>
+</section>
+<section id="svg-animation-with-the-animate-extension" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="svg-animation-with-the-animate-extension"><span class="header-section-number">6.2</span> SVG animation with the animate extension</h3>
+<p><span class="origin">Extension: fradav/animate 0.2.0</span></p>
+<p>The template declares <code>animate</code> in <strong>both</strong> <code>revealjs-plugins</code> and <code>filters</code>. The filter recognises a code block whose first two classes are <code>yaml</code> and <code>animate</code>, then emits a <code>data-animate</code> container with the named SVG resource.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="in">```{.yaml .animate src="assets/process.svg"}</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">setup</span><span class="kw">:</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">element</span><span class="kw">:</span><span class="at"> </span><span class="st">"#particle"</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="at">    </span><span class="fu">modifier</span><span class="kw">:</span><span class="at"> opacity</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="at">    </span><span class="fu">parameters</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="dv">0</span><span class="kw">]</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="fu">animation</span><span class="kw">:</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">element</span><span class="kw">:</span><span class="at"> </span><span class="st">"#particle"</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="at">    </span><span class="fu">modifier</span><span class="kw">:</span><span class="at"> opacity</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="at">    </span><span class="fu">parameters</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="dv">1</span><span class="kw">]</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="at">    </span><span class="fu">duration</span><span class="kw">:</span><span class="at"> </span><span class="dv">800</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The SVG must contain an element with the matching ID. <code>setup</code> supplies initial SVG.js modifications; <code>animation</code> supplies subsequent changes. <code>duration</code> is expressed in milliseconds. Plugin autoplay defaults to true. Serve the deck with <code>quarto preview</code> or an HTTP server: this plugin fetches external SVG data, which can fail when opened directly with <code>file://</code>.</p>
+<p>The extension folder contains its JavaScript dependencies. Transfer the filter declaration, plugin declaration, <strong>whole</strong> extension folder and SVG assets together. See the <a href="https://github.com/fradav/quarto-revealjs-animate">upstream animate reference</a> for timelines and fragment-indexed sequences; native auto-animation and this SVG plugin are different systems.</p>
+</section>
+</section>
+<section id="navigation" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="navigation"><span class="header-section-number">7</span> Navigation and repeated headings</h2>
+<p><span class="origin">Native controls · Extension: verticator · Local scripts</span></p>
+<p>The clean theme enables slide numbers and configures the menu panel on the left. Local CSS moves the menu button to the top right, chalkboard buttons alongside it, a supplied logo to the bottom left and slide numbers to the bottom right. A logo is shown only if configured in the local document or project.</p>
+<p>The shared <code>verticator</code> settings use <code>themetag: h1</code>, <code>clickable: true</code>, automatic placement, <code>offset: 3vmin</code>, title tooltips and <code>scale: 0.75</code>. Its section indicators are most useful with vertical stacks; they are not a replacement for the slide menu.</p>
+<p>Use the arrow keys for slide navigation. Reveal’s help panel (<code>?</code>), overview (<code>Esc</code>) and speaker view (<code>S</code>) are native presentation tools. Speaker view can require a served page and browser popup permission. The chalkboard is enabled by shared metadata; browser annotations do not become editable annotations in an exported PDF.</p>
+<section id="repeated-slide-titles" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="repeated-slide-titles"><span class="header-section-number">7.1</span> Repeated slide titles</h3>
+<p>The <strong>active</strong> script is <code>slides/assets/after-body.html</code>, included by shared YAML. It groups real slide sections by the text of their first <code>h1</code>, <code>h2</code> or <code>h3</code> and rewrites repeated headings as <code>Title (1/3)</code>, <code>Title (2/3)</code> and so on. Stack-container sections and sections with <code>data-visibility="hidden"</code> are excluded. Equal titles are grouped across the deck, even when not adjacent.</p>
+<p>Do not add counters manually. The script changes heading text in the browser, so it is not an authoring-time numbering system and its results should be checked after rendering. A separate <code>assets/js/same-title-counter.js</code> file exists but is <strong>not included by the current shared configuration</strong>; do not load both.</p>
+</section>
+<section id="links-in-new-tabs" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="links-in-new-tabs"><span class="header-section-number">7.2</span> Links in new tabs</h3>
+<p>The same after-body script gives links inside <code>.reveal .slides</code> <code>target="_blank"</code> and <code>rel="noopener noreferrer"</code>, except links with empty URLs, <code>#...</code> fragment links and links carrying <code>.lightbox</code>. This applies to relative course-page links as well as external URLs. It runs during initial setup and Reveal readiness; content added dynamically afterwards is not automatically reprocessed.</p>
+</section>
+</section>
+<section id="citations" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="citations"><span class="header-section-number">8</span> Citations and mathematics</h2>
+<p><span class="origin">Native citations and MathJax · Local resources</span></p>
+<p>The slide project’s bibliography points to <code>slides/assets/your-course.bib</code>, using <code>bibliography: assets/your-course.bib</code> in its local YAML. Shared YAML supplies the local CSL path. Use <code>[@yourKey]</code> or <code>@yourKey</code> in slide text and <code>::: {#refs}</code> on a references slide. The local <code>.csl-entry</code> style uses Roboto at 14pt; long lists can still overflow.</p>
+<p>The clean extension loads a MathJax 4 CDN script plus the slide-root <code>mathjax-config.js</code>. The local configuration requests the Asana font and <code>\(...\)</code> / <code>\[...\]</code> TeX delimiters for MathJax scanning. Quarto still accepts ordinary <code>$...$</code> and <code>$$...$$</code> authoring syntax. Keep the <strong>root</strong> <code>slides/mathjax-config.js</code> when copying the project; a similarly named extension resource also exists and is not a reason to omit that root file.</p>
+</section>
+<section id="author-icons" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="author-icons"><span class="header-section-number">9</span> Author profile icons</h2>
+<p><span class="origin">Local course/author-links filter</span></p>
+<p>Configure personal details in <code>slides/_quarto.yml</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Sébastien Biass</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="at">    </span><span class="fu">orcid</span><span class="kw">:</span><span class="at"> 0000-0002-1919-9473</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">author-links</span><span class="kw">:</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="at">  </span><span class="fu">researchgate</span><span class="kw">:</span><span class="at"> https://www.researchgate.net/profile/Sebastien-Biass</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="at">  </span><span class="fu">github</span><span class="kw">:</span><span class="at"> https://github.com/e5k</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="at">  </span><span class="fu">scholar</span><span class="kw">:</span><span class="at"> https://scholar.google.com/citations?user=Vs5kVHEAAAAJ</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="at">  </span><span class="fu">website</span><span class="kw">:</span><span class="at"> https://e5k.github.io</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The filter runs for Reveal.js when <code>author-links</code> is present. It accepts only values starting with <code>http://</code> or <code>https://</code>; absent or nonmatching values are skipped. At least one valid profile URL is needed before it injects any additional icon behaviour.</p>
+<p>It targets the <strong>first</strong> <code>.quarto-title-author-name</code>, inserting links after an existing ORCID icon or after the name when ORCID is absent. The order is ResearchGate, GitHub, Scholar, Website. It replaces the native ORCID graphic with a Font Awesome icon when present. It does not add a separate set of personal links for every author.</p>
+<p>All five icons use <code>#2F4647</code> at 55% opacity and full opacity on hover or keyboard focus. They receive accessible labels and open in a new tab. Shared YAML declares <code>course/author-links</code>; its implementation is <code>slides/_extensions/course/author-links/author-links.lua</code> with a companion <code>_extension.yml</code>. Font Awesome is provided by the shared CDN stylesheet. Keep URLs local when transferring the reusable filter.</p>
+</section>
+<section id="standalone" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="standalone"><span class="header-section-number">10</span> Extract a standalone slide project</h2>
+<p><span class="origin">Local portability convention</span></p>
+<ol type="1">
+<li>Refresh bibliography copies with <code>python scripts/render_slides.py 2 --no-pdf</code> from the course root. It copies <strong>all</strong> root <code>assets/*.bib</code>, replacing same-named slide copies, before rendering.</li>
+<li>Check that image, data, CSL, code and style paths needed by the selected decks stay inside <code>slides/</code>. Course-specific data and <code>plots.mplstyle</code> are copied locally when needed; they are not fetched automatically.</li>
+<li>Copy the <strong>entire</strong> <code>slides/</code> directory, including <code>_quarto.yml</code>, <code>_template.yml</code>, <code>_extensions/</code>, <code>assets/</code>, <code>mathjax-config.js</code> and any <code>data/</code> or <code>img/</code> directories.</li>
+<li>Activate an environment with the deck’s Python dependencies and run <code>quarto preview</code> inside the copied folder.</li>
+</ol>
+<p>The book’s scripts are outside the extracted project, but direct Quarto commands work inside it. <code>quarto preview</code> does not refresh Zotero copies. For an independent talk, maintain its bibliography directly in its own <code>assets/</code>. Relative links to published course pages may still need adjustment when publishing at another address; distinguish those reading links from files required to build the deck.</p>
+</section>
+<section id="export-behaviour" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="export-behaviour"><span class="header-section-number">11</span> Export behaviour</h2>
+<p><code>render_slides.py</code> exports PDFs through <code>decktape reveal --fragments</code>, so fragment states can produce additional PDF pages. This is different from a static one-page-per-source-slide export. <code>--no-compress</code> skips Ghostscript; <code>--no-pdf</code> skips PDF generation entirely. The shared <code>pdf: true</code> setting is not a replacement for the script’s Decktape step.</p>
+<p>PDFs cannot retain interactive fragment controls, animation, hover effects, lightboxes or playable videos. Check layout and the sequence of captured fragment states separately. Browser-based mathematical rendering and dynamically fetched SVG animations may need extra time or network access during capture.</p>
+<p>For native options beyond this template, see <a href="https://quarto.org/docs/presentations/revealjs/">Reveal.js</a>, <a href="https://quarto.org/docs/presentations/revealjs/advanced.html">advanced layouts and animation</a> and <a href="https://quarto.org/docs/presentations/revealjs/presenting.html">presentation tools</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+
+/*
+Acknowledgments. This file is from webexercises:
+  Barr D, DeBruine L (2023). webexercises: Create Interactive Web Exercises in
+  'R Markdown' (Formerly 'webex'). R package version 1.1.0.9000,
+  https://github.com/psyteachr/webexercises.
+*/
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script>
+(() => {
+  const quartoToggle = window.quartoToggleColorScheme;
+
+  if (typeof quartoToggle !== "function") {
+    return;
+  }
+
+  window.quartoToggleColorScheme = function () {
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const restorePosition = () => window.scrollTo(scrollX, scrollY);
+
+    quartoToggle();
+    restorePosition();
+    window.requestAnimationFrame(restorePosition);
+    window.setTimeout(restorePosition, 80);
+  };
+})();
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const questionNumbers = new Map(
+    Array.from(document.querySelectorAll(".callout-question.theorem"))
+      .map((callout) => {
+        const number = callout.querySelector(
+          ":scope > p:first-child > .theorem-title"
+        );
+        return [
+          callout.id.replace(/^exr-/, ""),
+          number ? number.textContent.trim() : "",
+        ];
+      })
+  );
+
+  const callouts = document.querySelectorAll(
+    ".callout-question.theorem, .callout-answer.solution"
+  );
+
+  callouts.forEach((callout) => {
+    const number = callout.querySelector(
+      ":scope > p:first-child > .theorem-title, " +
+      ":scope > p:first-child > .proof-title"
+    );
+    const title = callout.querySelector(
+      ":scope > .callout-header .callout-title-container"
+    );
+
+    if (!number || !title) return;
+
+    const numberLine = number.parentElement;
+    const screenReaderLabel = title.querySelector(".screen-reader-only");
+    if (screenReaderLabel) screenReaderLabel.remove();
+
+    let label = number.textContent
+      .trim()
+      .replace(/^Solution\b/, "Réponse");
+
+    if (callout.classList.contains("callout-answer")) {
+      const questionKey = callout.id.replace(/^sol-/, "");
+      const questionLabel = questionNumbers.get(questionKey);
+      if (questionLabel) {
+        label = questionLabel.replace(/^Question\b/, "Réponse");
+      }
+    }
+
+    let description = title.textContent.trim();
+
+    if (callout.classList.contains("callout-answer") &&
+        /^(Réponse|Answer)$/.test(description)) {
+      description = "";
+    }
+
+    title.textContent = description
+      ? `${label} : ${description}`
+      : label;
+    numberLine.remove();
+  });
+});
+</script>
+<script>
+(() => {
+  const normalizePath = (url) => {
+    const path = new URL(url, window.location.href).pathname;
+
+    return path
+      .replace(/\/index\.html$/, "/")
+      .replace(/\/+$/, "/");
+  };
+
+  const makeIndexPartClickable = () => {
+    const sidebar = document.querySelector("#quarto-sidebar");
+
+    if (!sidebar) return;
+
+    // Le titre du livre fournit l'adresse correcte de la page d'accueil,
+    // y compris depuis les pages placées dans un sous-dossier.
+    const homeLink = sidebar.querySelector(".sidebar-title a");
+
+    // index.qmd est déclaré comme première partie du livre. Quarto génère
+    // donc son libellé sous forme de <span> plutôt que de lien.
+    const indexPart = sidebar.querySelector(
+      ".sidebar-menu-container > ul > li.sidebar-item-section:first-child > span.sidebar-item-text"
+    );
+
+    if (!homeLink || !indexPart) return;
+
+    const container = document.createElement("div");
+    const link = document.createElement("a");
+
+    container.className = "sidebar-item-container";
+    link.href = homeLink.href;
+    link.className = "sidebar-item-text sidebar-link";
+    link.innerHTML = indexPart.innerHTML;
+
+    // Quarto peut attribuer la classe active au libellé de la partie sur
+    // toutes les pages. On la retire avant de recalculer l'état courant.
+    link.classList.remove("active");
+    link.removeAttribute("aria-current");
+
+    const currentPath = normalizePath(window.location.href);
+    const homePath = normalizePath(homeLink.href);
+
+    if (currentPath === homePath) {
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
+    }
+
+    container.appendChild(link);
+    indexPart.replaceWith(container);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", makeIndexPartClickable);
+  } else {
+    makeIndexPartClickable();
+  }
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/e5k\.github\.io\/_quarto-teaching-template\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./book-guide.html" class="pagination-link" aria-label="Book guide">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Book guide</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./maintenance.html" class="pagination-link" aria-label="Maintenance">
+        <span class="nav-page-text">Maintenance</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Book and slide themes</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/e5k/_quarto-teaching-template/edit/main/doc/slide-guide.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/e5k/_quarto-teaching-template/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Documentation draft · 4 November 2026</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,93 @@
+---
+title: "Teaching theme demonstrations"
+subtitle: "Layouts and local additions"
+author:
+  - name: Sébastien Biass
+    orcid: 0000-0002-1919-9473
+author-links:
+  researchgate: https://www.researchgate.net/profile/Sebastien-Biass
+  github: https://github.com/e5k
+  scholar: https://scholar.google.com/citations?user=Vs5kVHEAAAAJ
+  website: https://e5k.github.io
+---
+
+## Text emphasis
+
+[A highlighted concept]{.bg} and [the key result]{.alert}.
+
+[Alternative]{.alert-blue}, [positive result]{.alert-green}, [caution]{.alert-red}, [another category]{.alert-purple}.
+
+[Custom teal]{.fg style="--col: #007b83"} and **bold emphasis**.
+
+## Comparing evidence
+
+The same heading appears again on the next slide. The local script adds a counter.
+
+## Comparing evidence
+
+:::: {.r-stack .stack-top}
+::: {.fragment .fade-out data-fragment-index="1"}
+
+::: {.callout-note}
+Before the next step: a proposed interpretation.
+:::
+
+:::
+::: {.fragment data-fragment-index="1"}
+
+- After the next step: inspect the observations.
+- The new layer starts at the same top-left position.
+
+:::
+::::
+
+## Start here {auto-animate=true}
+
+::: {data-id="concept" style="margin-left: 0; font-size: 1.3em;"}
+A scientific concept
+:::
+
+## Move the concept {auto-animate=true}
+
+::: {data-id="concept" style="margin-left: 180px; font-size: 1.8em;"}
+A scientific concept
+:::
+
+## SVG animation
+
+```{.yaml .animate src="assets/process.svg"}
+setup:
+  - element: "#particle"
+    modifier: opacity
+    parameters: [0]
+animation:
+  - element: "#particle"
+    modifier: opacity
+    parameters: [1]
+    duration: 800
+```
+
+## Two columns
+
+:::: {.columns}
+::: {.column width="40%"}
+
+**Prediction**
+
+A short scientific question.
+
+:::
+::: {.column width="60%"}
+
+![](assets/process.svg){width=100%}
+
+:::
+::::
+
+## Links and notes
+
+[Open the documentation](../../../index.html){.button}
+
+::: {.notes}
+This note belongs in speaker view.
+:::

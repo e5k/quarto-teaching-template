@@ -1,0 +1,472 @@
+[
+  {
+    "objectID": "maintenance.html",
+    "href": "maintenance.html",
+    "title": "Maintenance",
+    "section": "",
+    "text": "Local repository connections · Native Git commands\nEach course contains ordinary local template files. The repositories are independent: a normal clone contains the files needed by that course. There is no custom template manager, _teaching/ directory, lock manifest, Git subtree or Git submodule in the current setup.\nUse feature commits to transfer improvements. A feature commit contains only the reusable change and all files required to implement it. Git fetch reads another repository’s commits; cherry-pick applies one selected commit to the current branch. It creates a new commit, rather than continuously linking files.\n\n\n\n\n\n\n\n\n\n\nRepository\nRemote\nDestination\n\n\n\n\nOutils informatique II\norigin\nIts existing https://github.com/e5k/outils-info-2.git repository\n\n\nOutils informatique II\ntemplate\nLocal _quarto-course-template repository\n\n\nAnalyse géospatiale\ntemplate\nLocal _quarto-course-template repository\n\n\nCentral template\noutils-info-2\nLocal Outils informatique II repository\n\n\nCentral template\nanalyse-geospatiale\nLocal Analyse géospatiale repository\n\n\n\nAll three use main. The new connections are local paths on this computer. They are not portable to another computer without updating the remote URLs. No GitHub repository or push was created for the template or Analyse géospatiale during setup.\nCheck the repository you are about to edit:\ngit status --short\ngit branch --show-current\ngit remote -v\nThe setup committed the 53 shared files after checking they matched byte for byte across the three folders. It preserved existing file contents and unrelated edits. Analyse géospatiale initially tracks only the shared files; its chapters, local YAML, bibliography and planning files still need deliberate source commits. Do not mistake its template baseline for a complete course backup.\nThe tag teaching-template-baseline-2026-11-04 refers to the template’s initial commit, 12493da. The courses have their own shared-file baseline commits (cb054d0 for Outils informatique II and abb5bcc for Analyse géospatiale). These are setup snapshots, not feature commits to import.\n\n\n\nMake a change in the template or a course. Stage exact paths, then inspect the staged diff:\n# Example: a change to the profile-icons feature\ngit add -- slides/_template.yml slides/_extensions/course/author-links/\ngit diff --cached\ngit commit -m \"Template: improve author profile icons\"\ngit rev-parse HEAD\nUse the paths appropriate to the actual feature. If a file contains both shared and course-specific changes, git add -p -- path/to/file lets you stage selected hunks. Check git diff --cached for all staged content: git commit without path arguments includes everything staged, including any earlier work.\nDo not include course titles, chapter edits, bibliography entries, datasets or personal URLs in the shared feature commit. Commit those separately in the course repository. New plugins typically need a YAML declaration and a complete extension directory; adding only a configuration line leaves an incomplete feature.\n\n\n\nRun in the destination course:\ngit fetch template\ngit log --oneline teaching-template-baseline-2026-11-04..template/main\ngit show TEMPLATE_COMMIT\ngit cherry-pick -x TEMPLATE_COMMIT\nReplace TEMPLATE_COMMIT with a real feature hash from the log. git show displays the whole commit, not just one file; review it before applying. The baseline range omits the initial template commit but does not guarantee every later commit is shareable. Documentation and starter-content commits must also be reviewed for relevance.\n-x records the source hash in the new commit message. If a feature spans several commits, inspect and import each in dependency order. Do not cherry-pick a whole branch or broad range just to obtain one feature.\n\n\n\nFirst commit the reusable feature in the source course. Then run in the central template:\ngit fetch outils-info-2\ngit log --oneline outils-info-2/main\ngit show COURSE_COMMIT\ngit cherry-pick -x COURSE_COMMIT\ngit rev-parse HEAD\nUse analyse-geospatiale in place of outils-info-2 for that source. Take the new template hash printed by the final command and import it into the other course with the template-to-course procedure.\nThe source course already has the feature; do not send the same change back to it. Cherry-picked copies have different hashes, so hash inequality alone does not prove a feature is missing. Read the -x provenance and inspect the content. Keep the template commit message clear enough to recognise the feature later.\nDo not git pull or merge an entire course branch into the template: the branch also contains local lessons and configuration. These independent repositories do not have a shared course-history model.\n\n\n\nAfter creating a new course repository and committing its matching shared files, connect it locally:\n# In the course; replace the path for your computer\ngit remote add template /path/to/_quarto-course-template\ngit fetch template\n\n# In the template; replace both placeholders\ngit remote add my-course /path/to/my-course\ngit fetch my-course\nFor GitHub-backed collaboration, create each repository and push its own branch intentionally. Then change the template and course-source URLs to those verified repository URLs with git remote set-url. Merely changing a URL does not create the remote repository or publish any files. Keep each course’s own origin distinct from its template remote. Avoid inventing or copying an unverified URL.",
+    "crumbs": [
+      "Maintenance"
+    ]
+  },
+  {
+    "objectID": "maintenance.html#git-workflow",
+    "href": "maintenance.html#git-workflow",
+    "title": "Maintenance",
+    "section": "",
+    "text": "Local repository connections · Native Git commands\nEach course contains ordinary local template files. The repositories are independent: a normal clone contains the files needed by that course. There is no custom template manager, _teaching/ directory, lock manifest, Git subtree or Git submodule in the current setup.\nUse feature commits to transfer improvements. A feature commit contains only the reusable change and all files required to implement it. Git fetch reads another repository’s commits; cherry-pick applies one selected commit to the current branch. It creates a new commit, rather than continuously linking files.\n\n\n\n\n\n\n\n\n\n\nRepository\nRemote\nDestination\n\n\n\n\nOutils informatique II\norigin\nIts existing https://github.com/e5k/outils-info-2.git repository\n\n\nOutils informatique II\ntemplate\nLocal _quarto-course-template repository\n\n\nAnalyse géospatiale\ntemplate\nLocal _quarto-course-template repository\n\n\nCentral template\noutils-info-2\nLocal Outils informatique II repository\n\n\nCentral template\nanalyse-geospatiale\nLocal Analyse géospatiale repository\n\n\n\nAll three use main. The new connections are local paths on this computer. They are not portable to another computer without updating the remote URLs. No GitHub repository or push was created for the template or Analyse géospatiale during setup.\nCheck the repository you are about to edit:\ngit status --short\ngit branch --show-current\ngit remote -v\nThe setup committed the 53 shared files after checking they matched byte for byte across the three folders. It preserved existing file contents and unrelated edits. Analyse géospatiale initially tracks only the shared files; its chapters, local YAML, bibliography and planning files still need deliberate source commits. Do not mistake its template baseline for a complete course backup.\nThe tag teaching-template-baseline-2026-11-04 refers to the template’s initial commit, 12493da. The courses have their own shared-file baseline commits (cb054d0 for Outils informatique II and abb5bcc for Analyse géospatiale). These are setup snapshots, not feature commits to import.\n\n\n\nMake a change in the template or a course. Stage exact paths, then inspect the staged diff:\n# Example: a change to the profile-icons feature\ngit add -- slides/_template.yml slides/_extensions/course/author-links/\ngit diff --cached\ngit commit -m \"Template: improve author profile icons\"\ngit rev-parse HEAD\nUse the paths appropriate to the actual feature. If a file contains both shared and course-specific changes, git add -p -- path/to/file lets you stage selected hunks. Check git diff --cached for all staged content: git commit without path arguments includes everything staged, including any earlier work.\nDo not include course titles, chapter edits, bibliography entries, datasets or personal URLs in the shared feature commit. Commit those separately in the course repository. New plugins typically need a YAML declaration and a complete extension directory; adding only a configuration line leaves an incomplete feature.\n\n\n\nRun in the destination course:\ngit fetch template\ngit log --oneline teaching-template-baseline-2026-11-04..template/main\ngit show TEMPLATE_COMMIT\ngit cherry-pick -x TEMPLATE_COMMIT\nReplace TEMPLATE_COMMIT with a real feature hash from the log. git show displays the whole commit, not just one file; review it before applying. The baseline range omits the initial template commit but does not guarantee every later commit is shareable. Documentation and starter-content commits must also be reviewed for relevance.\n-x records the source hash in the new commit message. If a feature spans several commits, inspect and import each in dependency order. Do not cherry-pick a whole branch or broad range just to obtain one feature.\n\n\n\nFirst commit the reusable feature in the source course. Then run in the central template:\ngit fetch outils-info-2\ngit log --oneline outils-info-2/main\ngit show COURSE_COMMIT\ngit cherry-pick -x COURSE_COMMIT\ngit rev-parse HEAD\nUse analyse-geospatiale in place of outils-info-2 for that source. Take the new template hash printed by the final command and import it into the other course with the template-to-course procedure.\nThe source course already has the feature; do not send the same change back to it. Cherry-picked copies have different hashes, so hash inequality alone does not prove a feature is missing. Read the -x provenance and inspect the content. Keep the template commit message clear enough to recognise the feature later.\nDo not git pull or merge an entire course branch into the template: the branch also contains local lessons and configuration. These independent repositories do not have a shared course-history model.\n\n\n\nAfter creating a new course repository and committing its matching shared files, connect it locally:\n# In the course; replace the path for your computer\ngit remote add template /path/to/_quarto-course-template\ngit fetch template\n\n# In the template; replace both placeholders\ngit remote add my-course /path/to/my-course\ngit fetch my-course\nFor GitHub-backed collaboration, create each repository and push its own branch intentionally. Then change the template and course-source URLs to those verified repository URLs with git remote set-url. Merely changing a URL does not create the remote repository or publish any files. Keep each course’s own origin distinct from its template remote. Avoid inventing or copying an unverified URL.",
+    "crumbs": [
+      "Maintenance"
+    ]
+  },
+  {
+    "objectID": "maintenance.html#conflicts",
+    "href": "maintenance.html#conflicts",
+    "title": "Maintenance",
+    "section": "2 Local changes and conflicts",
+    "text": "2 Local changes and conflicts\nPrefer a clean working tree before importing a feature. Commit unrelated course work on its own first. If you need to set it aside temporarily:\ngit stash push -u -m \"Before template update\"\ngit fetch template\ngit cherry-pick -x TEMPLATE_COMMIT\ngit stash pop\n-u includes untracked files, but not ignored files. Inspect what is untracked before stashing: an untracked planning dataset may be large. A stash is local storage, not a remote backup. Restoring it can produce a second set of conflicts even after the cherry-pick succeeds.\nIf Git pauses a cherry-pick:\ngit status\n# Edit each conflicting file and remove conflict markers.\ngit add -- path/to/resolved-file\ngit cherry-pick --continue\nTo abandon the in-progress import, use git cherry-pick --abort. To undo a completed, published import, consider a new git revert commit after inspecting its scope; do not rewrite shared history casually. An empty cherry-pick often means the feature is already present—inspect before choosing git cherry-pick --skip.\nGit does not understand which YAML values are “generic”. The YAML split and focused commits provide that boundary. If a conflict mixes a course bibliography path with a shared plugin setting, keep the path local and move the plugin change into the appropriate _template.yml.",
+    "crumbs": [
+      "Maintenance"
+    ]
+  },
+  {
+    "objectID": "maintenance.html#companion-files",
+    "href": "maintenance.html#companion-files",
+    "title": "Maintenance",
+    "section": "3 Required companion files",
+    "text": "3 Required companion files\n\n\n\n\n\n\n\n\nFeature\nTransfer together\nKeep local\n\n\n\n\nBook light/dark appearance\nRelevant _template.yml format options; assets/custom.css, assets/dark.scss, theme-toggle script as needed\nCourse title and page overrides\n\n\nQuestion/answer profiles\n_quarto-answer.yml, _quarto-question.yml, profile group and conditional source conventions\nLesson questions and answers\n\n\nNumbered teaching callouts\ncustom-callout filter/definitions; _extensions/coatless-quarto/custom-callout/; header CSS and assets/theme-toggle.html\nExercise text and unique IDs\n\n\nInteractive exercises\nassets/webex.css, assets/webex.js, their shared includes; separately install Python generator if used\nResponse content and question design\n\n\nNotebook links and conversion\nscripts/notebook-links.lua, scripts/render_notebooks.py; filter declaration and notebook resource pattern\nChapter links and source content\n\n\nSlide theme and helpers\nslides/_extensions/grantmcdermott/clean/ and relevant slides/_template.yml settings\nDeck-specific content, logo and size overrides\n\n\nSVG animation\nslides/_extensions/fradav/animate/, both plugin and filter declarations\nSVG resources used by each deck\n\n\nVertical navigation\nslides/_extensions/martinomagnifico/verticator/ and settings\nThe course’s heading hierarchy\n\n\nProfile icons\nslides/_extensions/course/author-links/, filter declaration and Font Awesome stylesheet\nauthor and author-links URLs\n\n\nRepeated headings and link targets\nslides/assets/after-body.html plus its include declaration\nSource slide titles and destinations\n\n\nCitation formatting\nCSL files in root and slide assets; corresponding shared csl options\nBibTeX filename and entries\n\n\nPortable slide builds\nscripts/render_slides.py; local CSL, style and data dependencies\nBibliography exports and datasets\n\n\nCombined build\nscripts/render_all.py, both subsidiary scripts and resource patterns\nPublication target and consent at the prompt\n\n\n\nCopy complete extension folders, including font files, plugin scripts and manifests. Their _extension.yml paths are relative to their own directories. Do not update vendored upstream files blindly: preserve the local theme modifications and review the resulting diff.",
+    "crumbs": [
+      "Maintenance"
+    ]
+  },
+  {
+    "objectID": "maintenance.html#extension-inventory",
+    "href": "maintenance.html#extension-inventory",
+    "title": "Maintenance",
+    "section": "4 Extension inventory",
+    "text": "4 Extension inventory\nVersions below are read from the installed extension manifests, not claims about the newest upstream release.\n\n\n\n\n\n\n\n\nInstalled extension\nManifest version\nUsed by default\n\n\n\n\ngrantmcdermott/clean\n1.4.1\nSlides via clean-revealjs\n\n\nfradav/animate\n0.2.0\nSlide plugin and filter\n\n\nmartinomagnifico/verticator\n1.3.1\nSlide plugin\n\n\ncourse/author-links\n1.0.0\nSlide filter; displays icons only with valid local links\n\n\nquarto-ext/fontawesome\n1.3.0\nBundled in the book; not globally enabled by the starter filter list\n\n\ncoatless-quarto/custom-callout\n0.0.1-dev.3\nBook filter and the manual’s callout examples\n\n\n\nThe custom-callout implementation bundles Font Awesome 7 solid assets; the slide stylesheet separately references Font Awesome 6.5.1 from a CDN. These are different dependencies. The webex files identify webexercises version 1.1.0.9000 in their attribution comments.",
+    "crumbs": [
+      "Maintenance"
+    ]
+  },
+  {
+    "objectID": "maintenance.html#verification",
+    "href": "maintenance.html#verification",
+    "title": "Maintenance",
+    "section": "5 Verify an update",
+    "text": "5 Verify an update\nAfter an import, review git show --stat HEAD and the changed lines. Validate the outputs affected by the feature:\n\n\n\n\n\n\n\nChange\nUseful verification\n\n\n\n\nProfiles or callouts\nRender the same chapter under both profiles; inspect written answers, code output, numbering and collapsed answers.\n\n\nExercises\nTry a correct, incorrect and blank response; check grouping and solution toggles.\n\n\nNotebook conversion\nOpen the resulting notebook; confirm code cells, outputs, Markdown wrappers and answer-source policy.\n\n\nSlide layout or animation\nPresent a representative deck, step through every affected fragment and inspect different image heights.\n\n\nBibliography or portability\nRefresh the copy, render citations, then copy slides/ elsewhere and preview it there.\n\n\nPDF export\nRun the normal Decktape workflow and inspect pages, including fragment captures.\n\n\nDocumentation\nFrom doc/, run quarto render; verify links, search, examples and narrow-screen layout.\n\n\n\nA successful --no-execute render checks the available layout and source processing; it does not validate analytical code. A successful browser demonstration does not establish PDF compatibility.",
+    "crumbs": [
+      "Maintenance"
+    ]
+  },
+  {
+    "objectID": "maintenance.html#troubleshooting",
+    "href": "maintenance.html#troubleshooting",
+    "title": "Maintenance",
+    "section": "6 Troubleshooting",
+    "text": "6 Troubleshooting\n\n\n\n\n\n\n\nSymptom\nCheck and correction\n\n\n\n\nSpecified Reveal plugin directory 'animate' does not exist\nConfirm you copied slides/_extensions/fradav/animate/ and are using the slide project’s YAML. The whole directory is needed.\n\n\nDeck renders as an ordinary HTML page\nCheck that its filename matches slides/_quarto.yml → project.render; then confirm the separate slide project is loaded.\n\n\nclean-revealjs is not found\nRestore slides/_extensions/grantmcdermott/clean/ and its manifest.\n\n\nQuestion blocks look like ordinary text\nSource must use .question / .answer; load the custom-callout filter and definitions.\n\n\nMissing question number or duplicate header\nUse exr- / sol- IDs; keep the header integration script and CSS together. Matching suffixes pair answers with questions.\n\n\nAnswers appear in a question render\nInspect document answers overrides and confirm every written answer is wrapped conditionally.\n\n\nCode runs although its answer is hidden\nConditional visibility does not disable execution. Review cell eval options.\n\n\nNotebook still contains answers\nExpected with the current converter; it retains source and does not apply profile filtering.\n\n\nNumber 01 notebook will not build\nThe current discovery code always excludes 01. Change it deliberately for a course with a first-class practical.\n\n\nNothing rendered for a slide selector\nThe script only warns on missing slide names. Check the actual files and use a matching selector.\n\n\nMissing references in an extracted deck\nRun the slide script before extraction; check slides/assets/ and the local bibliography path.\n\n\nProfile icons absent\nSupply at least one valid HTTP(S) author-links URL; check first-author markup, filter registration and the icon stylesheet.\n\n\nSVG animation fails from a local file\nServe the deck over HTTP; verify SVG paths, IDs, the filter and plugin.\n\n\nLightbox does not open\n.lightbox is a marker; enable lightbox: true locally as well.\n\n\nLayout overflows after an image offset\nRelative offsets do not alter reserved layout space. Reduce media size or use normal columns before offsets.\n\n\ndecktape or gs cannot be found\nInstall the required tool or use --no-pdf; use --no-compress when only Ghostscript is missing.\n\n\nUnexpected template content imported\nInspect the chosen commit. Cherry-pick copies the entire commit; use focused feature commits and abort unresolved imports if needed.",
+    "crumbs": [
+      "Maintenance"
+    ]
+  },
+  {
+    "objectID": "maintenance.html#maintain-this-manual",
+    "href": "maintenance.html#maintain-this-manual",
+    "title": "Maintenance",
+    "section": "7 Maintain this manual",
+    "text": "7 Maintain this manual\nThe documentation is an independent Quarto website under doc/ in the template repository. Its render list names exactly four guide pages and the index. The manual loads a local copy of the course’s shared _template.yml, including its actual assets/custom.css and assets/dark.scss, profile files, notebook-link filter, CSL and after-body scripts. Supporting assets also include the custom-callout extension and exercise files required by live examples. These are local snapshots: refresh the shared YAML and its companion files together when the source theme changes. Keep assets/docs.css limited to documentation layout so that it does not replace the course palette or typography. Directory-level _metadata.yml keeps the documentation language and table-of-contents label in English and disables external comments after the shared project metadata has been loaded.\nThe embedded slide deck is a pre-rendered demonstration made with the real slide project. Rebuild it when the slide theme changes, keeping the HTML and its dependency directory together under doc/assets/demos/slides/. Its downloadable source is supplied there as demo.qmd.txt to preserve the five-page QMD structure. To rebuild, copy that source into an isolated copy of the template’s slide project, rename it demo.qmd, include demo.qmd in that copy’s project.render list, add the supplied SVG, then render with Quarto. The documentation’s ordinary render does not rebuild the embedded deck.",
+    "crumbs": [
+      "Maintenance"
+    ]
+  },
+  {
+    "objectID": "maintenance.html#changelog",
+    "href": "maintenance.html#changelog",
+    "title": "Maintenance",
+    "section": "8 Changelog",
+    "text": "8 Changelog\n\n8.1 4 November 2026\n\nApplied the same shared website theme as the course, including its actual typography, light/dark styles, code highlighting and navigation styling.\nAdded the five-page Quarto documentation draft, with code examples, live callout/exercise examples and an embedded slide demonstration.\nEstablished local two-way Git transfer using remotes and reviewed cherry-picks, starting from 53 matching shared files. The initial commits are recorded above.\n\n\n\n8.2 3 November 2026\n\nRecorded the standalone-slide correction: both courses and the template contain local dependencies, including bibliography copies.\nAdded configurable author profile links and applied teal icons at 55% opacity with full-opacity hover/focus behaviour.\n\n\n\n8.3 2 November 2026\n\nAdopted the native _quarto.yml / _template.yml split for book and slides.\nRemoved custom template-management layers in favour of ordinary local assets and scripts.\nRetained the answer/question book profiles, portable class naming and course-specific bibliography exports under assets/.\n\nThese entries record the project discussion and setup history, rather than upstream extension release dates. Add a dated entry when a reusable behaviour changes, and note any migration required in existing courses.",
+    "crumbs": [
+      "Maintenance"
+    ]
+  },
+  {
+    "objectID": "maintenance.html#references",
+    "href": "maintenance.html#references",
+    "title": "Maintenance",
+    "section": "9 References",
+    "text": "9 References\nThe procedures use native Git: fetch, cherry-pick, remotes and interactive staging. Keep the repository’s GIT_WORKFLOW.md available as the compact command reference.",
+    "crumbs": [
+      "Maintenance"
+    ]
+  },
+  {
+    "objectID": "book-guide.html",
+    "href": "book-guide.html",
+    "title": "Book guide",
+    "section": "",
+    "text": "Native profiles · Local settings\nThe book is one project with two mutually exclusive profiles, answer and question. The profile group is declared in root _template.yml; profile values live in _quarto-answer.yml and _quarto-question.yml.\n\n\n\n\n\n\n\n\nSetting\nAnswer profile\nQuestion profile\n\n\n\n\nanswers\ntrue\nfalse\n\n\nexecute.echo\ntrue\ntrue\n\n\nexecute.output\ntrue\nfalse\n\n\nWritten answer content\nVisible when wrapped with when-meta=\"answers\"\nRemoved from rendered output by the same condition\n\n\nNotebook and other links\nDisplayed; .ipynb links receive download\nEntire .quarto-other-links region hidden by CSS\n\n\n\nquarto render --profile answer\nquarto render --profile question\nRoot _template.yml defaults to answers: true. Both builds normally use the same _book/ directory, so the most recent render replaces the corresponding output. Archive or copy a completed build if you need to retain both variants.\n\n\nWrap every written answer that should disappear from the question version:\n::: {.content-visible when-meta=\"answers\"}\nThe pattern supports an association, but does not establish causation.\n:::\nHiding output does not hide ordinary Markdown or Python source. Conditional content also does not prevent execution of wrapped cells. For a specific cell, use native execution options deliberately:\n```{python}\n#| echo: false\n#| output: true\nprint(\"A displayed result without the source code\")\n```\necho controls source display, output controls results and eval controls whether the cell runs. An explicit cell option can override project defaults. Do not use visibility rules as a substitute for execution control.\n\n\n\nA chapter containing the following metadata can behave differently from its selected profile:\nanswers: true\nexecute:\n  output: false\nThis combination is present in some existing course material: written answers can remain visible while cell results stay hidden. Remove overrides when you want profile values to govern the page. Render the actual chapter under both profiles and inspect the result; do not infer visibility only from the command name.",
+    "crumbs": [
+      "Book guide"
+    ]
+  },
+  {
+    "objectID": "book-guide.html#profiles",
+    "href": "book-guide.html#profiles",
+    "title": "Book guide",
+    "section": "",
+    "text": "Native profiles · Local settings\nThe book is one project with two mutually exclusive profiles, answer and question. The profile group is declared in root _template.yml; profile values live in _quarto-answer.yml and _quarto-question.yml.\n\n\n\n\n\n\n\n\nSetting\nAnswer profile\nQuestion profile\n\n\n\n\nanswers\ntrue\nfalse\n\n\nexecute.echo\ntrue\ntrue\n\n\nexecute.output\ntrue\nfalse\n\n\nWritten answer content\nVisible when wrapped with when-meta=\"answers\"\nRemoved from rendered output by the same condition\n\n\nNotebook and other links\nDisplayed; .ipynb links receive download\nEntire .quarto-other-links region hidden by CSS\n\n\n\nquarto render --profile answer\nquarto render --profile question\nRoot _template.yml defaults to answers: true. Both builds normally use the same _book/ directory, so the most recent render replaces the corresponding output. Archive or copy a completed build if you need to retain both variants.\n\n\nWrap every written answer that should disappear from the question version:\n::: {.content-visible when-meta=\"answers\"}\nThe pattern supports an association, but does not establish causation.\n:::\nHiding output does not hide ordinary Markdown or Python source. Conditional content also does not prevent execution of wrapped cells. For a specific cell, use native execution options deliberately:\n```{python}\n#| echo: false\n#| output: true\nprint(\"A displayed result without the source code\")\n```\necho controls source display, output controls results and eval controls whether the cell runs. An explicit cell option can override project defaults. Do not use visibility rules as a substitute for execution control.\n\n\n\nA chapter containing the following metadata can behave differently from its selected profile:\nanswers: true\nexecute:\n  output: false\nThis combination is present in some existing course material: written answers can remain visible while cell results stay hidden. Remove overrides when you want profile values to govern the page. Render the actual chapter under both profiles and inspect the result; do not infer visibility only from the command name.",
+    "crumbs": [
+      "Book guide"
+    ]
+  },
+  {
+    "objectID": "book-guide.html#questions",
+    "href": "book-guide.html#questions",
+    "title": "Book guide",
+    "section": "2 Questions and answers",
+    "text": "2 Questions and answers\nExtension: custom-callout · Native cross-references · Local header integration\nThe custom-callout extension reads the definitions in _template.yml. Use .question or .answer in the source. The extension converts these into rendered .callout-question and .callout-answer elements. Writing .callout-question directly bypasses this class-to-definition conversion.\n\n\n\nType\nConfigured label\nIcon\nColour\nDefault collapse\n\n\n\n\n.question\nQuestion\nfa-circle-question\n#6f42c1\nNo\n\n\n.answer\nRéponse\nfa-circle-check\n#2e8b57\nYes in HTML\n\n\n\n\n2.1 Number a question and its answer\n::: {#exr-compare .question title=\"Compare the two distributions\"}\nWhich feature changes when the extreme value is removed?\n:::\n\n:::: {.content-visible when-meta=\"answers\"}\n::: {#sol-compare .answer title=\"Réponse\"}\nReturn to @exr-compare.\n\nThe median changes less than the mean.\n:::\n::::\nexr- activates native exercise numbering. sol- activates a solution; the matching suffix compare lets the local header script associate the answer with the question. IDs must be unique throughout the book. Use stable descriptive IDs so links survive title edits. Put the whole answer, including its title and source cells, inside the conditional wrapper. The outer wrapper uses four colons to make nesting clear.\nRendered example, with answers visible in this manual:\n\nQuestion 1  \n\n\n\n\n\nQuestionCompare the two distributions\n\n\n\nWhich summary is usually less sensitive to one extreme value: the mean or the median?\n\n\n\nSolution 1. \n\n\n\n\n\nAnswerRéponse\n\n\n\n\n\nThe median is usually less sensitive. Return to question 1.\n\n\n\n\n\n2.2 Titles and header numbering\nSupply title=\"...\" on the source div, or use a first heading inside it. If both are present, the title attribute wins. The extension also accepts icon, appearance and collapse div attributes; the global settings supply defaults.\nThe local assets/theme-toggle.html script finds native question/solution labels and moves them into the coloured header. An answer with the matching suffix receives the corresponding question number, with “Question” replaced by “Réponse”. It removes a redundant answer title when that title is simply “Réponse” or “Answer”. Root assets/custom.css suppresses the original separate numbering line.\nTransfer all three layers together: the custom-callout extension, the custom-callout definitions in _template.yml, and the CSS/JS header integration. A styled block without an exr- ID is a callout, but is not a numbered exercise.\nThe book’s custom types are not configured in slides/_template.yml. To use them in slides, you would need to add their extension and definitions to the slide project; ordinary Quarto callouts already work there.",
+    "crumbs": [
+      "Book guide"
+    ]
+  },
+  {
+    "objectID": "book-guide.html#interactive-exercises",
+    "href": "book-guide.html#interactive-exercises",
+    "title": "Book guide",
+    "section": "3 Interactive exercises",
+    "text": "3 Interactive exercises\nThird-party webexercises assets · Course Python integration\nRoot _template.yml loads assets/webex.css and includes assets/webex.js after the document. These files are derived from webexercises and run in the browser. Outils informatique II additionally uses pywebexercises.exercises to generate exercise HTML from Python. That Python package is a separate dependency, not bundled in the template.\nThe raw HTML interface below works without Python and describes the contract used by the included JavaScript.\n\n3.1 Text and numeric responses\n&lt;label for=\"crs-answer\"&gt;LV95 EPSG code&lt;/label&gt;\n&lt;input id=\"crs-answer\" class=\"webex-solveme\" data-answer='[\"2056\"]'&gt;\n\nTry it — enter the EPSG code for LV95 \n\ndata-answer must contain a valid JSON array. Matching is exact by default. Add .ignorecase for case-insensitive input or .nospaces to remove ordinary space characters before matching. The current .nospaces implementation removes spaces, not all whitespace.\n&lt;input aria-label=\"Rock type\"\n       class=\"webex-solveme ignorecase nospaces\"\n       data-answer='[\"basalt\", \"basalte\"]'&gt;\n&lt;input aria-label=\"Approximate result\"\n       class=\"webex-solveme\" data-answer='[10]' data-tol=\"0.1\"&gt;\nPositive data-tol accepts a numeric difference strictly smaller than the tolerance. .regex interprets the joined answer strings as a JavaScript regular expression. Use anchored patterns such as ^basalt$ if a whole response must match. For routine exercises, prefer explicit accepted strings over regular expressions.\n\n\n3.2 Dropdowns and radio buttons\n&lt;label for=\"unit-choice\"&gt;Choose a projected coordinate unit&lt;/label&gt;\n&lt;select id=\"unit-choice\" class=\"webex-select\"&gt;\n  &lt;option value=\"blank\"&gt;Choose an answer&lt;/option&gt;\n  &lt;option value=\"wrong\"&gt;Degrees&lt;/option&gt;\n  &lt;option value=\"answer\"&gt;Metres&lt;/option&gt;\n&lt;/select&gt;\n\n&lt;div class=\"webex-radiogroup\" id=\"unit-radio\"&gt;\n  &lt;label&gt;&lt;input type=\"radio\" name=\"unit-radio\" value=\"wrong\"&gt;Degrees&lt;/label&gt;\n  &lt;label&gt;&lt;input type=\"radio\" name=\"unit-radio\" value=\"answer\"&gt;Metres&lt;/label&gt;\n&lt;/div&gt;\nThe correct option must have the literal value answer; dropdown placeholders use blank. Give each radio group a unique, simple ID and use exactly that ID as the name of its inputs. Avoid spaces or punctuation in these IDs because the current script builds a CSS selector from them.\n\n\n3.3 Check a group and reveal an explanation\n&lt;div class=\"webex-check webex-box\"&gt;\n  &lt;label for=\"group-answer\"&gt;LV95 EPSG code&lt;/label&gt;\n  &lt;input id=\"group-answer\" class=\"webex-solveme\" data-answer='[\"2056\"]'&gt;\n&lt;/div&gt;\n\n&lt;div class=\"webex-solution\"&gt;\n  &lt;button type=\"button\"&gt;Explanation&lt;/button&gt;\n  &lt;p&gt;LV95 uses EPSG:2056.&lt;/p&gt;\n&lt;/div&gt;\n.webex-check adds a “Show Answers” / “Hide Answers” button and a correct-count indicator. It changes feedback visibility; it does not fill the correct responses into empty controls. .webex-solution requires a button directly inside the container; clicking it toggles the container’s open class.\nThese controls provide local feedback, not stored assessment results. The answer values are delivered to the browser in the HTML. Native book profiles do not automatically remove webex answer keys. The current JavaScript also resets response boxes when a page loads and assigns window.onload; another script that replaces that handler can stop exercise setup.",
+    "crumbs": [
+      "Book guide"
+    ]
+  },
+  {
+    "objectID": "book-guide.html#notebooks",
+    "href": "book-guide.html#notebooks",
+    "title": "Book guide",
+    "section": "4 Notebook links and conversion",
+    "text": "4 Notebook links and conversion\nLocal Lua filter and Python builder\nAdd the download link in a chapter’s YAML:\nother-links:\n  - text: Notebook Jupyter\n    icon: file-earmark-code\n    href: class_02.ipynb\nThe notebook sits beside its source chapter, so the link is relative to that page. The Lua filter scripts/notebook-links.lua inspects the effective answers metadata:\n\nWhen it is true, JavaScript adds download to links in .quarto-other-links whose href ends exactly with .ipynb.\nOtherwise, CSS hides all .quarto-other-links, including any unrelated links placed there. Links elsewhere in the page are unaffected.\n\nThe filter does not generate notebooks or prevent someone opening a known notebook URL. A query suffix such as .ipynb?download=1 does not match its current end-of-string selector.\npython scripts/render_notebooks.py 2\npython scripts/render_notebooks.py course/class_02.qmd\nThe script runs quarto convert, writes an IPYNB next to each chapter, then clears outputs, execution counts and cell metadata. It sets a generic Python 3 kernelspec. It removes #| cell-option lines, selected Quarto div wrappers, heading attributes, image attributes, pagebreak shortcodes and Font Awesome shortcodes.\nAnswer source remains in converted notebooks. The script does not evaluate when-meta=\"answers\" or apply the question profile. It strips wrappers while retaining their content. Its wrapper-cleaning expression recognises exactly three-colon fences; longer nested fences can remain. Inspect a representative notebook before distribution, particularly chapters with nested answers and HTML exercises.\nThe book’s resources list must include course/*.ipynb if the generated notebooks should be copied into the published output. keep-ipynb: false concerns Quarto’s execution intermediates; it is separate from notebooks deliberately generated by this script.",
+    "crumbs": [
+      "Book guide"
+    ]
+  },
+  {
+    "objectID": "book-guide.html#citations",
+    "href": "book-guide.html#citations",
+    "title": "Book guide",
+    "section": "5 Citations and references",
+    "text": "5 Citations and references\nNative Pandoc citations · Local Zotero convention\nKeep each course’s Zotero export in root assets/. Choose its own filename: OI2.bib, geospatial.bib or another appropriate name. Set that path in root _quarto.yml; the shared _template.yml sets the CSL to assets/bulletin-of-volcanology.csl.\nThe interpretation follows previous work [@yourCitationKey].\n\n@yourCitationKey provides the original method.\n\n## References\n\n::: {#refs}\n:::\nUse a real key from the bibliography. The #refs container chooses where references appear. A whole-book references appendix can be listed in book.appendices; the filename and chapter organisation belong to the course.\nDo not manually edit Zotero-synchronised entries. Import new references into Zotero and refresh its export. The slide script copies root bibliography files into slides/assets/; see standalone slides.",
+    "crumbs": [
+      "Book guide"
+    ]
+  },
+  {
+    "objectID": "book-guide.html#appearance",
+    "href": "book-guide.html#appearance",
+    "title": "Book guide",
+    "section": "6 Appearance and authoring helpers",
+    "text": "6 Appearance and authoring helpers\nLocal CSS and JavaScript · Native HTML theming\nThe book uses Cosmo in light mode and Darkly plus assets/dark.scss in dark mode. Syntax highlighting is atom-one / dracula. Root assets/custom.css sets Source Sans Pro for text and Roboto Slab for headings, loaded from Google Fonts with local fallback fonts.\n\n\n\n\n\n\n\n\nHelper or behaviour\nUsage\nEffect\n\n\n\n\n.bg\n[key phrase]{.bg}\nTeal translucent marker effect, including wrapped lines. It is orange in slides.\n\n\n.btn .btn-download\nApply to a Markdown link\nRounded orange-outline button; the download attribute is separate.\n\n\n.nowrap-first-col\nApply to a table or wrapping div\nPrevents wrapping in the first table column. Long content can overflow a narrow screen.\n\n\n.reveal-embed\nApply to an iframe\nFull-width 16:9 embedded deck; 4:3 on narrow screens.\n\n\nDocumentation icon links\nA link containing .fa-book or .fa-graduation-cap\nCompact raised icon beside a function name; not applied inside sup.\n\n\nTable stripes\nAutomatic on table.table rows\nAlternates odd rows using light/dark CSS variables.\n\n\nFigure alignment\nAutomatic\nLeft-aligns ordinary Quarto figure images.\n\n\n\nLive book highlight: a shared scientific question.\n[Download data](data/samples.csv){.btn .btn-download download=\"samples.csv\"}\nThe CSS styles the link; it does not provide the file. To add a Font Awesome icon, enable the bundled fontawesome shortcode extension in that page or project’s filters, then use:\n[{{&lt; fa download &gt;}} Download data](data/samples.csv){.btn .btn-download}\nThe root starter’s shared filter list contains notebook-links.lua and custom-callout; it does not enable fontawesome globally. The installed extension folder alone does not activate its shortcode.\n\n6.1 Code annotations and figures\nLine numbers and hover annotations are enabled in the HTML book. Use native &lt;1&gt; comments and an immediately following annotation list. The local CSS moves the copy button away from annotations.\n```{python}\nvalues = [2, 4, 8]  # &lt;1&gt;\nmean = sum(values) / len(values)  # &lt;2&gt;\n```\n\n1. The observations used in the calculation.\n2. The arithmetic mean.\nFor Matplotlib figures, load the supplied style explicitly; copying the file does not activate it:\nimport matplotlib.pyplot as plt\nplt.style.use(\"assets/plots.mplstyle\")\nWith Quarto’s normal document-relative execution, use ../assets/plots.mplstyle from a chapter in course/. If the course sets a project execution directory, adjust the path accordingly. The style sets Roboto, teal labels and a #fafafa figure background; it does not automatically switch plot colours in book dark mode.\n\n\n6.2 Navigation and small fixes\nThe template enables section numbering, page navigation, book search and a right-hand table of contents to depth 4. Sidebar chapter numbers are hidden visually; this does not disable section numbering elsewhere. assets/book-index-link.html turns the first sidebar part label into a home link when the book uses the matching first-part structure; it does nothing when that element is absent.\nassets/theme-toggle.html also wraps Quarto’s colour toggle to restore the scroll position after a theme switch. The same file currently contains the question/answer header integration, so keep it when transferring either feature. Hypothesis comments are enabled under comments.hypothesis in shared YAML and depend on the external service.\nFor native behaviour beyond the local configuration, consult conditional content, code annotations and citations.",
+    "crumbs": [
+      "Book guide"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Quarto teaching template",
+    "section": "",
+    "text": "Create a course, write teaching materials and share improvements across courses using the same self-contained Quarto template.\nThis manual documents the template derived from Outils informatique II and used by Analyse géospatiale. It covers the HTML book, the customised clean-revealjs slide theme, the local teaching features and the Git workflow connecting them. Start with the first guide for a new course; use the other three as references while authoring.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "Quarto teaching template",
+    "section": "Getting started",
+    "text": "Getting started\nCreate a course, separate local and reusable YAML, prepare dependencies, name files, preview and build.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#book-guide",
+    "href": "index.html#book-guide",
+    "title": "Quarto teaching template",
+    "section": "Book guide",
+    "text": "Book guide\nUse answer/question profiles, numbered callouts, exercises, notebooks, citations and light/dark styling.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#slide-guide",
+    "href": "index.html#slide-guide",
+    "title": "Quarto teaching template",
+    "section": "Slide guide",
+    "text": "Slide guide\nCompose layouts and fragments, animate figures, style text, configure profile icons and extract standalone slides.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#maintenance",
+    "href": "index.html#maintenance",
+    "title": "Quarto teaching template",
+    "section": "Maintenance",
+    "text": "Maintenance\nMove reusable commits between repositories, transfer complete dependencies and diagnose rendering problems.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#what-belongs-to-the-template",
+    "href": "index.html#what-belongs-to-the-template",
+    "title": "Quarto teaching template",
+    "section": "What belongs to the template",
+    "text": "What belongs to the template\nThe template has two main content folders, course/ and slides/. Shared functionality is kept in _template.yml, local styles, filters, scripts and extension folders. Each course keeps its title, chapters, bibliography names and author details in its own _quarto.yml files.\nThe slide folder is also a Quarto project. It contains local dependencies so that you can copy the whole folder and present independently of the course book.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#the-documentation-uses-the-course-theme",
+    "href": "index.html#the-documentation-uses-the-course-theme",
+    "title": "Quarto teaching template",
+    "section": "The documentation uses the course theme",
+    "text": "The documentation uses the course theme\nThis website loads the same _template.yml as the course book, with local copies of assets/custom.css, assets/dark.scss and the accompanying scripts and filters. It therefore uses Source Sans Pro and Roboto Slab, the teal/orange palette, the customised light/dark appearance, table styling and code highlighting described in the book guide. assets/docs.css adds only the guide grid and other documentation layout rules. The local YAML keeps the documentation in English and disables external comments.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#reading-the-feature-descriptions",
+    "href": "index.html#reading-the-feature-descriptions",
+    "title": "Quarto teaching template",
+    "section": "Reading the feature descriptions",
+    "text": "Reading the feature descriptions\nEach feature identifies its origin:\n\n\n\n\n\n\n\nLabel\nMeaning\n\n\n\n\nNative\nQuarto, Pandoc or Reveal.js functionality, configured for this template.\n\n\nExtension\nFunctionality supplied by a named third-party extension.\n\n\nLocal\nA helper, configuration or modification present in this teaching setup. This label does not claim original authorship of upstream code.\n\n\n\nThe guides focus on the configured behaviour, including local differences. For example, .bg means a teal highlight in the book and an orange highlight in slides. Questions use the source class .question, not .callout-question; the latter is generated by the custom-callout extension.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#scope-of-this-draft",
+    "href": "index.html#scope-of-this-draft",
+    "title": "Quarto teaching template",
+    "section": "Scope of this draft",
+    "text": "Scope of this draft\nThe reference was checked against the central template on 4 November 2026, using Quarto 1.8.27. Extension versions are recorded in Maintenance. A working slide demonstration is embedded in the slide guide; the book guide contains working callout and exercise examples. Examples referencing assets/example.png, a bibliography key or a dataset require your own corresponding resource.\nHTML is the main teaching output. The Python scripts can also produce clean notebooks and slide PDFs, but those outputs do not reproduce every browser interaction. Compatibility notes are included where this distinction affects authoring.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#preview-this-manual",
+    "href": "index.html#preview-this-manual",
+    "title": "Quarto teaching template",
+    "section": "Preview this manual",
+    "text": "Preview this manual\nFrom this documentation folder:\nquarto preview\nBuild the static website with quarto render. The five QMD pages render into _site/; this project has its own configuration and does not build the course book. Python execution is disabled for the manual, so example code is displayed without running analyses.\nFor the underlying platform, see the Quarto project guide and Reveal.js authoring guide.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "getting-started.html",
+    "href": "getting-started.html",
+    "title": "Getting started",
+    "section": "",
+    "text": "Local\nCopy the source files from _quarto-course-template into the new course directory. Include hidden source files such as .gitignore, but exclude the template’s .git/ directory, generated _book/, .quarto/ and presentation output folders. Initialise a new Git repository if the course does not already have one. Copying Git history is different from copying a course starter: do not accidentally give the course the template’s remotes.\nThe central template currently lives at:\n/Users/seb/Documents/WORK/Teaching/_quarto-teaching-template\nThe normal source structure is:\nmy-course/\n├── _quarto.yml\n├── _template.yml\n├── _quarto-answer.yml\n├── _quarto-question.yml\n├── index.qmd\n├── assets/\n│   ├── references.bib\n│   ├── bulletin-of-volcanology.csl\n│   ├── custom.css\n│   ├── dark.scss\n│   └── ...\n├── _extensions/\n├── scripts/\n├── course/\n│   └── class_01.qmd\n└── slides/\n    ├── _quarto.yml\n    ├── _template.yml\n    ├── _extensions/\n    ├── assets/\n    │   └── references.bib\n    ├── mathjax-config.js\n    └── slides_class_01.qmd\nassets/references.bib is the starter’s example name. Choose a filename appropriate to the course and configure both projects to use it. Add data/, img/, appendices or other content directories when needed; they are not automatically shared template files.\n\n\nEdit root _quarto.yml. Preserve the metadata-files reference and the book project type:\nmetadata-files:\n  - _template.yml\nproject:\n  type: book\n  output-dir: _book\n  resources:\n    - course/*.ipynb\n    - slides/*.html\n    - slides/*.pdf\n    - slides/*_files/**\n    - slides/mathjax-config.js\nbook:\n  title: My course\n  author: My name\n  chapters:\n    - index.qmd\n    - course/class_01.qmd\n    - course/class_02.qmd\nbibliography: assets/my-course.bib\njupyter: python3\nkeep-ipynb: false\nCreate each listed chapter before rendering the whole book. The resource patterns copy generated notebooks and presentation files into the book output; they do not generate those files. The build scripts produce them first.\n\n\n\nEdit slides/_quarto.yml separately:\nmetadata-files:\n  - _template.yml\nproject:\n  type: default\n  render:\n    - slides_class_*.qmd\nauthor:\n  - name: My name\nbibliography: assets/my-course.bib\nThe explicit project: type: default makes slides/ a separate project. Keep the project.render pattern consistent with the filenames you create: a deck outside that list may render without the project metadata, using plain HTML instead of clean-revealjs. The bibliography path resolves inside this project, to slides/assets/my-course.bib; it does not refer to the book’s root assets/ folder.",
+    "crumbs": [
+      "Getting started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#create-a-course",
+    "href": "getting-started.html#create-a-course",
+    "title": "Getting started",
+    "section": "",
+    "text": "Local\nCopy the source files from _quarto-course-template into the new course directory. Include hidden source files such as .gitignore, but exclude the template’s .git/ directory, generated _book/, .quarto/ and presentation output folders. Initialise a new Git repository if the course does not already have one. Copying Git history is different from copying a course starter: do not accidentally give the course the template’s remotes.\nThe central template currently lives at:\n/Users/seb/Documents/WORK/Teaching/_quarto-teaching-template\nThe normal source structure is:\nmy-course/\n├── _quarto.yml\n├── _template.yml\n├── _quarto-answer.yml\n├── _quarto-question.yml\n├── index.qmd\n├── assets/\n│   ├── references.bib\n│   ├── bulletin-of-volcanology.csl\n│   ├── custom.css\n│   ├── dark.scss\n│   └── ...\n├── _extensions/\n├── scripts/\n├── course/\n│   └── class_01.qmd\n└── slides/\n    ├── _quarto.yml\n    ├── _template.yml\n    ├── _extensions/\n    ├── assets/\n    │   └── references.bib\n    ├── mathjax-config.js\n    └── slides_class_01.qmd\nassets/references.bib is the starter’s example name. Choose a filename appropriate to the course and configure both projects to use it. Add data/, img/, appendices or other content directories when needed; they are not automatically shared template files.\n\n\nEdit root _quarto.yml. Preserve the metadata-files reference and the book project type:\nmetadata-files:\n  - _template.yml\nproject:\n  type: book\n  output-dir: _book\n  resources:\n    - course/*.ipynb\n    - slides/*.html\n    - slides/*.pdf\n    - slides/*_files/**\n    - slides/mathjax-config.js\nbook:\n  title: My course\n  author: My name\n  chapters:\n    - index.qmd\n    - course/class_01.qmd\n    - course/class_02.qmd\nbibliography: assets/my-course.bib\njupyter: python3\nkeep-ipynb: false\nCreate each listed chapter before rendering the whole book. The resource patterns copy generated notebooks and presentation files into the book output; they do not generate those files. The build scripts produce them first.\n\n\n\nEdit slides/_quarto.yml separately:\nmetadata-files:\n  - _template.yml\nproject:\n  type: default\n  render:\n    - slides_class_*.qmd\nauthor:\n  - name: My name\nbibliography: assets/my-course.bib\nThe explicit project: type: default makes slides/ a separate project. Keep the project.render pattern consistent with the filenames you create: a deck outside that list may render without the project metadata, using plain HTML instead of clean-revealjs. The bibliography path resolves inside this project, to slides/assets/my-course.bib; it does not refer to the book’s root assets/ folder.",
+    "crumbs": [
+      "Getting started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#understand-the-yaml-split",
+    "href": "getting-started.html#understand-the-yaml-split",
+    "title": "Getting started",
+    "section": "2 Understand the YAML split",
+    "text": "2 Understand the YAML split\nNative composition · Local organisation\n\n\n\n\n\n\n\n\nFile\nContains\nKeep out\n\n\n\n\nRoot _quarto.yml\nBook title, author, chapters, bibliography, resource patterns, kernel, local publishing details\nReusable feature implementation\n\n\nRoot _template.yml\nBook styles, filters, custom callout definitions, navigation defaults and profile group\nA particular course’s title, chapter list or bibliography filename\n\n\nslides/_quarto.yml\nAuthor, profile URLs, bibliography, deck selection and local options\nChanges intended for every course\n\n\nslides/_template.yml\nclean-revealjs, plugins, shared slide behaviour and CSL\nPersonal links, local bibliography filenames\n\n\nA document’s YAML\nDocument title and deliberate page-specific overrides\nSettings copied everywhere without a reason\n\n\n\nBoth projects load _template.yml through metadata-files. Change reusable behaviour there and local values in _quarto.yml. For complex settings such as filters and resource lists, inspect the resolved behaviour after editing: do not assume adding one local list item disables all inherited items.\nProfiles add configuration for a selected build. Document metadata can override project or profile values. In particular, a chapter with answers: true can keep answers visible even when you request the question profile. See the profile checks.",
+    "crumbs": [
+      "Getting started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#install-the-dependencies-you-need",
+    "href": "getting-started.html#install-the-dependencies-you-need",
+    "title": "Getting started",
+    "section": "3 Install the dependencies you need",
+    "text": "3 Install the dependencies you need\n\n\n\n\n\n\n\nTask\nRequirements\n\n\n\n\nRender Markdown-only book chapters and slides\nQuarto; the bundled extension folders and local assets\n\n\nExecute Python cells\nThe course’s Python environment, a Jupyter kernel matching jupyter, and imported packages\n\n\nRun portable build scripts\nPython 3.10 or later for the current script syntax; Quarto available on PATH\n\n\nGenerate slide PDFs\nDecktape and its browser dependencies available on PATH\n\n\nCompress slide PDFs\nGhostscript, exposed as gs\n\n\nInteractive Python exercises used by Outils informatique II\npywebexercises, plus HTML output and the supplied webex CSS/JS\n\n\nTransfer feature commits\nGit and the configured repository remotes\n\n\n\nCheck the active tools before building:\nquarto --version\nquarto check jupyter\npython --version\nActivate the course environment first. The build scripts prepend their Python executable’s directory to the PATH used for rendering, which helps Quarto find the corresponding environment. This does not install packages or create a missing kernel.\nThe current theme declarations require at least Quarto 1.5.0 because of the custom-callout extension; use the tested 1.8.27 environment for this draft rather than treating that declared minimum as a tested compatibility guarantee.\nThe template uses Google Fonts, a Font Awesome CDN stylesheet for slides and a MathJax CDN script. A self-contained repository means the required source files live locally; it does not guarantee fully offline typography, icons, mathematics or access to external scientific services.",
+    "crumbs": [
+      "Getting started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#name-the-files",
+    "href": "getting-started.html#name-the-files",
+    "title": "Getting started",
+    "section": "4 Name the files",
+    "text": "4 Name the files\n\n\n\n\n\n\n\n\nMaterial\nNew naming\nExisting supported naming\n\n\n\n\nChapter\ncourse/class_02.qmd\ncourse/semaine_02.qmd\n\n\nPresentation\nslides/slides_class_02.qmd\nslides/slides_semaine_02.qmd\n\n\nNotebook output\ncourse/class_02.ipynb\ncourse/semaine_02.ipynb\n\n\n\nUse two digits and the same number across the three materials. Keep source filenames simple; displayed titles can contain accents and spaces. Avoid keeping both class_02.qmd and semaine_02.qmd for the same class: a numeric selector matches both.\nThe notebook script only discovers chapter filenames matching class_XX.qmd or semaine_XX.qmd. It always excludes number 01, even if you explicitly select it. This matches the current first class without a practical; adjust the script if another course needs a first-class notebook.",
+    "crumbs": [
+      "Getting started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#preview-and-render-directly",
+    "href": "getting-started.html#preview-and-render-directly",
+    "title": "Getting started",
+    "section": "5 Preview and render directly",
+    "text": "5 Preview and render directly\nFrom the course root:\nquarto preview\nquarto render --profile answer\nquarto render --profile question\nquarto render course/class_02.qmd --profile answer\nFor slides, either render a named file from the root or work inside slides/:\nquarto render slides/slides_class_02.qmd\ncd slides\nquarto preview\nA direct slide render or preview does not refresh bibliography copies. Use the slide script after a Zotero update. --no-execute on a direct Quarto command skips code execution; it is useful for layout checks but cannot validate analytical results.",
+    "crumbs": [
+      "Getting started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#use-the-portable-build-scripts",
+    "href": "getting-started.html#use-the-portable-build-scripts",
+    "title": "Getting started",
+    "section": "6 Use the portable build scripts",
+    "text": "6 Use the portable build scripts\nLocal\nRun these from the course root with the appropriate environment active:\n# One slide deck as HTML only; also refreshes bibliography copies\npython scripts/render_slides.py 2 --no-pdf\n\n# One clean, unexecuted notebook\npython scripts/render_notebooks.py 2\n\n# All slides, then notebooks, then the book\npython scripts/render_all.py --no-pdf\n\n\n\n\n\n\n\n\nScript\nSelection\nBehaviour and options\n\n\n\n\nrender_slides.py\nNo selector: every slides/*.qmd; otherwise numbers, stems or filenames\nRefreshes all root assets/*.bib copies first; runs Quarto for selected decks; PDF export and compression default to on. --no-pdf skips both; --no-compress keeps PDF export but skips Ghostscript.\n\n\nrender_notebooks.py\nNo selector: every discovered numbered chapter except 01\nConverts QMD to IPYNB, removes outputs and execution state, strips selected Quarto markup. Missing selectors stop with an error.\n\n\nrender_all.py\nSelectors narrow the slide and notebook steps\nAlways renders the whole book last. Forwards options to the slide script; it does not accept arbitrary Quarto flags. Then asks whether to publish.\n\n\n\nSlide selectors that do not match a file only print a “Skipping missing presentation(s)” message. An empty selection can therefore finish without rendering anything; check the filenames and output rather than relying only on the exit code.\nThe combined script does not pass --profile question to the book render. Use a separate quarto render --profile question command for that build. --no-execute is a Quarto option, not a recognised script option; use the direct Quarto command when you need it.\nAfter a successful combined build, the publication prompt accepts y, yes, o or oui and runs quarto publish gh-pages --no-render. Empty input or end-of-input skips publication. Previewing and rendering individual files never publish them by themselves.",
+    "crumbs": [
+      "Getting started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#first-build-checklist",
+    "href": "getting-started.html#first-build-checklist",
+    "title": "Getting started",
+    "section": "7 First build checklist",
+    "text": "7 First build checklist\n\nSet both titles and author metadata, then list only existing chapters and decks.\nExport the bibliography from Zotero into root assets/ and run the slide script to refresh its local copy.\nRender one representative chapter and one deck, including their Python cells if present.\nCheck both book profiles and the notebook output before sharing them.\nCommit the course sources and required local dependencies. Exclude generated output according to your repository policy.\n\nContinue with the Book guide or Slide guide. For the underlying mechanisms, see Quarto projects and project profiles.",
+    "crumbs": [
+      "Getting started"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html",
+    "href": "slide-guide.html",
+    "title": "Slide guide",
+    "section": "",
+    "text": "Extension: clean 1.4.1 · Local customisation\nslides/_quarto.yml loads slides/_template.yml. The shared file selects format: clean-revealjs, supplies plugin settings and references local resources. The clean extension lives under slides/_extensions/grantmcdermott/clean/; its clean.scss contains both upstream styling and local modifications.\nThe palette uses dark teal #23373b, teal #2F4647, orange #EB811B and a #fafafa slide background. Body text uses Roboto and headings Roboto Slab. The shared format enables a fast fade transition, simple callouts, hover code annotations, a chalkboard and the Font Awesome stylesheet.\n\n\nThe deck below was rendered with a local copy of the actual slide theme and extensions. Click inside it, then use the arrow keys. Open it separately for full-screen use.\n\n\nOpen the demonstration deck · Download its source",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#the-presentation-project",
+    "href": "slide-guide.html#the-presentation-project",
+    "title": "Slide guide",
+    "section": "",
+    "text": "Extension: clean 1.4.1 · Local customisation\nslides/_quarto.yml loads slides/_template.yml. The shared file selects format: clean-revealjs, supplies plugin settings and references local resources. The clean extension lives under slides/_extensions/grantmcdermott/clean/; its clean.scss contains both upstream styling and local modifications.\nThe palette uses dark teal #23373b, teal #2F4647, orange #EB811B and a #fafafa slide background. Body text uses Roboto and headings Roboto Slab. The shared format enables a fast fade transition, simple callouts, hover code annotations, a chalkboard and the Font Awesome stylesheet.\n\n\nThe deck below was rendered with a local copy of the actual slide theme and extensions. Click inside it, then use the arrow keys. Open it separately for full-screen use.\n\n\nOpen the demonstration deck · Download its source",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#layouts",
+    "href": "slide-guide.html#layouts",
+    "title": "Slide guide",
+    "section": "2 Headings, columns and content",
+    "text": "2 Headings, columns and content\nNative layouts · Local helpers\nUse ## for a normal content slide. A # heading introduces a higher-level section and can create a vertical stack, depending on the surrounding heading structure. Put speaker-only content inside .notes.\n## A scientific comparison\n\n:::: {.columns}\n::: {.column width=\"40%\"}\nDescribe the prediction.\n:::\n::: {.column width=\"60%\"}\n![](assets/example.png){width=100%}\n:::\n::::\n\n::: {.notes}\nAsk students to identify the evidence before discussing the mechanism.\n:::\n\n2.1 Code beside its result\nThe theme includes .columns3070, .columns7030, .columns4060 and .columns6040. They set the widths of direct .column children; the first number is the first column’s percentage. They are particularly useful with Quarto’s code-output column layout:\n```{python}\n#| output-location: column\n#| classes: columns4060\nprint(\"A result beside the code\")\n```\nThese classes are layout helpers, not standalone commands that generate columns. Use native .columns / .column markup or output-location: column to create the structure first.\n\n\n\n\n\n\n\nHelper\nEffect\n\n\n\n\n.right\nApplies text-align: right to the element’s content.\n\n\n.small-gap\nA block with 0.25em top and bottom margins; useful for small spacing adjustments.\n\n\n.no-title on a slide heading\nHides h1, h2 and h3 descendants of that slide. It hides subheadings too, not just the slide title.\n\n\n.etable wrapping an image\nFits table images within the available box using contained image dimensions.\n\n\n\n## A descriptive source heading {.no-title}\n\n![](assets/example.png){width=85%}\nKeep source headings meaningful even when hidden. Menu, navigation and accessibility behaviour should be checked for the resulting deck.",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#highlighting",
+    "href": "slide-guide.html#highlighting",
+    "title": "Slide guide",
+    "section": "3 Text highlighting",
+    "text": "3 Text highlighting\nLocal theme rules\n[Important phrase]{.bg}\n[Main emphasis]{.alert}\n[Alternative]{.alert-blue}\n[Positive result]{.alert-green}\n[Caution]{.alert-red}\n[Another category]{.alert-purple}\n[Custom colour]{.fg style=\"--col: #007b83\"}\n\n\n\n\n\n\n\nClass\nConfigured value\n\n\n\n\n.bg\nOrange gradient at approximately 40–50% opacity; wraps across lines.\n\n\n.alert\nTheme orange, #EB811B.\n\n\n.alert-blue\n#5858a1.\n\n\n.alert-green\n#67b06a.\n\n\n.alert-red\n#d7191c.\n\n\n.alert-purple\n#9a26b0.\n\n\n.fg\nCSS variable --col, falling back to #131516.\n\n\n\nBold text uses teal. Inline code also uses teal with a translucent background and a monospace font stack. .bg in the book uses teal instead of this slide orange; the source syntax is shared but the appearance is intentionally format-specific.\nFor a compact action link, the theme also supplies .button:\n[Open the published course](https://example.org){.button}\nIt renders an orange button with a triangle prefix and a blue hover state. It is distinct from the book’s .btn-download style.",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#images",
+    "href": "slide-guide.html#images",
+    "title": "Slide guide",
+    "section": "4 Images, captions and video",
+    "text": "4 Images, captions and video\nNative media · Local positioning\n![A caption explaining the evidence](assets/example.png){width=80% .img-up-25}\n\n\n\n\n\n\n\nClass\nRelative vertical offset\n\n\n\n\n.img-up-0\n0px\n\n\n.img-up-25, .img-up-50, .img-up-75\n-25px, -50px, -75px\n\n\n.img-up-100, .img-up-150\n-100px, -150px\n\n\n.img-down-25, .img-down-50, .img-down-75\n25px, 50px, 75px\n\n\n\nApply a class directly to the image or to a wrapper containing it. These offsets use position: relative: they shift the visible element while retaining its original layout space. They do not resize an image or reserve extra room for overlapping content. Use ordinary width/height controls first, then inspect the finished slide before adjusting an offset.\nQuarto’s native automatic stretching primarily applies to non-nested images. Images inside columns, fragment wrappers or stacks often need explicit size controls. For image enlargement, add .lightbox and enable lightbox: true in the document or local project metadata. Existing course sources use .lightbox, but the central shared YAML does not currently enable lightbox globally.\nThe current theme sets figure captions to Roboto, centred, with a -15px relative top offset and a very small 0.07em font size. This is the implemented value, not a recommended readable caption size. Override it in course-specific CSS if captions must be legible in a lecture room; do not assume a standard Quarto caption size.\nFor a local video, use an HTML element when you need the theme’s r-stretch rule:\n&lt;video class=\"r-stretch\" controls src=\"assets/process.mp4\"&gt;&lt;/video&gt;\nThe CSS constrains width to 100%, bounds the maximum height and centres the video. The theme also sets all slide-section padding to zero. Neither rule guarantees an oversized video fits every surrounding layout. Include the video file when extracting the slide project.",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#fragments",
+    "href": "slide-guide.html#fragments",
+    "title": "Slide guide",
+    "section": "5 Fragments and stacked content",
+    "text": "5 Fragments and stacked content\nNative fragments and r-stack · Local stack-top alignment\n.fragment reveals an element when you advance the slide. .fade-out starts visible and disappears. Assigning the same data-fragment-index synchronises changes.\nFor a replacement at the same position, use this pattern:\n## Compare observations\n\n:::: {.r-stack .stack-top}\n::: {.fragment .fade-out data-fragment-index=\"1\"}\n![](assets/first.png){width=85%}\n:::\n::: {.fragment data-fragment-index=\"1\"}\n![](assets/second.png){width=85%}\n:::\n::::\nAt first the first layer is visible. On the next step it fades out as the second appears. Without fade-out, the first image remains behind the second. Use the same mechanism for a callout replaced by a list.\nThe local .stack-top helper aligns direct layers to the top left, fills their width, removes common paragraph/figure margins, limits images to 70vh, and keeps captions in normal positioning. It also gives fragment-contained callouts and lists full width. It does not create fragment sequencing: r-stack, .fragment, effect classes and indices supply that behaviour.",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#animation",
+    "href": "slide-guide.html#animation",
+    "title": "Slide guide",
+    "section": "6 Animation",
+    "text": "6 Animation\n\n6.1 Native auto-animation\nNative Reveal.js\nUse adjacent slides with auto-animate=true to animate matching elements. Explicit data-id values make the intended match clear:\n## First position {auto-animate=true}\n\n::: {data-id=\"concept\" style=\"margin-left: 0;\"}\nA scientific concept\n:::\n\n## Second position {auto-animate=true}\n\n::: {data-id=\"concept\" style=\"margin-left: 120px;\"}\nA scientific concept\n:::\nThis does not require the animate extension. The working demonstration includes a matching two-slide sequence.\n\n\n6.2 SVG animation with the animate extension\nExtension: fradav/animate 0.2.0\nThe template declares animate in both revealjs-plugins and filters. The filter recognises a code block whose first two classes are yaml and animate, then emits a data-animate container with the named SVG resource.\n```{.yaml .animate src=\"assets/process.svg\"}\nsetup:\n  - element: \"#particle\"\n    modifier: opacity\n    parameters: [0]\nanimation:\n  - element: \"#particle\"\n    modifier: opacity\n    parameters: [1]\n    duration: 800\n```\nThe SVG must contain an element with the matching ID. setup supplies initial SVG.js modifications; animation supplies subsequent changes. duration is expressed in milliseconds. Plugin autoplay defaults to true. Serve the deck with quarto preview or an HTTP server: this plugin fetches external SVG data, which can fail when opened directly with file://.\nThe extension folder contains its JavaScript dependencies. Transfer the filter declaration, plugin declaration, whole extension folder and SVG assets together. See the upstream animate reference for timelines and fragment-indexed sequences; native auto-animation and this SVG plugin are different systems.",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#navigation",
+    "href": "slide-guide.html#navigation",
+    "title": "Slide guide",
+    "section": "7 Navigation and repeated headings",
+    "text": "7 Navigation and repeated headings\nNative controls · Extension: verticator · Local scripts\nThe clean theme enables slide numbers and configures the menu panel on the left. Local CSS moves the menu button to the top right, chalkboard buttons alongside it, a supplied logo to the bottom left and slide numbers to the bottom right. A logo is shown only if configured in the local document or project.\nThe shared verticator settings use themetag: h1, clickable: true, automatic placement, offset: 3vmin, title tooltips and scale: 0.75. Its section indicators are most useful with vertical stacks; they are not a replacement for the slide menu.\nUse the arrow keys for slide navigation. Reveal’s help panel (?), overview (Esc) and speaker view (S) are native presentation tools. Speaker view can require a served page and browser popup permission. The chalkboard is enabled by shared metadata; browser annotations do not become editable annotations in an exported PDF.\n\n7.1 Repeated slide titles\nThe active script is slides/assets/after-body.html, included by shared YAML. It groups real slide sections by the text of their first h1, h2 or h3 and rewrites repeated headings as Title (1/3), Title (2/3) and so on. Stack-container sections and sections with data-visibility=\"hidden\" are excluded. Equal titles are grouped across the deck, even when not adjacent.\nDo not add counters manually. The script changes heading text in the browser, so it is not an authoring-time numbering system and its results should be checked after rendering. A separate assets/js/same-title-counter.js file exists but is not included by the current shared configuration; do not load both.\n\n\n7.2 Links in new tabs\nThe same after-body script gives links inside .reveal .slides target=\"_blank\" and rel=\"noopener noreferrer\", except links with empty URLs, #... fragment links and links carrying .lightbox. This applies to relative course-page links as well as external URLs. It runs during initial setup and Reveal readiness; content added dynamically afterwards is not automatically reprocessed.",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#citations",
+    "href": "slide-guide.html#citations",
+    "title": "Slide guide",
+    "section": "8 Citations and mathematics",
+    "text": "8 Citations and mathematics\nNative citations and MathJax · Local resources\nThe slide project’s bibliography points to slides/assets/your-course.bib, using bibliography: assets/your-course.bib in its local YAML. Shared YAML supplies the local CSL path. Use [@yourKey] or @yourKey in slide text and ::: {#refs} on a references slide. The local .csl-entry style uses Roboto at 14pt; long lists can still overflow.\nThe clean extension loads a MathJax 4 CDN script plus the slide-root mathjax-config.js. The local configuration requests the Asana font and \\(...\\) / \\[...\\] TeX delimiters for MathJax scanning. Quarto still accepts ordinary $...$ and $$...$$ authoring syntax. Keep the root slides/mathjax-config.js when copying the project; a similarly named extension resource also exists and is not a reason to omit that root file.",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#author-icons",
+    "href": "slide-guide.html#author-icons",
+    "title": "Slide guide",
+    "section": "9 Author profile icons",
+    "text": "9 Author profile icons\nLocal course/author-links filter\nConfigure personal details in slides/_quarto.yml:\nauthor:\n  - name: Sébastien Biass\n    orcid: 0000-0002-1919-9473\nauthor-links:\n  researchgate: https://www.researchgate.net/profile/Sebastien-Biass\n  github: https://github.com/e5k\n  scholar: https://scholar.google.com/citations?user=Vs5kVHEAAAAJ\n  website: https://e5k.github.io\nThe filter runs for Reveal.js when author-links is present. It accepts only values starting with http:// or https://; absent or nonmatching values are skipped. At least one valid profile URL is needed before it injects any additional icon behaviour.\nIt targets the first .quarto-title-author-name, inserting links after an existing ORCID icon or after the name when ORCID is absent. The order is ResearchGate, GitHub, Scholar, Website. It replaces the native ORCID graphic with a Font Awesome icon when present. It does not add a separate set of personal links for every author.\nAll five icons use #2F4647 at 55% opacity and full opacity on hover or keyboard focus. They receive accessible labels and open in a new tab. Shared YAML declares course/author-links; its implementation is slides/_extensions/course/author-links/author-links.lua with a companion _extension.yml. Font Awesome is provided by the shared CDN stylesheet. Keep URLs local when transferring the reusable filter.",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#standalone",
+    "href": "slide-guide.html#standalone",
+    "title": "Slide guide",
+    "section": "10 Extract a standalone slide project",
+    "text": "10 Extract a standalone slide project\nLocal portability convention\n\nRefresh bibliography copies with python scripts/render_slides.py 2 --no-pdf from the course root. It copies all root assets/*.bib, replacing same-named slide copies, before rendering.\nCheck that image, data, CSL, code and style paths needed by the selected decks stay inside slides/. Course-specific data and plots.mplstyle are copied locally when needed; they are not fetched automatically.\nCopy the entire slides/ directory, including _quarto.yml, _template.yml, _extensions/, assets/, mathjax-config.js and any data/ or img/ directories.\nActivate an environment with the deck’s Python dependencies and run quarto preview inside the copied folder.\n\nThe book’s scripts are outside the extracted project, but direct Quarto commands work inside it. quarto preview does not refresh Zotero copies. For an independent talk, maintain its bibliography directly in its own assets/. Relative links to published course pages may still need adjustment when publishing at another address; distinguish those reading links from files required to build the deck.",
+    "crumbs": [
+      "Slide guide"
+    ]
+  },
+  {
+    "objectID": "slide-guide.html#export-behaviour",
+    "href": "slide-guide.html#export-behaviour",
+    "title": "Slide guide",
+    "section": "11 Export behaviour",
+    "text": "11 Export behaviour\nrender_slides.py exports PDFs through decktape reveal --fragments, so fragment states can produce additional PDF pages. This is different from a static one-page-per-source-slide export. --no-compress skips Ghostscript; --no-pdf skips PDF generation entirely. The shared pdf: true setting is not a replacement for the script’s Decktape step.\nPDFs cannot retain interactive fragment controls, animation, hover effects, lightboxes or playable videos. Check layout and the sequence of captured fragment states separately. Browser-based mathematical rendering and dynamically fetched SVG animations may need extra time or network access during capture.\nFor native options beyond this template, see Reveal.js, advanced layouts and animation and presentation tools.",
+    "crumbs": [
+      "Slide guide"
+    ]
+  }
+]

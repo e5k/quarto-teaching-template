@@ -1,0 +1,59 @@
+<script>
+(() => {
+  const normalizePath = (url) => {
+    const path = new URL(url, window.location.href).pathname;
+
+    return path
+      .replace(/\/index\.html$/, "/")
+      .replace(/\/+$/, "/");
+  };
+
+  const makeIndexPartClickable = () => {
+    const sidebar = document.querySelector("#quarto-sidebar");
+
+    if (!sidebar) return;
+
+    // Le titre du livre fournit l'adresse correcte de la page d'accueil,
+    // y compris depuis les pages placées dans un sous-dossier.
+    const homeLink = sidebar.querySelector(".sidebar-title a");
+
+    // index.qmd est déclaré comme première partie du livre. Quarto génère
+    // donc son libellé sous forme de <span> plutôt que de lien.
+    const indexPart = sidebar.querySelector(
+      ".sidebar-menu-container > ul > li.sidebar-item-section:first-child > span.sidebar-item-text"
+    );
+
+    if (!homeLink || !indexPart) return;
+
+    const container = document.createElement("div");
+    const link = document.createElement("a");
+
+    container.className = "sidebar-item-container";
+    link.href = homeLink.href;
+    link.className = "sidebar-item-text sidebar-link";
+    link.innerHTML = indexPart.innerHTML;
+
+    // Quarto peut attribuer la classe active au libellé de la partie sur
+    // toutes les pages. On la retire avant de recalculer l'état courant.
+    link.classList.remove("active");
+    link.removeAttribute("aria-current");
+
+    const currentPath = normalizePath(window.location.href);
+    const homePath = normalizePath(homeLink.href);
+
+    if (currentPath === homePath) {
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
+    }
+
+    container.appendChild(link);
+    indexPart.replaceWith(container);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", makeIndexPartClickable);
+  } else {
+    makeIndexPartClickable();
+  }
+})();
+</script>

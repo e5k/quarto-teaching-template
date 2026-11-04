@@ -1,0 +1,82 @@
+<script>
+(() => {
+  const quartoToggle = window.quartoToggleColorScheme;
+
+  if (typeof quartoToggle !== "function") {
+    return;
+  }
+
+  window.quartoToggleColorScheme = function () {
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const restorePosition = () => window.scrollTo(scrollX, scrollY);
+
+    quartoToggle();
+    restorePosition();
+    window.requestAnimationFrame(restorePosition);
+    window.setTimeout(restorePosition, 80);
+  };
+})();
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const questionNumbers = new Map(
+    Array.from(document.querySelectorAll(".callout-question.theorem"))
+      .map((callout) => {
+        const number = callout.querySelector(
+          ":scope > p:first-child > .theorem-title"
+        );
+        return [
+          callout.id.replace(/^exr-/, ""),
+          number ? number.textContent.trim() : "",
+        ];
+      })
+  );
+
+  const callouts = document.querySelectorAll(
+    ".callout-question.theorem, .callout-answer.solution"
+  );
+
+  callouts.forEach((callout) => {
+    const number = callout.querySelector(
+      ":scope > p:first-child > .theorem-title, " +
+      ":scope > p:first-child > .proof-title"
+    );
+    const title = callout.querySelector(
+      ":scope > .callout-header .callout-title-container"
+    );
+
+    if (!number || !title) return;
+
+    const numberLine = number.parentElement;
+    const screenReaderLabel = title.querySelector(".screen-reader-only");
+    if (screenReaderLabel) screenReaderLabel.remove();
+
+    let label = number.textContent
+      .trim()
+      .replace(/^Solution\b/, "Réponse");
+
+    if (callout.classList.contains("callout-answer")) {
+      const questionKey = callout.id.replace(/^sol-/, "");
+      const questionLabel = questionNumbers.get(questionKey);
+      if (questionLabel) {
+        label = questionLabel.replace(/^Question\b/, "Réponse");
+      }
+    }
+
+    let description = title.textContent.trim();
+
+    if (callout.classList.contains("callout-answer") &&
+        /^(Réponse|Answer)$/.test(description)) {
+      description = "";
+    }
+
+    title.textContent = description
+      ? `${label} : ${description}`
+      : label;
+    numberLine.remove();
+  });
+});
+</script>
