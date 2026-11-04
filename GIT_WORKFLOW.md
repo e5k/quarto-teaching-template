@@ -136,4 +136,4 @@ The following 53 files matched byte for byte in all three folders. New reusable 
 
 ## GitHub publication added on 4 November 2026
 
-The central template is now published at https://github.com/e5k/_quarto-teaching-template. The template repository has that URL as `origin`; both courses use it as their `template` remote. The template’s course-source remotes still point to the local course repositories. The repository is public, and its documentation is automatically published at https://e5k.github.io/_quarto-teaching-template/ by `.github/workflows/publish-docs.yml`.
+The central template is now published at https://github.com/e5k/quarto-teaching-template. The template repository has that URL as `origin`; both courses use it as their `template` remote. The template’s course-source remotes still point to the local course repositories. The repository is public, and its documentation is automatically published at https://e5k.github.io/quarto-teaching-template/ by `.github/workflows/publish-docs.yml`.

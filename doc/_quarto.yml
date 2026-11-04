@@ -29,8 +29,8 @@ website:
   page-footer:
     left: Book and slide themes
     right: Documentation draft · 4 November 2026
-  site-url: https://e5k.github.io/_quarto-teaching-template/
-  repo-url: https://github.com/e5k/_quarto-teaching-template
+  site-url: https://e5k.github.io/quarto-teaching-template/
+  repo-url: https://github.com/e5k/quarto-teaching-template
   repo-subdir: doc
   repo-actions:
   - edit

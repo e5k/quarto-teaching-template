@@ -177,7 +177,7 @@ La fonctionnalité partageable est le filtre `course/author-links`, déclaré da
 
 ## Documentation du modèle
 
-[Consulter la documentation](https://e5k.github.io/_quarto-teaching-template/) · [Dépôt GitHub](https://github.com/e5k/_quarto-teaching-template)
+[Consulter la documentation](https://e5k.github.io/quarto-teaching-template/) · [Dépôt GitHub](https://github.com/e5k/quarto-teaching-template)
 
 Le site de documentation se trouve dans [doc/index.qmd](doc/index.qmd). Il contient quatre guides : prise en main, livre, présentations et maintenance, avec les fonctionnalités locales, des exemples et le flux Git dans les deux sens.
 
@@ -186,6 +186,6 @@ Depuis le dossier `doc/`, lancer `quarto preview` pour le consulter ou `quarto r
 
 ### Publication sur GitHub Pages
 
-Le dépôt public est https://github.com/e5k/_quarto-teaching-template et la documentation est publiée à https://e5k.github.io/_quarto-teaching-template/. Le workflow `.github/workflows/publish-docs.yml` reconstruit uniquement le projet `doc/` après un push qui modifie ce dossier sur `main`. Il met à jour la branche `gh-pages`, puis déploie le même site avec GitHub Pages. Le workflow peut aussi être lancé manuellement depuis Actions. Les fichiers générés `doc/_site/` restent exclus de `main`.
+Le dépôt public est https://github.com/e5k/quarto-teaching-template et la documentation est publiée à https://e5k.github.io/quarto-teaching-template/. Le workflow `.github/workflows/publish-docs.yml` reconstruit uniquement le projet `doc/` après un push qui modifie ce dossier sur `main`. Il met à jour la branche `gh-pages`, puis déploie le même site avec GitHub Pages. Le workflow peut aussi être lancé manuellement depuis Actions. Les fichiers générés `doc/_site/` restent exclus de `main`.
 
 Pour publier manuellement une documentation déjà rendue : `quarto publish gh-pages doc --no-render --no-browser`. Pour inclure le rendu, retirer `--no-render`.

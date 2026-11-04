@@ -21,7 +21,7 @@ Use **feature commits** to transfer improvements. A feature commit contains only
 | Central template | `outils-info-2` | Local Outils informatique II repository |
 | Central template | `analyse-geospatiale` | Local Analyse géospatiale repository |
 
-All three use `main`. The initial setup used local paths. The central template is now public at [e5k/_quarto-teaching-template](https://github.com/e5k/_quarto-teaching-template). Its `origin` points to that GitHub repository, and the two courses’ `template` remotes now use the same URL. The template’s course-source remotes remain local paths; update those separately when the source course has a published repository. Analyse géospatiale has not been published by this setup.
+All three use `main`. The initial setup used local paths. The central template is now public at [e5k/quarto-teaching-template](https://github.com/e5k/quarto-teaching-template). Its `origin` points to that GitHub repository, and the two courses’ `template` remotes now use the same URL. The template’s course-source remotes remain local paths; update those separately when the source course has a published repository. Analyse géospatiale has not been published by this setup.
 
 Check the repository you are about to edit:
 
@@ -207,7 +207,7 @@ The embedded slide deck is a pre-rendered demonstration made with the real slide
 
 ## Documentation publication {#publication}
 
-The public website is [https://e5k.github.io/_quarto-teaching-template/](https://e5k.github.io/_quarto-teaching-template/). Sources live on `main`; only `doc/` is rendered by `.github/workflows/publish-docs.yml`. A push affecting `doc/**` or that workflow starts a build with Quarto 1.8.27. The action updates `gh-pages` and explicitly deploys the rendered `doc/_site/` artifact using GitHub Pages. It can also be run manually from the repository’s Actions tab.
+The public website is [https://e5k.github.io/quarto-teaching-template/](https://e5k.github.io/quarto-teaching-template/). Sources live on `main`; only `doc/` is rendered by `.github/workflows/publish-docs.yml`. A push affecting `doc/**` or that workflow starts a build with Quarto 1.8.27. The action updates `gh-pages` and explicitly deploys the rendered `doc/_site/` artifact using GitHub Pages. It can also be run manually from the repository’s Actions tab.
 
 GitHub Pages uses the GitHub Actions publishing method. The `gh-pages` branch is maintained as the rendered publication output; `doc/_site/` stays ignored on `main`. The course starter book at the repository root is not published as this website.
 
