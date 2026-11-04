@@ -1,0 +1,15 @@
+metadata-files:
+- _template.yml
+project:
+  type: default
+  render:
+  - slides_class_*.qmd
+author: Auteur du cours
+bibliography: assets/references.bib
+
+# Optional links next to the first author's ORCID icon:
+# author-links:
+#   researchgate: https://www.researchgate.net/profile/Your-Name
+#   github: https://github.com/your-account
+#   scholar: https://scholar.google.com/citations?user=YOUR_ID
+#   website: https://example.org

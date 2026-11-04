@@ -1,0 +1,38 @@
+license: CC BY-NC-SA 4.0
+format:
+  clean-revealjs:
+    background: '#fafafa'
+    chalkboard: true
+    highlight-style: atom-one
+    callout-appearance: simple
+    transition: fade
+    transition-speed: fast
+    code-annotations: hover
+    fontawesome: true
+    pdf: true
+    include-after-body: assets/after-body.html
+    include-in-header:
+    - text: <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        rel="stylesheet">
+    - text: "<style>\n.reveal .slides section div.callout {\n  font-size: 0.9em;\n\
+        }\n</style>\n"
+    verticator:
+      themetag: h1
+      color: ''
+      inversecolor: ''
+      skipuncounted: false
+      clickable: true
+      position: auto
+      offset: 3vmin
+      autogenerate: true
+      tooltip: title
+      scale: 0.75
+    mermaid:
+      theme: default
+revealjs-plugins:
+- animate
+- verticator
+filters:
+- animate
+- course/author-links
+csl: assets/bulletin-of-volcanology.csl

@@ -1,0 +1,6 @@
+# Profil enseignant : les propositions de réponse sont affichées.
+answers: true
+
+execute:
+  echo: true
+  output: true

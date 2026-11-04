@@ -1,0 +1,10 @@
+_book/
+.quarto/
+**/.quarto/
+**/__pycache__/
+slides/*.html
+slides/*.pdf
+slides/*_files/
+
+/.quarto/
+**/*.quarto_ipynb

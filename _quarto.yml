@@ -1,0 +1,20 @@
+metadata-files:
+- _template.yml
+project:
+  type: book
+  output-dir: _book
+  resources:
+  - course/*.ipynb
+  - slides/*.html
+  - slides/*.pdf
+  - slides/*_files/**
+  - slides/mathjax-config.js
+book:
+  title: Titre du cours
+  author: Auteur du cours
+  chapters:
+  - index.qmd
+  - course/class_01.qmd
+bibliography: assets/references.bib
+jupyter: python3
+keep-ipynb: false

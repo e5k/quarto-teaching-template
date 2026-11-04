@@ -1,0 +1,27 @@
+# Shared Matplotlib style for course pages and slides.
+# Match the slide heading colour and background from clean.scss.
+
+font.family: Roboto
+font.weight: normal
+text.color: "#23373b"
+
+axes.titlecolor: "#23373b"
+axes.titleweight: medium
+axes.labelcolor: "#23373b"
+axes.labelweight: medium
+axes.edgecolor: "#23373b"
+
+patch.edgecolor: "#23373b"
+patch.force_edgecolor: True
+
+xtick.color: "#23373b"
+ytick.color: "#23373b"
+xtick.labelcolor: "#23373b"
+ytick.labelcolor: "#23373b"
+
+legend.labelcolor: "#23373b"
+lines.color: "#23373b"
+
+figure.facecolor: "#fafafa"
+axes.facecolor: "#fafafa"
+savefig.facecolor: "#fafafa"

@@ -1,0 +1,6 @@
+# Profil étudiant : les propositions de réponse sont masquées.
+answers: false
+
+execute:
+  echo: true
+  output: false
