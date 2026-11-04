@@ -1,191 +1,190 @@
-# Modèle Quarto pour les cours : livre et présentations
+# Quarto teaching template for books and presentations
 
-## Principe
+## Overview
 
-Chaque cours et le modèle peuvent être des dépôts Git indépendants. Les fichiers du modèle sont **copiés** dans chaque cours : aucun lien extérieur au dépôt n’est requis pour son rendu.
+Each course and the template can be independent Git repositories. Template files are **copied into each course**, so rendering does not depend on files outside the repository.
 
-La séparation est faite dans les fichiers YAML : les informations du cours restent dans `_quarto.yml`, la présentation et les fonctionnalités réutilisables dans `_template.yml`. Quarto les combine avec son mécanisme natif `metadata-files`.
+The YAML files separate course-specific information in `_quarto.yml` from reusable appearance and functionality in `_template.yml`. Quarto combines them using its native `metadata-files` mechanism.
 
-Il n’y a pas de gestionnaire de synchronisation Python, de manifeste, de verrou, de répertoire `_teaching/`, de submodule ou de subtree configuré.
+There is no Python synchronisation manager, manifest, lock file, `_teaching/` directory, submodule or subtree. For the current two-way Git workflow using remotes and selected feature commits, see [GIT_WORKFLOW.md](GIT_WORKFLOW.md).
 
-## Structure habituelle
+## Standard structure
 
 ```text
-mon-cours/
-├── _quarto.yml                 ← réglages propres au cours
-├── _template.yml               ← réglages partagés du livre
+my-course/
+├── _quarto.yml                 ← course-specific settings
+├── _template.yml               ← shared book settings
 ├── _quarto-answer.yml
 ├── _quarto-question.yml
 ├── index.qmd
-├── assets/                     ← styles, scripts web, CSL, bibliographie
-├── _extensions/                ← extensions du livre
-├── scripts/                    ← construction des supports
+├── assets/                     ← styles, web scripts, CSL and bibliography
+├── _extensions/                ← book extensions
+├── scripts/                    ← teaching-material build scripts
 ├── course/
 │   ├── class_01.qmd
 │   └── class_02.qmd
 └── slides/
-    ├── _quarto.yml             ← réglages propres aux slides de ce cours
-    ├── _template.yml           ← thème et plugins réutilisables des slides
+    ├── _quarto.yml             ← course-specific presentation settings
+    ├── _template.yml           ← reusable slide theme and plugins
     ├── _extensions/            ← clean, animate, verticator, etc.
     ├── assets/
     ├── mathjax-config.js
     └── slides_class_01.qmd
 ```
 
-`course/` et `slides/` sont les deux dossiers de contenu principaux, comme dans *Outils informatique II*. Les annexes, images, données et documents de préparation peuvent rester dans leurs dossiers propres. `_book/`, `.quarto/` et les fichiers de rendu sont générés par Quarto.
+`course/` and `slides/` are the two main content folders, following the structure of *Outils informatique II*. Appendices, images, data and planning documents can remain in their own directories. Quarto generates `_book/`, `.quarto/` and rendered output files.
 
-## Qui contient quoi ?
+## Configuration responsibilities
 
-| Fichier | Informations du cours | Réglages partagés |
+| File | Course-specific information | Shared settings |
 |---|---|---|
-| `_quarto.yml` | Titre, auteur, URL GitHub, chapitres, annexes, bibliographie, ressources propres au cours et noyau Python | Référence `_template.yml` avec `metadata-files` |
-| `_template.yml` | Aucun titre, liste de chapitres ou nom de fichier BibTeX propre à un cours | Thèmes clair/sombre, CSS/JS, filtres, encadrés, navigation générique, langue et options de rendu |
-| `slides/_quarto.yml` | Auteur, bibliographie et sélection des présentations | Référence le `_template.yml` situé dans `slides/` |
-| `slides/_template.yml` | Aucun titre de cours ni nom de fichier BibTeX | Format clean-revealjs, animations, plugins, mise en page, ressources et filtres |
+| `_quarto.yml` | Title, author, GitHub URL, chapters, appendices, bibliography, course resources and Python kernel | Loads `_template.yml` using `metadata-files` |
+| `_template.yml` | No course title, chapter list or course-specific BibTeX filename | Light/dark themes, CSS/JS, filters, callouts, generic navigation, language and rendering options |
+| `slides/_quarto.yml` | Author, bibliography and presentation selection | Loads the `_template.yml` inside `slides/` |
+| `slides/_template.yml` | No course title or BibTeX filename | The clean-revealjs format, animations, plugins, layout, resources and filters |
 
-Chaque `_quarto.yml` utilise :
+Each `_quarto.yml` includes:
 
 ```yaml
 metadata-files:
   - _template.yml
 ```
 
-Les réglages propres au cours peuvent surcharger les valeurs du modèle. Une adaptation valable pour un seul cours doit rester dans son `_quarto.yml` ou dans le document concerné, afin que les fichiers `_template.yml` restent partageables.
+Keep changes that apply to only one course in its local configuration or the relevant document, so the `_template.yml` files remain reusable. Check the effective metadata when overriding shared values, especially list settings. The documentation uses directory-level `_metadata.yml` for its language and comment overrides after loading the shared template.
 
-Le sous-projet `slides/` déclare explicitement `project: type: default` pour charger sa configuration et ses métadonnées. Le livre conserve `project: type: book`.
+The `slides/` subproject explicitly declares `project: type: default` to load its own configuration and metadata. The book retains `project: type: book`.
 
-## Bibliographie : un nom par cours
+## Bibliography filenames are course-specific
 
-Tous les fichiers BibTeX sont placés dans **`assets/`**, mais leur nom n’est pas imposé par le modèle.
+All BibTeX files belong in **`assets/`**, but the template does not impose a filename.
 
-Exemples actuels :
+Current examples:
 
-- *Analyse géospatiale* : `assets/geospatial.bib`.
-- *Outils informatique II* : `assets/OI2.bib`.
+- *Analyse géospatiale*: `assets/geospatial.bib`.
+- *Outils informatique II*: `assets/OI2.bib`.
 
-Le livre déclare ce chemin dans son `_quarto.yml`. Les slides déclarent le chemin correspondant, par exemple `../assets/geospatial.bib`, dans leur propre `_quarto.yml`. Aucun fichier `_template.yml` ne contient de clé `bibliography`.
+The book declares its bibliography path in the root `_quarto.yml`. Slides declare their local copy, for example `assets/geospatial.bib`, in `slides/_quarto.yml`; that path refers to `slides/assets/geospatial.bib`. Neither `_template.yml` contains a `bibliography` key.
 
-Dans le squelette du modèle, `assets/references.bib` est seulement un exemple à renommer lors de la création d’un cours. Il ne faut jamais écraser la bibliographie d’un cours lors d’une mise à jour du modèle.
+In the starter template, `assets/references.bib` is only an example to rename when creating a course. Never overwrite a course bibliography when updating the template.
 
-Les bibliographies synchronisées avec Zotero sont gérées par Zotero, sans modification manuelle des entrées. Lorsqu’une référence doit être ajoutée, fournir son BibTeX dans la conversation pour import dans Zotero.
+Zotero manages synchronised bibliographies; do not edit their entries manually. When a reference needs to be added, provide its BibTeX in the conversation for import into Zotero.
 
-## Échanges du modèle vers un cours
+## Transfer changes from the template to a course
 
-### Nouveau cours
+### Create a new course
 
-Copier le squelette du modèle, puis personnaliser les deux `_quarto.yml` : titre, organisation des chapitres, bibliographie, auteurs et URL du dépôt. Ajouter les contenus dans `course/` et `slides/`.
+Copy the starter files, then personalise both `_quarto.yml` files: title, chapter organisation, bibliography, authors and repository URL. Add content to `course/` and `slides/`. Exclude the template's `.git/` directory when creating an independent course repository.
 
-### Mise à jour d’un cours existant
+### Update an existing course
 
-1. Comparer et copier les fichiers `_template.yml` du livre et des slides.
-2. Copier les fichiers de style, scripts, filtres ou extensions nécessaires à la nouvelle fonctionnalité.
-3. **Conserver les `_quarto.yml` locaux**, les bibliographies, données et contenus.
-4. Examiner le diff Git, rendre un chapitre et une présentation, puis committer la mise à jour.
+1. Compare the shared `_template.yml` files for the book and slides.
+2. Transfer the styles, scripts, filters or extensions required by the new feature, together with its YAML changes.
+3. **Preserve the local `_quarto.yml` files**, bibliographies, data and lesson content.
+4. Review the Git diff, render a chapter and a presentation, then commit the update.
 
-Un nouveau plugin demande souvent une modification YAML **et** l’ajout de son dossier dans `_extensions/`. Copier seulement la ligne YAML ne suffit pas.
+A new plugin often requires a YAML change **and** its directory under `_extensions/`. Copying only the YAML declaration is insufficient. Use the reviewed feature-commit procedure in [GIT_WORKFLOW.md](GIT_WORKFLOW.md) to transfer changes between the connected repositories.
 
-## Échanges d’un cours vers le modèle
+## Transfer changes from a course to the template
 
-Si l’on améliore une fonctionnalité dans un cours, modifier les fichiers partageables correspondants : `_template.yml`, styles, filtres, scripts ou extensions. Les titres, noms BibTeX et autres informations locales étant dans les `_quarto.yml`, ils n’ont pas à remonter vers le modèle.
+When improving a reusable feature in a course, edit the corresponding shared files: `_template.yml`, styles, filters, scripts or extensions. Titles, BibTeX filenames and other local information belong in `_quarto.yml` and should stay with the course.
 
-1. Vérifier que le changement est réutilisable et non spécifique au cours.
-2. Examiner le diff, par exemple :
+1. Check that the change is reusable across courses.
+2. Review the diff, for example:
 
    ```sh
    git diff -- _template.yml slides/_template.yml
    ```
 
-3. Reporter les fichiers ou les changements pertinents dans le dépôt du modèle, avec leurs dépendances.
-4. Examiner et committer le diff dans ce dépôt.
-5. Propager ensuite cette amélioration vers les autres cours qui en ont besoin.
+3. Transfer the relevant changes and their dependencies into the template repository.
+4. Review and commit the diff there.
+5. Propagate the improvement to the other courses that need it.
 
-`git add -p` permet de sélectionner les portions d’un diff à committer si plusieurs changements ont été mélangés. La séparation des responsabilités dans les YAML évite surtout d’avoir à deviner quelles lignes sont locales et quelles lignes sont génériques.
+`git add -p` lets you select individual hunks to commit when several changes have been mixed together. Keeping local and generic settings in separate YAML files makes that distinction easier to maintain.
 
-Ce flux fonctionne **dans les deux sens**, mais ne constitue pas une synchronisation automatique. Git assure l’historique, la revue et les fusions ; les fichiers sont transférés explicitement entre les dépôts. Aucun `push` GitHub n’est exécuté par les scripts de construction.
+This workflow works **in both directions**, through deliberately selected changes. Git provides history, review and merging. The configured remotes and `git cherry-pick -x` let you transfer individual feature commits. The build scripts do not push course source commits to GitHub; the combined script offers a separate publication prompt for the rendered book.
 
-## Noms des fichiers
+## File naming
 
-| Élément | Convention |
+| Material | Convention |
 |---|---|
-| Chapitre | `course/class_01.qmd` |
-| Présentation | `slides/slides_class_01.qmd` |
+| Chapter | `course/class_01.qmd` |
+| Presentation | `slides/slides_class_01.qmd` |
 | Notebook | `course/class_01.ipynb` |
 
-Utiliser deux chiffres et le même numéro pour les trois supports. Les titres affichés peuvent contenir espaces et accents ; les noms des fichiers sources évitent ces caractères.
+Use two digits and the same number for all three materials. Displayed titles may contain spaces and accents; source filenames avoid them.
 
-Les noms historiques `course/semaine_04.qmd` et `slides/slides_semaine_04.qmd` restent pris en charge. Les scripts ne nécessitent pas de renommer les fichiers existants de *Outils informatique II*.
+The historical names `course/semaine_04.qmd` and `slides/slides_semaine_04.qmd` remain supported. The scripts do not require renaming existing *Outils informatique II* files.
 
-## Construction, comme dans Outils informatique II
+## Build materials as in Outils informatique II
 
-Les scripts sont des fichiers locaux ordinaires et trouvent le projet relativement à leur emplacement. Ils sont portables entre les cours et ne dépendent pas du dossier central.
+The scripts are ordinary local files and locate the project relative to their own location. They are portable across courses and do not depend on the central template directory.
 
-Avec l’environnement Python adapté actif, depuis le dossier d’un cours :
+With the appropriate Python environment active, run these commands from a course directory:
 
 ```sh
-# Livre et profils existants
+# Book preview and existing profiles
 quarto preview
 quarto render --profile answer
 quarto render --profile question
 
-# Une présentation, sans exécuter les cellules
+# One presentation without executing code cells
 quarto render slides/slides_class_04.qmd --no-execute
 
-# Présentations et notebooks : sélecteurs numériques ou noms de fichiers
+# Presentations and notebooks: select by number or filename
 python scripts/render_slides.py 4 --no-pdf
 python scripts/render_notebooks.py 4
 
-# Flux de construction existant : slides, notebooks, puis livre
+# Existing build workflow: slides, notebooks, then the book
 python scripts/render_all.py --no-pdf
 ```
 
-Les scripts de rendu ne synchronisent pas les modèles. `render_all.py` conserve le fonctionnement de *Outils informatique II*, notamment sa question finale de publication : il ne faut confirmer cette publication que si elle est souhaitée. La génération PDF requiert une installation existante de Decktape et, pour la compression, Ghostscript ; `--no-pdf` l’évite.
+The rendering scripts do not synchronise templates. `render_all.py` preserves the *Outils informatique II* workflow, including its final publication prompt: confirm only when you intend to publish. PDF generation requires Decktape; compression also requires Ghostscript. Use `--no-pdf` to skip those steps.
 
-La première classe, sans pratique, est exclue de la génération des notebooks. `quarto convert` produit des notebooks non exécutés ; les profils du livre ne filtrent pas leur contenu source.
+The first class has no practical and is excluded from notebook generation. `quarto convert` produces unexecuted notebooks; book profiles do not filter their source content.
 
-## Un seul livre, les profils existants
+## One book with the existing profiles
 
-Les fichiers `_quarto-answer.yml` et `_quarto-question.yml` sont repris de *Outils informatique II*. On ne crée pas de livres enseignant et étudiant distincts. Le même projet est rendu avec le profil choisi.
+`_quarto-answer.yml` and `_quarto-question.yml` come from *Outils informatique II*. The same project is rendered with the selected profile, rather than maintaining separate teacher and student books.
 
-Les réponses rédigées peuvent utiliser `.content-visible when-meta="answers"`. Les surcharges d’un document restent prioritaires selon les règles Quarto.
+Written answers can use `.content-visible when-meta="answers"`. Document-level overrides take precedence according to Quarto's metadata rules.
 
-## GitHub et autonomie
+## GitHub and independent builds
 
-Commiter les configurations, styles, filtres, extensions et scripts avec les sources du cours. Ne pas ignorer les dossiers `_extensions/` requis au rendu. Un clone du cours contient alors le nécessaire pour son modèle, sans dossier central, sans gestionnaire Python et sans récupération spéciale de sous-projet Git.
+Commit the configuration, styles, filters, extensions and scripts alongside the course sources. Do not ignore the `_extensions/` directories required for rendering. A course clone then contains its template dependencies without requiring the central folder, a Python template manager or special Git subproject retrieval.
 
-Quarto, les dépendances Python et les données requises restent à installer ou fournir. Les ressources web et les services GEE peuvent nécessiter Internet. Aucun dépôt distant, submodule ou subtree n’est configuré par cette mise en place.
+Quarto, Python dependencies and required data must still be installed or supplied. Web resources and GEE services may require internet access. Git remotes and publication are configured as described in [GIT_WORKFLOW.md](GIT_WORKFLOW.md) and the publication section below; no submodule or subtree is used.
 
-## Documentation technique
+## Technical references
 
-- Métadonnées partagées Quarto : https://quarto.org/docs/projects/quarto-projects.html
-- Extensions et suivi dans Git : https://quarto.org/docs/extensions/managing.html
+- [Shared Quarto metadata](https://quarto.org/docs/projects/quarto-projects.html)
+- [Managing extensions and tracking them in Git](https://quarto.org/docs/extensions/managing.html)
 
-## Présentations extractibles comme projet autonome
+## Extract slides as a standalone project
 
-Le dossier `slides/` peut être copié seul : il contient ses YAML, `_extensions/`, assets, CSL et copies locales des bibliographies. Les données et styles utilisés par le code doivent également y être présents, avec des chemins internes au dossier.
+The `slides/` directory can be copied on its own: it contains its YAML files, `_extensions/`, assets, CSL and local bibliography copies. Data and styles used by code must also be present, with paths that stay inside the copied folder.
 
-Les bibliographies ont un nom propre à chaque cours, y compris dans `slides/assets/`. Le script `render_slides.py` rafraîchit ces copies depuis les exports du dossier `assets/` du cours avant le rendu. Après une mise à jour Zotero, utiliser ce script pour rafraîchir la copie avant extraction ; un `quarto preview` direct utilise la copie locale déjà présente. Pour un talk autonome, exporter directement sa bibliographie dans son propre `assets/`.
+Bibliography filenames remain course-specific, including under `slides/assets/`. `render_slides.py` refreshes these copies from the course's root `assets/` exports before rendering. After a Zotero update, run this script to refresh the copy before extracting the folder; a direct `quarto preview` uses the local copy already present. For a standalone talk, export its bibliography directly into its own `assets/` directory.
 
-Depuis le dossier extrait, `quarto preview` fonctionne sans le dépôt du cours. Il faut copier **tout le dossier**, notamment `assets/`, `data/`, `img/` et `_extensions/` requis ; le seul fichier QMD ne suffit pas.
+From the extracted folder, `quarto preview` works without the course repository. Copy **the entire folder**, including any required `assets/`, `data/`, `img/` and `_extensions/` directories; the QMD file alone is insufficient.
 
-Les liens vers les pages du cours restent des liens de lecture : ils ne sont pas requis pour construire le deck. Pour publier le deck à une autre adresse, adapter ces liens vers les pages publiées du cours si nécessaire.
+Links to course pages are reading links and are not required to build the deck. If publishing the deck at another address, update those links to the published course pages where necessary.
 
-## Icônes des profils sur la diapositive de titre
+## Profile icons on the title slide
 
-Dans `slides/_quarto.yml`, le bloc optionnel `author-links` définit `researchgate`, `github`, `scholar` et `website` avec leurs URL complètes. Les icônes apparaissent après l’ORCID du premier auteur ; seuls les liens renseignés sont affichés. L’ORCID reste défini dans les métadonnées normales de l’auteur. Le modèle générique conserve des exemples commentés à compléter.
+In `slides/_quarto.yml`, the optional `author-links` block defines `researchgate`, `github`, `scholar` and `website` using their full URLs. The icons appear after the first author's ORCID icon; only configured links are displayed. ORCID remains part of the author's standard metadata. The generic template provides commented examples to complete.
 
-La fonctionnalité partageable est le filtre `course/author-links`, déclaré dans `slides/_template.yml`, accompagné de `slides/_extensions/course/author-links/`. Les URL personnelles restent dans `_quarto.yml`. Le filtre utilise Font Awesome, déjà chargé par le thème des présentations. Lors d’un transfert du modèle, copier la déclaration et le dossier d’extension ensemble. Le dossier `slides/` reste autonome.
+The reusable implementation is the `course/author-links` filter declared in `slides/_template.yml`, together with `slides/_extensions/course/author-links/`. Personal URLs remain in `_quarto.yml`. The filter uses Font Awesome, already loaded by the presentation theme. When transferring the feature, include both the declaration and its extension directory. The `slides/` folder remains self-contained.
 
-## Documentation du modèle
+## Template documentation
 
-[Consulter la documentation](https://e5k.github.io/quarto-teaching-template/) · [Dépôt GitHub](https://github.com/e5k/quarto-teaching-template)
+[Read the documentation](https://e5k.github.io/quarto-teaching-template/) · [GitHub repository](https://github.com/e5k/quarto-teaching-template)
 
-Le site de documentation se trouve dans [doc/index.qmd](doc/index.qmd). Il contient quatre guides : prise en main, livre, présentations et maintenance, avec les fonctionnalités locales, des exemples et le flux Git dans les deux sens.
+The documentation website starts at [doc/index.qmd](doc/index.qmd). Its four guides cover getting started, books, presentations and maintenance, including local features, examples and the two-way Git workflow.
 
-Depuis le dossier `doc/`, lancer `quarto preview` pour le consulter ou `quarto render` pour reconstruire le site dans `doc/_site/`. Le projet de documentation est indépendant du livre du cours. Les exemples de présentations pré-rendus restent dans `doc/assets/demos/slides/` et doivent être régénérés si le thème change.
+From `doc/`, run `quarto preview` to browse it or `quarto render` to rebuild the website in `doc/_site/`. The documentation project is independent of the course book. Pre-rendered slide demonstrations live under `doc/assets/demos/slides/` and must be regenerated when the slide theme changes.
 
+### Publish with GitHub Pages
 
-### Publication sur GitHub Pages
+The public repository is [e5k/quarto-teaching-template](https://github.com/e5k/quarto-teaching-template), and the documentation is published at [e5k.github.io/quarto-teaching-template](https://e5k.github.io/quarto-teaching-template/). The `.github/workflows/publish-docs.yml` workflow rebuilds only the `doc/` project after a push to `main` that changes that directory. It updates the `gh-pages` branch, then deploys the same website with GitHub Pages. The workflow can also be started manually from Actions. Generated `doc/_site/` files remain excluded from `main`.
 
-Le dépôt public est https://github.com/e5k/quarto-teaching-template et la documentation est publiée à https://e5k.github.io/quarto-teaching-template/. Le workflow `.github/workflows/publish-docs.yml` reconstruit uniquement le projet `doc/` après un push qui modifie ce dossier sur `main`. Il met à jour la branche `gh-pages`, puis déploie le même site avec GitHub Pages. Le workflow peut aussi être lancé manuellement depuis Actions. Les fichiers générés `doc/_site/` restent exclus de `main`.
-
-Pour publier manuellement une documentation déjà rendue : `quarto publish gh-pages doc --no-render --no-browser`. Pour inclure le rendu, retirer `--no-render`.
+To publish documentation that has already been rendered, run `quarto publish gh-pages doc --no-render --no-browser`. Omit `--no-render` to include rendering.
