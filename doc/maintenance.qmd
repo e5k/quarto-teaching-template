@@ -21,7 +21,7 @@ Use **feature commits** to transfer improvements. A feature commit contains only
 | Central template | `outils-info-2` | Local Outils informatique II repository |
 | Central template | `analyse-geospatiale` | Local Analyse géospatiale repository |
 
-All three use `main`. The new connections are local paths on this computer. They are not portable to another computer without updating the remote URLs. No GitHub repository or push was created for the template or Analyse géospatiale during setup.
+All three use `main`. The initial setup used local paths. The central template is now public at [e5k/_quarto-teaching-template](https://github.com/e5k/_quarto-teaching-template). Its `origin` points to that GitHub repository, and the two courses’ `template` remotes now use the same URL. The template’s course-source remotes remain local paths; update those separately when the source course has a published repository. Analyse géospatiale has not been published by this setup.
 
 Check the repository you are about to edit:
 
@@ -205,9 +205,19 @@ The documentation is an independent Quarto website under `doc/` in the template 
 
 The embedded slide deck is a pre-rendered demonstration made with the real slide project. Rebuild it when the slide theme changes, keeping the HTML and its dependency directory together under `doc/assets/demos/slides/`. Its downloadable source is supplied there as `demo.qmd.txt` to preserve the five-page QMD structure. To rebuild, copy that source into an isolated copy of the template's slide project, rename it `demo.qmd`, include `demo.qmd` in that copy’s `project.render` list, add the supplied SVG, then render with Quarto. The documentation's ordinary render does not rebuild the embedded deck.
 
+## Documentation publication {#publication}
+
+The public website is [https://e5k.github.io/_quarto-teaching-template/](https://e5k.github.io/_quarto-teaching-template/). Sources live on `main`; only `doc/` is rendered by `.github/workflows/publish-docs.yml`. A push affecting `doc/**` or that workflow starts a build with Quarto 1.8.27. The action updates `gh-pages` and explicitly deploys the rendered `doc/_site/` artifact using GitHub Pages. It can also be run manually from the repository’s Actions tab.
+
+GitHub Pages uses the GitHub Actions publishing method. The `gh-pages` branch is maintained as the rendered publication output; `doc/_site/` stays ignored on `main`. The course starter book at the repository root is not published as this website.
+
+For a manual local publication, run `quarto render doc` followed by `quarto publish gh-pages doc --no-render --no-browser` from the repository root. The automated workflow is preferred for regular updates because it also performs the explicit Pages deployment.
+
 ## Changelog {#changelog}
 
 ### 4 November 2026
+
+* Published the public template repository and documentation; configured automatic `doc/` builds, the `gh-pages` output branch and GitHub Pages deployment.
 
 * Applied the same shared website theme as the course, including its actual typography, light/dark styles, code highlighting and navigation styling.
 * Added the five-page Quarto documentation draft, with code examples, live callout/exercise examples and an embedded slide demonstration.
