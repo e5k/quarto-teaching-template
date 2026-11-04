@@ -1,0 +1,71 @@
+profile:
+  group:
+  - - answer
+    - question
+lang: fr
+answers: true
+language:
+  other-links-title: Autres formats
+  crossref-exr-title: Question
+  crossref-exr-prefix: question
+  crossref-sol-title: Réponse
+  crossref-sol-prefix: réponse
+execute:
+  echo: true
+  warning: false
+  message: false
+format:
+  html:
+    number-sections: true
+    theme:
+      light: cosmo
+      dark:
+      - darkly
+      - assets/dark.scss
+    highlight-style:
+      light: atom-one
+      dark: dracula
+    code-fold: false
+    code-tools: false
+    code-line-numbers: true
+    code-annotations: hover
+    link-external-newwindow: true
+    css:
+    - assets/custom.css
+    - assets/webex.css
+    include-after-body:
+    - assets/webex.js
+    - assets/theme-toggle.html
+    - assets/book-index-link.html
+    toc: true
+    toc-depth: 4
+    toc-location: right
+    toc-expand: 2
+    toc-title: Table des matières
+filters:
+- scripts/notebook-links.lua
+- custom-callout
+custom-callout:
+  question:
+    title: Question
+    icon-symbol: fa-circle-question
+    color: '#6f42c1'
+  answer:
+    title: Réponse
+    icon-symbol: fa-circle-check
+    color: '#2e8b57'
+    collapse: true
+comments:
+  hypothesis:
+    theme: clean
+    branding:
+      appBackgroundColor: '#fafafa'
+      accentColor: '#ff8f15'
+      ctaBackgroundColor: '#0d6efd'
+      ctaTextColor: '#ffffff'
+csl: assets/bulletin-of-volcanology.csl
+book:
+  page-navigation: true
+  search: true
+  sidebar:
+    collapse-level: 1

@@ -1,0 +1,278 @@
+---
+title: "Slide guide"
+description: "The clean theme, local layout helpers, animation, profile icons and standalone projects."
+---
+
+## The presentation project
+
+[Extension: clean 1.4.1 · Local customisation]{.origin}
+
+`slides/_quarto.yml` loads `slides/_template.yml`. The shared file selects `format: clean-revealjs`, supplies plugin settings and references local resources. The clean extension lives under `slides/_extensions/grantmcdermott/clean/`; its `clean.scss` contains both upstream styling and local modifications.
+
+The palette uses dark teal `#23373b`, teal `#2F4647`, orange `#EB811B` and a `#fafafa` slide background. Body text uses Roboto and headings Roboto Slab. The shared format enables a fast fade transition, simple callouts, hover code annotations, a chalkboard and the Font Awesome stylesheet.
+
+### Working demonstration
+
+The deck below was rendered with a local copy of the actual slide theme and extensions. Click inside it, then use the arrow keys. Open it separately for full-screen use.
+
+<iframe class="reveal-embed" src="assets/demos/slides/demo.html" title="Working demonstrations of the slide theme and custom features" loading="lazy" allowfullscreen></iframe>
+
+[Open the demonstration deck](assets/demos/slides/demo.html){target="_blank"} · [Download its source](assets/demos/slides/demo.qmd.txt){download="demo.qmd.txt"}
+
+## Headings, columns and content {#layouts}
+
+[Native layouts · Local helpers]{.origin}
+
+Use `##` for a normal content slide. A `#` heading introduces a higher-level section and can create a vertical stack, depending on the surrounding heading structure. Put speaker-only content inside `.notes`.
+
+```markdown
+## A scientific comparison
+
+:::: {.columns}
+::: {.column width="40%"}
+Describe the prediction.
+:::
+::: {.column width="60%"}
+![](assets/example.png){width=100%}
+:::
+::::
+
+::: {.notes}
+Ask students to identify the evidence before discussing the mechanism.
+:::
+```
+
+### Code beside its result
+
+The theme includes `.columns3070`, `.columns7030`, `.columns4060` and `.columns6040`. They set the widths of direct `.column` children; the first number is the first column's percentage. They are particularly useful with Quarto's code-output column layout:
+
+````markdown
+```{{python}}
+#| output-location: column
+#| classes: columns4060
+print("A result beside the code")
+```
+````
+
+These classes are layout helpers, not standalone commands that generate columns. Use native `.columns` / `.column` markup or `output-location: column` to create the structure first.
+
+| Helper | Effect |
+|---|---|
+| `.right` | Applies `text-align: right` to the element's content. |
+| `.small-gap` | A block with `0.25em` top and bottom margins; useful for small spacing adjustments. |
+| `.no-title` on a slide heading | Hides `h1`, `h2` and `h3` descendants of that slide. It hides subheadings too, not just the slide title. |
+| `.etable` wrapping an image | Fits table images within the available box using contained image dimensions. |
+
+```markdown
+## A descriptive source heading {.no-title}
+
+![](assets/example.png){width=85%}
+```
+
+Keep source headings meaningful even when hidden. Menu, navigation and accessibility behaviour should be checked for the resulting deck.
+
+## Text highlighting {#highlighting}
+
+[Local theme rules]{.origin}
+
+```markdown
+[Important phrase]{.bg}
+[Main emphasis]{.alert}
+[Alternative]{.alert-blue}
+[Positive result]{.alert-green}
+[Caution]{.alert-red}
+[Another category]{.alert-purple}
+[Custom colour]{.fg style="--col: #007b83"}
+```
+
+| Class | Configured value |
+|---|---|
+| `.bg` | Orange gradient at approximately 40–50% opacity; wraps across lines. |
+| `.alert` | Theme orange, `#EB811B`. |
+| `.alert-blue` | `#5858a1`. |
+| `.alert-green` | `#67b06a`. |
+| `.alert-red` | `#d7191c`. |
+| `.alert-purple` | `#9a26b0`. |
+| `.fg` | CSS variable `--col`, falling back to `#131516`. |
+
+Bold text uses teal. Inline code also uses teal with a translucent background and a monospace font stack. `.bg` in the **book** uses teal instead of this slide orange; the source syntax is shared but the appearance is intentionally format-specific.
+
+For a compact action link, the theme also supplies `.button`:
+
+```markdown
+[Open the published course](https://example.org){.button}
+```
+
+It renders an orange button with a triangle prefix and a blue hover state. It is distinct from the book's `.btn-download` style.
+
+## Images, captions and video {#images}
+
+[Native media · Local positioning]{.origin}
+
+```markdown
+![A caption explaining the evidence](assets/example.png){width=80% .img-up-25}
+```
+
+| Class | Relative vertical offset |
+|---|---|
+| `.img-up-0` | `0px` |
+| `.img-up-25`, `.img-up-50`, `.img-up-75` | `-25px`, `-50px`, `-75px` |
+| `.img-up-100`, `.img-up-150` | `-100px`, `-150px` |
+| `.img-down-25`, `.img-down-50`, `.img-down-75` | `25px`, `50px`, `75px` |
+
+Apply a class directly to the image or to a wrapper containing it. These offsets use `position: relative`: they shift the visible element while retaining its original layout space. They do not resize an image or reserve extra room for overlapping content. Use ordinary width/height controls first, then inspect the finished slide before adjusting an offset.
+
+Quarto's native automatic stretching primarily applies to non-nested images. Images inside columns, fragment wrappers or stacks often need explicit size controls. For image enlargement, add `.lightbox` **and** enable `lightbox: true` in the document or local project metadata. Existing course sources use `.lightbox`, but the central shared YAML does not currently enable lightbox globally.
+
+The current theme sets figure captions to Roboto, centred, with a `-15px` relative top offset and a very small `0.07em` font size. This is the implemented value, not a recommended readable caption size. Override it in course-specific CSS if captions must be legible in a lecture room; do not assume a standard Quarto caption size.
+
+For a local video, use an HTML element when you need the theme's `r-stretch` rule:
+
+```html
+<video class="r-stretch" controls src="assets/process.mp4"></video>
+```
+
+The CSS constrains width to 100%, bounds the maximum height and centres the video. The theme also sets all slide-section padding to zero. Neither rule guarantees an oversized video fits every surrounding layout. Include the video file when extracting the slide project.
+
+## Fragments and stacked content {#fragments}
+
+[Native fragments and r-stack · Local stack-top alignment]{.origin}
+
+`.fragment` reveals an element when you advance the slide. `.fade-out` starts visible and disappears. Assigning the same `data-fragment-index` synchronises changes.
+
+For a replacement at the same position, use this pattern:
+
+```markdown
+## Compare observations
+
+:::: {.r-stack .stack-top}
+::: {.fragment .fade-out data-fragment-index="1"}
+![](assets/first.png){width=85%}
+:::
+::: {.fragment data-fragment-index="1"}
+![](assets/second.png){width=85%}
+:::
+::::
+```
+
+At first the first layer is visible. On the next step it fades out as the second appears. Without `fade-out`, the first image remains behind the second. Use the same mechanism for a callout replaced by a list.
+
+The local `.stack-top` helper aligns direct layers to the top left, fills their width, removes common paragraph/figure margins, limits images to `70vh`, and keeps captions in normal positioning. It also gives fragment-contained callouts and lists full width. It does not create fragment sequencing: `r-stack`, `.fragment`, effect classes and indices supply that behaviour.
+
+## Animation {#animation}
+
+### Native auto-animation
+
+[Native Reveal.js]{.origin}
+
+Use adjacent slides with `auto-animate=true` to animate matching elements. Explicit `data-id` values make the intended match clear:
+
+```markdown
+## First position {auto-animate=true}
+
+::: {data-id="concept" style="margin-left: 0;"}
+A scientific concept
+:::
+
+## Second position {auto-animate=true}
+
+::: {data-id="concept" style="margin-left: 120px;"}
+A scientific concept
+:::
+```
+
+This does not require the animate extension. The working demonstration includes a matching two-slide sequence.
+
+### SVG animation with the animate extension
+
+[Extension: fradav/animate 0.2.0]{.origin}
+
+The template declares `animate` in **both** `revealjs-plugins` and `filters`. The filter recognises a code block whose first two classes are `yaml` and `animate`, then emits a `data-animate` container with the named SVG resource.
+
+````markdown
+```{.yaml .animate src="assets/process.svg"}
+setup:
+  - element: "#particle"
+    modifier: opacity
+    parameters: [0]
+animation:
+  - element: "#particle"
+    modifier: opacity
+    parameters: [1]
+    duration: 800
+```
+````
+
+The SVG must contain an element with the matching ID. `setup` supplies initial SVG.js modifications; `animation` supplies subsequent changes. `duration` is expressed in milliseconds. Plugin autoplay defaults to true. Serve the deck with `quarto preview` or an HTTP server: this plugin fetches external SVG data, which can fail when opened directly with `file://`.
+
+The extension folder contains its JavaScript dependencies. Transfer the filter declaration, plugin declaration, **whole** extension folder and SVG assets together. See the [upstream animate reference](https://github.com/fradav/quarto-revealjs-animate) for timelines and fragment-indexed sequences; native auto-animation and this SVG plugin are different systems.
+
+## Navigation and repeated headings {#navigation}
+
+[Native controls · Extension: verticator · Local scripts]{.origin}
+
+The clean theme enables slide numbers and configures the menu panel on the left. Local CSS moves the menu button to the top right, chalkboard buttons alongside it, a supplied logo to the bottom left and slide numbers to the bottom right. A logo is shown only if configured in the local document or project.
+
+The shared `verticator` settings use `themetag: h1`, `clickable: true`, automatic placement, `offset: 3vmin`, title tooltips and `scale: 0.75`. Its section indicators are most useful with vertical stacks; they are not a replacement for the slide menu.
+
+Use the arrow keys for slide navigation. Reveal's help panel (`?`), overview (`Esc`) and speaker view (`S`) are native presentation tools. Speaker view can require a served page and browser popup permission. The chalkboard is enabled by shared metadata; browser annotations do not become editable annotations in an exported PDF.
+
+### Repeated slide titles
+
+The **active** script is `slides/assets/after-body.html`, included by shared YAML. It groups real slide sections by the text of their first `h1`, `h2` or `h3` and rewrites repeated headings as `Title (1/3)`, `Title (2/3)` and so on. Stack-container sections and sections with `data-visibility="hidden"` are excluded. Equal titles are grouped across the deck, even when not adjacent.
+
+Do not add counters manually. The script changes heading text in the browser, so it is not an authoring-time numbering system and its results should be checked after rendering. A separate `assets/js/same-title-counter.js` file exists but is **not included by the current shared configuration**; do not load both.
+
+### Links in new tabs
+
+The same after-body script gives links inside `.reveal .slides` `target="_blank"` and `rel="noopener noreferrer"`, except links with empty URLs, `#...` fragment links and links carrying `.lightbox`. This applies to relative course-page links as well as external URLs. It runs during initial setup and Reveal readiness; content added dynamically afterwards is not automatically reprocessed.
+
+## Citations and mathematics {#citations}
+
+[Native citations and MathJax · Local resources]{.origin}
+
+The slide project's bibliography points to `slides/assets/your-course.bib`, using `bibliography: assets/your-course.bib` in its local YAML. Shared YAML supplies the local CSL path. Use `[@yourKey]` or `@yourKey` in slide text and `::: {#refs}` on a references slide. The local `.csl-entry` style uses Roboto at 14pt; long lists can still overflow.
+
+The clean extension loads a MathJax 4 CDN script plus the slide-root `mathjax-config.js`. The local configuration requests the Asana font and `\(...\)` / `\[...\]` TeX delimiters for MathJax scanning. Quarto still accepts ordinary `$...$` and `$$...$$` authoring syntax. Keep the **root** `slides/mathjax-config.js` when copying the project; a similarly named extension resource also exists and is not a reason to omit that root file.
+
+## Author profile icons {#author-icons}
+
+[Local course/author-links filter]{.origin}
+
+Configure personal details in `slides/_quarto.yml`:
+
+```yaml
+author:
+  - name: Sébastien Biass
+    orcid: 0000-0002-1919-9473
+author-links:
+  researchgate: https://www.researchgate.net/profile/Sebastien-Biass
+  github: https://github.com/e5k
+  scholar: https://scholar.google.com/citations?user=Vs5kVHEAAAAJ
+  website: https://e5k.github.io
+```
+
+The filter runs for Reveal.js when `author-links` is present. It accepts only values starting with `http://` or `https://`; absent or nonmatching values are skipped. At least one valid profile URL is needed before it injects any additional icon behaviour.
+
+It targets the **first** `.quarto-title-author-name`, inserting links after an existing ORCID icon or after the name when ORCID is absent. The order is ResearchGate, GitHub, Scholar, Website. It replaces the native ORCID graphic with a Font Awesome icon when present. It does not add a separate set of personal links for every author.
+
+All five icons use `#2F4647` at 55% opacity and full opacity on hover or keyboard focus. They receive accessible labels and open in a new tab. Shared YAML declares `course/author-links`; its implementation is `slides/_extensions/course/author-links/author-links.lua` with a companion `_extension.yml`. Font Awesome is provided by the shared CDN stylesheet. Keep URLs local when transferring the reusable filter.
+
+## Extract a standalone slide project {#standalone}
+
+[Local portability convention]{.origin}
+
+1. Refresh bibliography copies with `python scripts/render_slides.py 2 --no-pdf` from the course root. It copies **all** root `assets/*.bib`, replacing same-named slide copies, before rendering.
+2. Check that image, data, CSL, code and style paths needed by the selected decks stay inside `slides/`. Course-specific data and `plots.mplstyle` are copied locally when needed; they are not fetched automatically.
+3. Copy the **entire** `slides/` directory, including `_quarto.yml`, `_template.yml`, `_extensions/`, `assets/`, `mathjax-config.js` and any `data/` or `img/` directories.
+4. Activate an environment with the deck's Python dependencies and run `quarto preview` inside the copied folder.
+
+The book's scripts are outside the extracted project, but direct Quarto commands work inside it. `quarto preview` does not refresh Zotero copies. For an independent talk, maintain its bibliography directly in its own `assets/`. Relative links to published course pages may still need adjustment when publishing at another address; distinguish those reading links from files required to build the deck.
+
+## Export behaviour
+
+`render_slides.py` exports PDFs through `decktape reveal --fragments`, so fragment states can produce additional PDF pages. This is different from a static one-page-per-source-slide export. `--no-compress` skips Ghostscript; `--no-pdf` skips PDF generation entirely. The shared `pdf: true` setting is not a replacement for the script's Decktape step.
+
+PDFs cannot retain interactive fragment controls, animation, hover effects, lightboxes or playable videos. Check layout and the sequence of captured fragment states separately. Browser-based mathematical rendering and dynamically fetched SVG animations may need extra time or network access during capture.
+
+For native options beyond this template, see [Reveal.js](https://quarto.org/docs/presentations/revealjs/), [advanced layouts and animation](https://quarto.org/docs/presentations/revealjs/advanced.html) and [presentation tools](https://quarto.org/docs/presentations/revealjs/presenting.html).

@@ -1,0 +1,48 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+  - index.qmd
+  - getting-started.qmd
+  - book-guide.qmd
+  - slide-guide.qmd
+  - maintenance.qmd
+  resources:
+  - assets/**
+website:
+  title: Quarto teaching template
+  description: A practical reference for the shared book and slide themes and their
+    teaching features.
+  page-navigation: true
+  search:
+    location: sidebar
+    type: textbox
+  sidebar:
+    style: docked
+    contents:
+    - href: index.qmd
+      text: Overview
+    - getting-started.qmd
+    - book-guide.qmd
+    - slide-guide.qmd
+    - maintenance.qmd
+  page-footer:
+    left: Book and slide themes
+    right: Documentation draft · 4 November 2026
+  site-url: https://e5k.github.io/_quarto-teaching-template/
+  repo-url: https://github.com/e5k/_quarto-teaching-template
+  repo-subdir: doc
+  repo-actions:
+  - edit
+  - issue
+format:
+  html:
+    css:
+    - assets/docs.css
+    code-copy: true
+    code-overflow: wrap
+    anchor-sections: true
+execute:
+  enabled: false
+metadata-files:
+- _template.yml

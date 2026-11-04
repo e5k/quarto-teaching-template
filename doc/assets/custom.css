@@ -1,0 +1,247 @@
+/* Import Roboto Slab from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  --course-surface: #ffffff;
+  --course-heading: #23373b;
+  --course-subheading: #2f4647;
+  --course-navigation: #343a40;
+  --course-link: #d86405;
+  --course-accent: #eb811b;
+  --course-stripe: rgba(35, 55, 59, 0.055);
+}
+
+body.quarto-dark {
+  --course-surface: #1e2227;
+  --course-heading: #e6edf3;
+  --course-subheading: #d7dae0;
+  --course-navigation: #abb2bf;
+  --course-link: #eb811b;
+  --course-accent: #ff9b3d;
+  --course-stripe: rgba(171, 178, 191, 0.075);
+}
+
+body {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+#quarto-sidebar,
+.sidebar,
+.navbar,
+.quarto-secondary-nav,
+footer.footer {
+  background-color: var(--course-surface) !important;
+}
+
+/* Hide chapter numbers in the left sidebar only */
+#quarto-sidebar .chapter-number {
+  display: none;
+}
+
+/* Keep breadcrumbs on the same continuous background as the page. */
+.quarto-page-breadcrumbs,
+.quarto-page-breadcrumbs .breadcrumb {
+  background-color: transparent !important;
+}
+
+.quarto-title-breadcrumbs {
+  margin-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.quarto-title-breadcrumbs .breadcrumb {
+  --bs-breadcrumb-padding-x: 0;
+  --bs-breadcrumb-padding-y: 0;
+  --bs-breadcrumb-bg: transparent;
+  --bs-breadcrumb-border-radius: 0;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.dataframe {
+  display: inline-block;
+}
+
+.dataframe td {
+  vertical-align: middle;
+  text-align: right;
+}
+
+.quarto-figure {
+  text-align: left;
+}
+
+.quarto-figure img {
+  display: block;
+  margin-left: 0;
+}
+
+p {
+  text-align: justify;
+}
+
+footer.footer .nav-footer-center p {
+  text-align: center;
+}
+
+table {
+  font-size: 0.85em;
+}
+
+table th {
+  font-size: 0.85em;
+}
+
+/* Stripe all rendered tables, including Markdown and pandas tables. */
+table.table > tbody > tr:nth-child(odd) > * {
+  background-color: var(--course-stripe);
+  box-shadow: inset 0 0 0 9999px var(--course-stripe);
+}
+
+.cell-output {
+  margin-bottom: 1.5em;
+}
+
+h2 {
+  margin-top: 2.5em;
+}
+
+h3 {
+  margin-top: 1.5em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Roboto Slab', serif;
+}
+
+h1,
+h2 {
+  color: var(--course-heading);
+}
+
+h3,
+h4 {
+  color: var(--course-subheading);
+}
+
+.reveal-embed {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .reveal-embed {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* Right table of contents */
+.sidebar nav[role=doc-toc] ul > li > a.active,
+.sidebar nav[role=doc-toc] ul > li > ul > li > a.active {
+  color: var(--course-link) !important;
+  border-left: 1px solid var(--course-accent);
+}
+
+.sidebar nav[role=doc-toc] ul > li > a:hover,
+.sidebar nav[role=doc-toc] ul > li > ul > li > a:hover {
+  color: var(--course-accent) !important;
+}
+
+.sidebar nav[role=doc-toc] ul > li > a,
+.sidebar nav[role=doc-toc] ul > li > ul > li > a {
+  color: var(--course-navigation) !important;
+}
+
+/* Left sidebar */
+.sidebar-header a {
+  color: var(--course-heading) !important;
+}
+
+.sidebar-item-container a:hover {
+  color: var(--course-accent) !important;
+}
+
+.sidebar-item-container a.active {
+  color: var(--course-link) !important;
+}
+
+.sidebar-item-container a {
+  color: var(--course-navigation) !important;
+}
+
+/* Links */
+a:hover {
+  color: var(--course-accent) !important;
+}
+
+a {
+  color: var(--course-link) !important;
+}
+
+/* Compact documentation links displayed after function names. */
+:not(sup) > a:has(> .fa-book),
+:not(sup) > a:has(> .fa-graduation-cap) {
+  position: relative;
+  top: -0.35em;
+  margin-left: 0.12em;
+  font-size: 0.72em;
+  line-height: 0;
+  text-decoration: none;
+}
+
+/* Download buttons follow the orange course palette. */
+.btn-download {
+  color: var(--course-link) !important;
+  background-color: transparent;
+  border: 1px solid var(--course-accent);
+  border-radius: 999px;
+}
+
+.btn-download:hover,
+.btn-download:focus {
+  color: #ffffff !important;
+  background-color: var(--course-accent);
+  border-color: var(--course-accent);
+}
+
+.bg {
+  margin: 0 -0.2em;
+  padding: 0 0.2em;
+  border-radius: 0.3em 0.15em;
+  background: transparent;
+  background-image: linear-gradient(
+    to right,
+    rgba(12, 107, 122, 0.18) 4%,
+    rgba(12, 107, 122, 0.12) 96%
+  );
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.nowrap-first-col td:first-child,
+.nowrap-first-col th:first-child {
+  white-space: nowrap;
+}
+
+/* Quarto inserts exercise/solution numbering before custom callouts.
+   JavaScript moves this label into the coloured callout header. */
+.callout-question.theorem > p:first-child,
+.callout-answer.solution > p:first-child {
+  display: none;
+}
+
+/* Prevent the copy button from overlapping code annotations */
+.code-copy-outer-scaffold:has(pre.code-annotated) > .code-copy-button {
+  margin-top: 0;
+  margin-right: 1.25em;
+  padding-top: 3px;
+  padding-bottom: 0;
+}

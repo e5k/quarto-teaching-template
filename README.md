@@ -174,3 +174,11 @@ Les liens vers les pages du cours restent des liens de lecture : ils ne sont pas
 Dans `slides/_quarto.yml`, le bloc optionnel `author-links` définit `researchgate`, `github`, `scholar` et `website` avec leurs URL complètes. Les icônes apparaissent après l’ORCID du premier auteur ; seuls les liens renseignés sont affichés. L’ORCID reste défini dans les métadonnées normales de l’auteur. Le modèle générique conserve des exemples commentés à compléter.
 
 La fonctionnalité partageable est le filtre `course/author-links`, déclaré dans `slides/_template.yml`, accompagné de `slides/_extensions/course/author-links/`. Les URL personnelles restent dans `_quarto.yml`. Le filtre utilise Font Awesome, déjà chargé par le thème des présentations. Lors d’un transfert du modèle, copier la déclaration et le dossier d’extension ensemble. Le dossier `slides/` reste autonome.
+
+## Documentation du modèle
+
+[Consulter la documentation](https://e5k.github.io/_quarto-teaching-template/) · [Dépôt GitHub](https://github.com/e5k/_quarto-teaching-template)
+
+Le site de documentation se trouve dans [doc/index.qmd](doc/index.qmd). Il contient quatre guides : prise en main, livre, présentations et maintenance, avec les fonctionnalités locales, des exemples et le flux Git dans les deux sens.
+
+Depuis le dossier `doc/`, lancer `quarto preview` pour le consulter ou `quarto render` pour reconstruire le site dans `doc/_site/`. Le projet de documentation est indépendant du livre du cours. Les exemples de présentations pré-rendus restent dans `doc/assets/demos/slides/` et doivent être régénérés si le thème change.

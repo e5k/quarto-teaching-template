@@ -1,0 +1,209 @@
+---
+title: "Getting started"
+description: "Create a course and understand configuration, dependencies and the build workflow."
+---
+
+## Create a course
+
+[Local]{.origin}
+
+Copy the source files from `_quarto-course-template` into the new course directory. Include hidden source files such as `.gitignore`, but **exclude the template's `.git/` directory**, generated `_book/`, `.quarto/` and presentation output folders. Initialise a new Git repository if the course does not already have one. Copying Git history is different from copying a course starter: do not accidentally give the course the template's remotes.
+
+The central template currently lives at:
+
+```text
+/Users/seb/Documents/WORK/Teaching/_quarto-teaching-template
+```
+
+The normal source structure is:
+
+```text
+my-course/
+├── _quarto.yml
+├── _template.yml
+├── _quarto-answer.yml
+├── _quarto-question.yml
+├── index.qmd
+├── assets/
+│   ├── references.bib
+│   ├── bulletin-of-volcanology.csl
+│   ├── custom.css
+│   ├── dark.scss
+│   └── ...
+├── _extensions/
+├── scripts/
+├── course/
+│   └── class_01.qmd
+└── slides/
+    ├── _quarto.yml
+    ├── _template.yml
+    ├── _extensions/
+    ├── assets/
+    │   └── references.bib
+    ├── mathjax-config.js
+    └── slides_class_01.qmd
+```
+
+`assets/references.bib` is the starter's example name. Choose a filename appropriate to the course and configure both projects to use it. Add `data/`, `img/`, appendices or other content directories when needed; they are not automatically shared template files.
+
+### Personalise the book
+
+Edit root `_quarto.yml`. Preserve the `metadata-files` reference and the book project type:
+
+```yaml
+metadata-files:
+  - _template.yml
+project:
+  type: book
+  output-dir: _book
+  resources:
+    - course/*.ipynb
+    - slides/*.html
+    - slides/*.pdf
+    - slides/*_files/**
+    - slides/mathjax-config.js
+book:
+  title: My course
+  author: My name
+  chapters:
+    - index.qmd
+    - course/class_01.qmd
+    - course/class_02.qmd
+bibliography: assets/my-course.bib
+jupyter: python3
+keep-ipynb: false
+```
+
+Create each listed chapter before rendering the whole book. The resource patterns copy generated notebooks and presentation files into the book output; they do not generate those files. The build scripts produce them first.
+
+### Personalise the slides
+
+Edit `slides/_quarto.yml` separately:
+
+```yaml
+metadata-files:
+  - _template.yml
+project:
+  type: default
+  render:
+    - slides_class_*.qmd
+author:
+  - name: My name
+bibliography: assets/my-course.bib
+```
+
+The explicit `project: type: default` makes `slides/` a separate project. Keep the `project.render` pattern consistent with the filenames you create: a deck outside that list may render without the project metadata, using plain HTML instead of `clean-revealjs`. The bibliography path resolves inside this project, to `slides/assets/my-course.bib`; it does not refer to the book's root `assets/` folder.
+
+## Understand the YAML split
+
+[Native composition · Local organisation]{.origin}
+
+| File | Contains | Keep out |
+|---|---|---|
+| Root `_quarto.yml` | Book title, author, chapters, bibliography, resource patterns, kernel, local publishing details | Reusable feature implementation |
+| Root `_template.yml` | Book styles, filters, custom callout definitions, navigation defaults and profile group | A particular course's title, chapter list or bibliography filename |
+| `slides/_quarto.yml` | Author, profile URLs, bibliography, deck selection and local options | Changes intended for every course |
+| `slides/_template.yml` | `clean-revealjs`, plugins, shared slide behaviour and CSL | Personal links, local bibliography filenames |
+| A document's YAML | Document title and deliberate page-specific overrides | Settings copied everywhere without a reason |
+
+Both projects load `_template.yml` through `metadata-files`. Change reusable behaviour there and local values in `_quarto.yml`. For complex settings such as filters and resource lists, inspect the resolved behaviour after editing: do not assume adding one local list item disables all inherited items.
+
+Profiles add configuration for a selected build. Document metadata can override project or profile values. In particular, a chapter with `answers: true` can keep answers visible even when you request the question profile. See the [profile checks](book-guide.qmd#profiles).
+
+## Install the dependencies you need
+
+| Task | Requirements |
+|---|---|
+| Render Markdown-only book chapters and slides | Quarto; the bundled extension folders and local assets |
+| Execute Python cells | The course's Python environment, a Jupyter kernel matching `jupyter`, and imported packages |
+| Run portable build scripts | Python 3.10 or later for the current script syntax; Quarto available on `PATH` |
+| Generate slide PDFs | Decktape and its browser dependencies available on `PATH` |
+| Compress slide PDFs | Ghostscript, exposed as `gs` |
+| Interactive Python exercises used by Outils informatique II | `pywebexercises`, plus HTML output and the supplied webex CSS/JS |
+| Transfer feature commits | Git and the configured repository remotes |
+
+Check the active tools before building:
+
+```bash
+quarto --version
+quarto check jupyter
+python --version
+```
+
+Activate the course environment first. The build scripts prepend their Python executable's directory to the `PATH` used for rendering, which helps Quarto find the corresponding environment. This does not install packages or create a missing kernel.
+
+The current theme declarations require at least Quarto **1.5.0** because of the custom-callout extension; use the tested **1.8.27** environment for this draft rather than treating that declared minimum as a tested compatibility guarantee.
+
+The template uses Google Fonts, a Font Awesome CDN stylesheet for slides and a MathJax CDN script. A self-contained repository means the required source files live locally; it does not guarantee fully offline typography, icons, mathematics or access to external scientific services.
+
+## Name the files
+
+| Material | New naming | Existing supported naming |
+|---|---|---|
+| Chapter | `course/class_02.qmd` | `course/semaine_02.qmd` |
+| Presentation | `slides/slides_class_02.qmd` | `slides/slides_semaine_02.qmd` |
+| Notebook output | `course/class_02.ipynb` | `course/semaine_02.ipynb` |
+
+Use two digits and the same number across the three materials. Keep source filenames simple; displayed titles can contain accents and spaces. Avoid keeping both `class_02.qmd` and `semaine_02.qmd` for the same class: a numeric selector matches both.
+
+The notebook script only discovers chapter filenames matching `class_XX.qmd` or `semaine_XX.qmd`. It **always excludes number 01**, even if you explicitly select it. This matches the current first class without a practical; adjust the script if another course needs a first-class notebook.
+
+## Preview and render directly
+
+From the course root:
+
+```bash
+quarto preview
+quarto render --profile answer
+quarto render --profile question
+quarto render course/class_02.qmd --profile answer
+```
+
+For slides, either render a named file from the root or work inside `slides/`:
+
+```bash
+quarto render slides/slides_class_02.qmd
+cd slides
+quarto preview
+```
+
+A direct slide render or preview **does not refresh bibliography copies**. Use the slide script after a Zotero update. `--no-execute` on a direct Quarto command skips code execution; it is useful for layout checks but cannot validate analytical results.
+
+## Use the portable build scripts
+
+[Local]{.origin}
+
+Run these from the course root with the appropriate environment active:
+
+```bash
+# One slide deck as HTML only; also refreshes bibliography copies
+python scripts/render_slides.py 2 --no-pdf
+
+# One clean, unexecuted notebook
+python scripts/render_notebooks.py 2
+
+# All slides, then notebooks, then the book
+python scripts/render_all.py --no-pdf
+```
+
+| Script | Selection | Behaviour and options |
+|---|---|---|
+| `render_slides.py` | No selector: every `slides/*.qmd`; otherwise numbers, stems or filenames | Refreshes all root `assets/*.bib` copies first; runs Quarto for selected decks; PDF export and compression default to on. `--no-pdf` skips both; `--no-compress` keeps PDF export but skips Ghostscript. |
+| `render_notebooks.py` | No selector: every discovered numbered chapter except 01 | Converts QMD to IPYNB, removes outputs and execution state, strips selected Quarto markup. Missing selectors stop with an error. |
+| `render_all.py` | Selectors narrow the slide and notebook steps | Always renders the **whole book** last. Forwards options to the slide script; it does not accept arbitrary Quarto flags. Then asks whether to publish. |
+
+Slide selectors that do not match a file only print a “Skipping missing presentation(s)” message. An empty selection can therefore finish without rendering anything; check the filenames and output rather than relying only on the exit code.
+
+The combined script does not pass `--profile question` to the book render. Use a separate `quarto render --profile question` command for that build. `--no-execute` is a Quarto option, not a recognised script option; use the direct Quarto command when you need it.
+
+After a successful combined build, the publication prompt accepts `y`, `yes`, `o` or `oui` and runs `quarto publish gh-pages --no-render`. Empty input or end-of-input skips publication. Previewing and rendering individual files never publish them by themselves.
+
+## First build checklist
+
+1. Set both titles and author metadata, then list only existing chapters and decks.
+2. Export the bibliography from Zotero into root `assets/` and run the slide script to refresh its local copy.
+3. Render one representative chapter and one deck, including their Python cells if present.
+4. Check both book profiles and the notebook output before sharing them.
+5. Commit the course sources and required local dependencies. Exclude generated output according to your repository policy.
+
+Continue with the [Book guide](book-guide.qmd) or [Slide guide](slide-guide.qmd). For the underlying mechanisms, see [Quarto projects](https://quarto.org/docs/projects/quarto-projects.html) and [project profiles](https://quarto.org/docs/projects/profiles.html).

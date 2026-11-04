@@ -1,0 +1,289 @@
+---
+title: "Book guide"
+description: "Profiles, numbered questions, interactive exercises, notebooks, references and appearance."
+---
+
+## Profiles {#profiles}
+
+[Native profiles · Local settings]{.origin}
+
+The book is one project with two mutually exclusive profiles, `answer` and `question`. The profile group is declared in root `_template.yml`; profile values live in `_quarto-answer.yml` and `_quarto-question.yml`.
+
+| Setting | Answer profile | Question profile |
+|---|---|---|
+| `answers` | `true` | `false` |
+| `execute.echo` | `true` | `true` |
+| `execute.output` | `true` | `false` |
+| Written answer content | Visible when wrapped with `when-meta="answers"` | Removed from rendered output by the same condition |
+| Notebook and other links | Displayed; `.ipynb` links receive `download` | Entire `.quarto-other-links` region hidden by CSS |
+
+```bash
+quarto render --profile answer
+quarto render --profile question
+```
+
+Root `_template.yml` defaults to `answers: true`. Both builds normally use the same `_book/` directory, so the most recent render replaces the corresponding output. Archive or copy a completed build if you need to retain both variants.
+
+### Written content and execution are separate
+
+Wrap every written answer that should disappear from the question version:
+
+```markdown
+::: {.content-visible when-meta="answers"}
+The pattern supports an association, but does not establish causation.
+:::
+```
+
+Hiding output does not hide ordinary Markdown or Python source. Conditional content also does **not prevent execution** of wrapped cells. For a specific cell, use native execution options deliberately:
+
+````markdown
+```{{python}}
+#| echo: false
+#| output: true
+print("A displayed result without the source code")
+```
+````
+
+`echo` controls source display, `output` controls results and `eval` controls whether the cell runs. An explicit cell option can override project defaults. Do not use visibility rules as a substitute for execution control.
+
+### Check document overrides
+
+A chapter containing the following metadata can behave differently from its selected profile:
+
+```yaml
+answers: true
+execute:
+  output: false
+```
+
+This combination is present in some existing course material: written answers can remain visible while cell results stay hidden. Remove overrides when you want profile values to govern the page. Render the actual chapter under both profiles and inspect the result; do not infer visibility only from the command name.
+
+## Questions and answers {#questions}
+
+[Extension: custom-callout · Native cross-references · Local header integration]{.origin}
+
+The custom-callout extension reads the definitions in `_template.yml`. Use **`.question`** or **`.answer`** in the source. The extension converts these into rendered `.callout-question` and `.callout-answer` elements. Writing `.callout-question` directly bypasses this class-to-definition conversion.
+
+| Type | Configured label | Icon | Colour | Default collapse |
+|---|---|---|---|---|
+| `.question` | Question | `fa-circle-question` | `#6f42c1` | No |
+| `.answer` | Réponse | `fa-circle-check` | `#2e8b57` | Yes in HTML |
+
+### Number a question and its answer
+
+````markdown
+::: {#exr-compare .question title="Compare the two distributions"}
+Which feature changes when the extreme value is removed?
+:::
+
+:::: {.content-visible when-meta="answers"}
+::: {#sol-compare .answer title="Réponse"}
+Return to @exr-compare.
+
+The median changes less than the mean.
+:::
+::::
+````
+
+`exr-` activates native exercise numbering. `sol-` activates a solution; the matching suffix `compare` lets the local header script associate the answer with the question. IDs must be unique throughout the book. Use stable descriptive IDs so links survive title edits. Put the whole answer, including its title and source cells, inside the conditional wrapper. The outer wrapper uses four colons to make nesting clear.
+
+Rendered example, with answers visible in this manual:
+
+::: {#exr-docs-compare .question title="Compare the two distributions"}
+Which summary is usually less sensitive to one extreme value: the mean or the median?
+:::
+
+::: {#sol-docs-compare .answer title="Réponse"}
+The median is usually less sensitive. Return to @exr-docs-compare.
+:::
+
+### Titles and header numbering
+
+Supply `title="..."` on the source div, or use a first heading inside it. If both are present, the `title` attribute wins. The extension also accepts `icon`, `appearance` and `collapse` div attributes; the global settings supply defaults.
+
+The local `assets/theme-toggle.html` script finds native question/solution labels and moves them into the coloured header. An answer with the matching suffix receives the corresponding question number, with “Question” replaced by “Réponse”. It removes a redundant answer title when that title is simply “Réponse” or “Answer”. Root `assets/custom.css` suppresses the original separate numbering line.
+
+Transfer **all three layers** together: the custom-callout extension, the `custom-callout` definitions in `_template.yml`, and the CSS/JS header integration. A styled block without an `exr-` ID is a callout, but is not a numbered exercise.
+
+The book's custom types are not configured in `slides/_template.yml`. To use them in slides, you would need to add their extension and definitions to the slide project; ordinary Quarto callouts already work there.
+
+## Interactive exercises {#interactive-exercises}
+
+[Third-party webexercises assets · Course Python integration]{.origin}
+
+Root `_template.yml` loads `assets/webex.css` and includes `assets/webex.js` after the document. These files are derived from **webexercises** and run in the browser. Outils informatique II additionally uses `pywebexercises.exercises` to generate exercise HTML from Python. That Python package is a separate dependency, not bundled in the template.
+
+The raw HTML interface below works without Python and describes the contract used by the included JavaScript.
+
+### Text and numeric responses
+
+```html
+<label for="crs-answer">LV95 EPSG code</label>
+<input id="crs-answer" class="webex-solveme" data-answer='["2056"]'>
+```
+
+::: {.demo}
+<label for="docs-crs-answer">Try it — enter the EPSG code for LV95</label>
+<input id="docs-crs-answer" class="webex-solveme" data-answer='["2056"]'>
+:::
+
+`data-answer` must contain a valid JSON array. Matching is exact by default. Add `.ignorecase` for case-insensitive input or `.nospaces` to remove ordinary space characters before matching. The current `.nospaces` implementation removes spaces, not all whitespace.
+
+```html
+<input aria-label="Rock type"
+       class="webex-solveme ignorecase nospaces"
+       data-answer='["basalt", "basalte"]'>
+<input aria-label="Approximate result"
+       class="webex-solveme" data-answer='[10]' data-tol="0.1">
+```
+
+Positive `data-tol` accepts a numeric difference **strictly smaller** than the tolerance. `.regex` interprets the joined answer strings as a JavaScript regular expression. Use anchored patterns such as `^basalt$` if a whole response must match. For routine exercises, prefer explicit accepted strings over regular expressions.
+
+### Dropdowns and radio buttons
+
+```html
+<label for="unit-choice">Choose a projected coordinate unit</label>
+<select id="unit-choice" class="webex-select">
+  <option value="blank">Choose an answer</option>
+  <option value="wrong">Degrees</option>
+  <option value="answer">Metres</option>
+</select>
+
+<div class="webex-radiogroup" id="unit-radio">
+  <label><input type="radio" name="unit-radio" value="wrong">Degrees</label>
+  <label><input type="radio" name="unit-radio" value="answer">Metres</label>
+</div>
+```
+
+The correct option must have the literal value `answer`; dropdown placeholders use `blank`. Give each radio group a unique, simple ID and use exactly that ID as the `name` of its inputs. Avoid spaces or punctuation in these IDs because the current script builds a CSS selector from them.
+
+### Check a group and reveal an explanation
+
+```html
+<div class="webex-check webex-box">
+  <label for="group-answer">LV95 EPSG code</label>
+  <input id="group-answer" class="webex-solveme" data-answer='["2056"]'>
+</div>
+
+<div class="webex-solution">
+  <button type="button">Explanation</button>
+  <p>LV95 uses EPSG:2056.</p>
+</div>
+```
+
+`.webex-check` adds a “Show Answers” / “Hide Answers” button and a correct-count indicator. It changes feedback visibility; it does not fill the correct responses into empty controls. `.webex-solution` requires a button directly inside the container; clicking it toggles the container's `open` class.
+
+These controls provide local feedback, not stored assessment results. The answer values are delivered to the browser in the HTML. Native book profiles do not automatically remove webex answer keys. The current JavaScript also resets response boxes when a page loads and assigns `window.onload`; another script that replaces that handler can stop exercise setup.
+
+## Notebook links and conversion {#notebooks}
+
+[Local Lua filter and Python builder]{.origin}
+
+Add the download link in a chapter's YAML:
+
+```yaml
+other-links:
+  - text: Notebook Jupyter
+    icon: file-earmark-code
+    href: class_02.ipynb
+```
+
+The notebook sits beside its source chapter, so the link is relative to that page. The Lua filter `scripts/notebook-links.lua` inspects the effective `answers` metadata:
+
+* When it is `true`, JavaScript adds `download` to links in `.quarto-other-links` whose `href` ends exactly with `.ipynb`.
+* Otherwise, CSS hides **all** `.quarto-other-links`, including any unrelated links placed there. Links elsewhere in the page are unaffected.
+
+The filter does not generate notebooks or prevent someone opening a known notebook URL. A query suffix such as `.ipynb?download=1` does not match its current end-of-string selector.
+
+```bash
+python scripts/render_notebooks.py 2
+python scripts/render_notebooks.py course/class_02.qmd
+```
+
+The script runs `quarto convert`, writes an IPYNB next to each chapter, then clears outputs, execution counts and cell metadata. It sets a generic Python 3 kernelspec. It removes `#|` cell-option lines, selected Quarto div wrappers, heading attributes, image attributes, pagebreak shortcodes and Font Awesome shortcodes.
+
+**Answer source remains in converted notebooks.** The script does not evaluate `when-meta="answers"` or apply the question profile. It strips wrappers while retaining their content. Its wrapper-cleaning expression recognises exactly three-colon fences; longer nested fences can remain. Inspect a representative notebook before distribution, particularly chapters with nested answers and HTML exercises.
+
+The book's `resources` list must include `course/*.ipynb` if the generated notebooks should be copied into the published output. `keep-ipynb: false` concerns Quarto's execution intermediates; it is separate from notebooks deliberately generated by this script.
+
+## Citations and references {#citations}
+
+[Native Pandoc citations · Local Zotero convention]{.origin}
+
+Keep each course's Zotero export in root `assets/`. Choose its own filename: `OI2.bib`, `geospatial.bib` or another appropriate name. Set that path in root `_quarto.yml`; the shared `_template.yml` sets the CSL to `assets/bulletin-of-volcanology.csl`.
+
+```markdown
+The interpretation follows previous work [@yourCitationKey].
+
+@yourCitationKey provides the original method.
+
+## References
+
+::: {#refs}
+:::
+```
+
+Use a real key from the bibliography. The `#refs` container chooses where references appear. A whole-book references appendix can be listed in `book.appendices`; the filename and chapter organisation belong to the course.
+
+Do not manually edit Zotero-synchronised entries. Import new references into Zotero and refresh its export. The slide script copies root bibliography files into `slides/assets/`; see [standalone slides](slide-guide.qmd#standalone).
+
+## Appearance and authoring helpers {#appearance}
+
+[Local CSS and JavaScript · Native HTML theming]{.origin}
+
+The book uses **Cosmo** in light mode and **Darkly plus `assets/dark.scss`** in dark mode. Syntax highlighting is `atom-one` / `dracula`. Root `assets/custom.css` sets Source Sans Pro for text and Roboto Slab for headings, loaded from Google Fonts with local fallback fonts.
+
+| Helper or behaviour | Usage | Effect |
+|---|---|---|
+| `.bg` | `[key phrase]{.bg}` | Teal translucent marker effect, including wrapped lines. It is orange in slides. |
+| `.btn .btn-download` | Apply to a Markdown link | Rounded orange-outline button; the `download` attribute is separate. |
+| `.nowrap-first-col` | Apply to a table or wrapping div | Prevents wrapping in the first table column. Long content can overflow a narrow screen. |
+| `.reveal-embed` | Apply to an iframe | Full-width 16:9 embedded deck; 4:3 on narrow screens. |
+| Documentation icon links | A link containing `.fa-book` or `.fa-graduation-cap` | Compact raised icon beside a function name; not applied inside `sup`. |
+| Table stripes | Automatic on `table.table` rows | Alternates odd rows using light/dark CSS variables. |
+| Figure alignment | Automatic | Left-aligns ordinary Quarto figure images. |
+
+Live book highlight: [a shared scientific question]{.bg}.
+
+```markdown
+[Download data](data/samples.csv){.btn .btn-download download="samples.csv"}
+```
+
+The CSS styles the link; it does not provide the file. To add a Font Awesome icon, enable the bundled `fontawesome` shortcode extension in that page or project's `filters`, then use:
+
+```markdown
+[{{</* fa download */>}} Download data](data/samples.csv){.btn .btn-download}
+```
+
+The root starter's shared filter list contains `notebook-links.lua` and `custom-callout`; it does **not** enable `fontawesome` globally. The installed extension folder alone does not activate its shortcode.
+
+### Code annotations and figures
+
+Line numbers and hover annotations are enabled in the HTML book. Use native `<1>` comments and an immediately following annotation list. The local CSS moves the copy button away from annotations.
+
+````markdown
+```{{python}}
+values = [2, 4, 8]  # <1>
+mean = sum(values) / len(values)  # <2>
+```
+
+1. The observations used in the calculation.
+2. The arithmetic mean.
+````
+
+For Matplotlib figures, load the supplied style explicitly; copying the file does not activate it:
+
+```python
+import matplotlib.pyplot as plt
+plt.style.use("assets/plots.mplstyle")
+```
+
+With Quarto's normal document-relative execution, use `../assets/plots.mplstyle` from a chapter in `course/`. If the course sets a project execution directory, adjust the path accordingly. The style sets Roboto, teal labels and a `#fafafa` figure background; it does not automatically switch plot colours in book dark mode.
+
+### Navigation and small fixes
+
+The template enables section numbering, page navigation, book search and a right-hand table of contents to depth 4. Sidebar chapter numbers are hidden visually; this does not disable section numbering elsewhere. `assets/book-index-link.html` turns the first sidebar part label into a home link **when the book uses the matching first-part structure**; it does nothing when that element is absent.
+
+`assets/theme-toggle.html` also wraps Quarto's colour toggle to restore the scroll position after a theme switch. The same file currently contains the question/answer header integration, so keep it when transferring either feature. Hypothesis comments are enabled under `comments.hypothesis` in shared YAML and depend on the external service.
+
+For native behaviour beyond the local configuration, consult [conditional content](https://quarto.org/docs/authoring/conditional.html), [code annotations](https://quarto.org/docs/authoring/code-annotation.html) and [citations](https://quarto.org/docs/authoring/citations.html).

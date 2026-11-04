@@ -1,0 +1,231 @@
+---
+title: "Maintenance"
+description: "Two-way Git updates, dependency inventories, troubleshooting and a changelog."
+---
+
+## Two-way updates with Git {#git-workflow}
+
+[Local repository connections · Native Git commands]{.origin}
+
+Each course contains ordinary local template files. The repositories are independent: a normal clone contains the files needed by that course. There is no custom template manager, `_teaching/` directory, lock manifest, Git subtree or Git submodule in the current setup.
+
+Use **feature commits** to transfer improvements. A feature commit contains only the reusable change and all files required to implement it. Git fetch reads another repository's commits; cherry-pick applies one selected commit to the current branch. It creates a new commit, rather than continuously linking files.
+
+### Connections established on 4 November 2026
+
+| Repository | Remote | Destination |
+|---|---|---|
+| Outils informatique II | `origin` | Its existing `https://github.com/e5k/outils-info-2.git` repository |
+| Outils informatique II | `template` | Local `_quarto-course-template` repository |
+| Analyse géospatiale | `template` | Local `_quarto-course-template` repository |
+| Central template | `outils-info-2` | Local Outils informatique II repository |
+| Central template | `analyse-geospatiale` | Local Analyse géospatiale repository |
+
+All three use `main`. The new connections are local paths on this computer. They are not portable to another computer without updating the remote URLs. No GitHub repository or push was created for the template or Analyse géospatiale during setup.
+
+Check the repository you are about to edit:
+
+```bash
+git status --short
+git branch --show-current
+git remote -v
+```
+
+The setup committed the 53 shared files after checking they matched byte for byte across the three folders. It preserved existing file contents and unrelated edits. **Analyse géospatiale initially tracks only the shared files**; its chapters, local YAML, bibliography and planning files still need deliberate source commits. Do not mistake its template baseline for a complete course backup.
+
+The tag `teaching-template-baseline-2026-11-04` refers to the template's initial commit, `12493da`. The courses have their own shared-file baseline commits (`cb054d0` for Outils informatique II and `abb5bcc` for Analyse géospatiale). These are setup snapshots, **not feature commits to import**.
+
+### Commit a reusable improvement
+
+Make a change in the template or a course. Stage exact paths, then inspect the staged diff:
+
+```bash
+# Example: a change to the profile-icons feature
+git add -- slides/_template.yml slides/_extensions/course/author-links/
+git diff --cached
+git commit -m "Template: improve author profile icons"
+git rev-parse HEAD
+```
+
+Use the paths appropriate to the actual feature. If a file contains both shared and course-specific changes, `git add -p -- path/to/file` lets you stage selected hunks. Check `git diff --cached` for **all** staged content: `git commit` without path arguments includes everything staged, including any earlier work.
+
+Do not include course titles, chapter edits, bibliography entries, datasets or personal URLs in the shared feature commit. Commit those separately in the course repository. New plugins typically need a YAML declaration **and** a complete extension directory; adding only a configuration line leaves an incomplete feature.
+
+### Template to a course
+
+Run in the **destination course**:
+
+```bash
+git fetch template
+git log --oneline teaching-template-baseline-2026-11-04..template/main
+git show TEMPLATE_COMMIT
+git cherry-pick -x TEMPLATE_COMMIT
+```
+
+Replace `TEMPLATE_COMMIT` with a real feature hash from the log. `git show` displays the whole commit, not just one file; review it before applying. The baseline range omits the initial template commit but does not guarantee every later commit is shareable. Documentation and starter-content commits must also be reviewed for relevance.
+
+`-x` records the source hash in the new commit message. If a feature spans several commits, inspect and import each in dependency order. Do not cherry-pick a whole branch or broad range just to obtain one feature.
+
+### Course to template and onward
+
+First commit the reusable feature in the source course. Then run in the **central template**:
+
+```bash
+git fetch outils-info-2
+git log --oneline outils-info-2/main
+git show COURSE_COMMIT
+git cherry-pick -x COURSE_COMMIT
+git rev-parse HEAD
+```
+
+Use `analyse-geospatiale` in place of `outils-info-2` for that source. Take the **new template hash** printed by the final command and import it into the other course with the template-to-course procedure.
+
+The source course already has the feature; do not send the same change back to it. Cherry-picked copies have different hashes, so hash inequality alone does not prove a feature is missing. Read the `-x` provenance and inspect the content. Keep the template commit message clear enough to recognise the feature later.
+
+Do not `git pull` or merge an entire course branch into the template: the branch also contains local lessons and configuration. These independent repositories do not have a shared course-history model.
+
+### Add another course or move to GitHub
+
+After creating a new course repository and committing its matching shared files, connect it locally:
+
+```bash
+# In the course; replace the path for your computer
+git remote add template /path/to/_quarto-course-template
+git fetch template
+
+# In the template; replace both placeholders
+git remote add my-course /path/to/my-course
+git fetch my-course
+```
+
+For GitHub-backed collaboration, create each repository and push its own branch intentionally. Then change the `template` and course-source URLs to those verified repository URLs with `git remote set-url`. Merely changing a URL does not create the remote repository or publish any files. Keep each course's own `origin` distinct from its `template` remote. Avoid inventing or copying an unverified URL.
+
+## Local changes and conflicts {#conflicts}
+
+Prefer a clean working tree before importing a feature. Commit unrelated course work on its own first. If you need to set it aside temporarily:
+
+```bash
+git stash push -u -m "Before template update"
+git fetch template
+git cherry-pick -x TEMPLATE_COMMIT
+git stash pop
+```
+
+`-u` includes untracked files, but not ignored files. Inspect what is untracked before stashing: an untracked planning dataset may be large. A stash is local storage, not a remote backup. Restoring it can produce a second set of conflicts even after the cherry-pick succeeds.
+
+If Git pauses a cherry-pick:
+
+```bash
+git status
+# Edit each conflicting file and remove conflict markers.
+git add -- path/to/resolved-file
+git cherry-pick --continue
+```
+
+To abandon the in-progress import, use `git cherry-pick --abort`. To undo a completed, published import, consider a new `git revert` commit after inspecting its scope; do not rewrite shared history casually. An empty cherry-pick often means the feature is already present—inspect before choosing `git cherry-pick --skip`.
+
+Git does not understand which YAML values are “generic”. The YAML split and focused commits provide that boundary. If a conflict mixes a course bibliography path with a shared plugin setting, keep the path local and move the plugin change into the appropriate `_template.yml`.
+
+## Required companion files {#companion-files}
+
+| Feature | Transfer together | Keep local |
+|---|---|---|
+| Book light/dark appearance | Relevant `_template.yml` format options; `assets/custom.css`, `assets/dark.scss`, theme-toggle script as needed | Course title and page overrides |
+| Question/answer profiles | `_quarto-answer.yml`, `_quarto-question.yml`, profile group and conditional source conventions | Lesson questions and answers |
+| Numbered teaching callouts | `custom-callout` filter/definitions; `_extensions/coatless-quarto/custom-callout/`; header CSS and `assets/theme-toggle.html` | Exercise text and unique IDs |
+| Interactive exercises | `assets/webex.css`, `assets/webex.js`, their shared includes; separately install Python generator if used | Response content and question design |
+| Notebook links and conversion | `scripts/notebook-links.lua`, `scripts/render_notebooks.py`; filter declaration and notebook resource pattern | Chapter links and source content |
+| Slide theme and helpers | `slides/_extensions/grantmcdermott/clean/` and relevant `slides/_template.yml` settings | Deck-specific content, logo and size overrides |
+| SVG animation | `slides/_extensions/fradav/animate/`, both plugin and filter declarations | SVG resources used by each deck |
+| Vertical navigation | `slides/_extensions/martinomagnifico/verticator/` and settings | The course's heading hierarchy |
+| Profile icons | `slides/_extensions/course/author-links/`, filter declaration and Font Awesome stylesheet | `author` and `author-links` URLs |
+| Repeated headings and link targets | `slides/assets/after-body.html` plus its include declaration | Source slide titles and destinations |
+| Citation formatting | CSL files in root and slide assets; corresponding shared `csl` options | BibTeX filename and entries |
+| Portable slide builds | `scripts/render_slides.py`; local CSL, style and data dependencies | Bibliography exports and datasets |
+| Combined build | `scripts/render_all.py`, both subsidiary scripts and resource patterns | Publication target and consent at the prompt |
+
+Copy complete extension folders, including font files, plugin scripts and manifests. Their `_extension.yml` paths are relative to their own directories. Do not update vendored upstream files blindly: preserve the local theme modifications and review the resulting diff.
+
+## Extension inventory {#extension-inventory}
+
+Versions below are read from the installed extension manifests, not claims about the newest upstream release.
+
+| Installed extension | Manifest version | Used by default |
+|---|---|---|
+| `grantmcdermott/clean` | 1.4.1 | Slides via `clean-revealjs` |
+| `fradav/animate` | 0.2.0 | Slide plugin and filter |
+| `martinomagnifico/verticator` | 1.3.1 | Slide plugin |
+| `course/author-links` | 1.0.0 | Slide filter; displays icons only with valid local links |
+| `quarto-ext/fontawesome` | 1.3.0 | Bundled in the book; not globally enabled by the starter filter list |
+| `coatless-quarto/custom-callout` | 0.0.1-dev.3 | Book filter and the manual's callout examples |
+
+The custom-callout implementation bundles Font Awesome 7 solid assets; the slide stylesheet separately references Font Awesome 6.5.1 from a CDN. These are different dependencies. The webex files identify webexercises version 1.1.0.9000 in their attribution comments.
+
+## Verify an update {#verification}
+
+After an import, review `git show --stat HEAD` and the changed lines. Validate the outputs affected by the feature:
+
+| Change | Useful verification |
+|---|---|
+| Profiles or callouts | Render the same chapter under both profiles; inspect written answers, code output, numbering and collapsed answers. |
+| Exercises | Try a correct, incorrect and blank response; check grouping and solution toggles. |
+| Notebook conversion | Open the resulting notebook; confirm code cells, outputs, Markdown wrappers and answer-source policy. |
+| Slide layout or animation | Present a representative deck, step through every affected fragment and inspect different image heights. |
+| Bibliography or portability | Refresh the copy, render citations, then copy `slides/` elsewhere and preview it there. |
+| PDF export | Run the normal Decktape workflow and inspect pages, including fragment captures. |
+| Documentation | From `doc/`, run `quarto render`; verify links, search, examples and narrow-screen layout. |
+
+A successful `--no-execute` render checks the available layout and source processing; it does not validate analytical code. A successful browser demonstration does not establish PDF compatibility.
+
+## Troubleshooting {#troubleshooting}
+
+| Symptom | Check and correction |
+|---|---|
+| `Specified Reveal plugin directory 'animate' does not exist` | Confirm you copied `slides/_extensions/fradav/animate/` and are using the slide project's YAML. The whole directory is needed. |
+| Deck renders as an ordinary HTML page | Check that its filename matches `slides/_quarto.yml` → `project.render`; then confirm the separate slide project is loaded. |
+| `clean-revealjs` is not found | Restore `slides/_extensions/grantmcdermott/clean/` and its manifest. |
+| Question blocks look like ordinary text | Source must use `.question` / `.answer`; load the `custom-callout` filter and definitions. |
+| Missing question number or duplicate header | Use `exr-` / `sol-` IDs; keep the header integration script and CSS together. Matching suffixes pair answers with questions. |
+| Answers appear in a question render | Inspect document `answers` overrides and confirm every written answer is wrapped conditionally. |
+| Code runs although its answer is hidden | Conditional visibility does not disable execution. Review cell `eval` options. |
+| Notebook still contains answers | Expected with the current converter; it retains source and does not apply profile filtering. |
+| Number 01 notebook will not build | The current discovery code always excludes 01. Change it deliberately for a course with a first-class practical. |
+| Nothing rendered for a slide selector | The script only warns on missing slide names. Check the actual files and use a matching selector. |
+| Missing references in an extracted deck | Run the slide script before extraction; check `slides/assets/` and the local bibliography path. |
+| Profile icons absent | Supply at least one valid HTTP(S) `author-links` URL; check first-author markup, filter registration and the icon stylesheet. |
+| SVG animation fails from a local file | Serve the deck over HTTP; verify SVG paths, IDs, the filter and plugin. |
+| Lightbox does not open | `.lightbox` is a marker; enable `lightbox: true` locally as well. |
+| Layout overflows after an image offset | Relative offsets do not alter reserved layout space. Reduce media size or use normal columns before offsets. |
+| `decktape` or `gs` cannot be found | Install the required tool or use `--no-pdf`; use `--no-compress` when only Ghostscript is missing. |
+| Unexpected template content imported | Inspect the chosen commit. Cherry-pick copies the entire commit; use focused feature commits and abort unresolved imports if needed. |
+
+## Maintain this manual
+
+The documentation is an independent Quarto website under `doc/` in the template repository. Its render list names exactly four guide pages and the index. The manual loads a local copy of the course’s shared `_template.yml`, including its actual `assets/custom.css` and `assets/dark.scss`, profile files, notebook-link filter, CSL and after-body scripts. Supporting assets also include the custom-callout extension and exercise files required by live examples. These are local snapshots: refresh the shared YAML and its companion files together when the source theme changes. Keep `assets/docs.css` limited to documentation layout so that it does not replace the course palette or typography. Directory-level `_metadata.yml` keeps the documentation language and table-of-contents label in English and disables external comments after the shared project metadata has been loaded.
+
+The embedded slide deck is a pre-rendered demonstration made with the real slide project. Rebuild it when the slide theme changes, keeping the HTML and its dependency directory together under `doc/assets/demos/slides/`. Its downloadable source is supplied there as `demo.qmd.txt` to preserve the five-page QMD structure. To rebuild, copy that source into an isolated copy of the template's slide project, rename it `demo.qmd`, include `demo.qmd` in that copy’s `project.render` list, add the supplied SVG, then render with Quarto. The documentation's ordinary render does not rebuild the embedded deck.
+
+## Changelog {#changelog}
+
+### 4 November 2026
+
+* Applied the same shared website theme as the course, including its actual typography, light/dark styles, code highlighting and navigation styling.
+* Added the five-page Quarto documentation draft, with code examples, live callout/exercise examples and an embedded slide demonstration.
+* Established local two-way Git transfer using remotes and reviewed cherry-picks, starting from 53 matching shared files. The initial commits are recorded above.
+
+### 3 November 2026
+
+* Recorded the standalone-slide correction: both courses and the template contain local dependencies, including bibliography copies.
+* Added configurable author profile links and applied teal icons at 55% opacity with full-opacity hover/focus behaviour.
+
+### 2 November 2026
+
+* Adopted the native `_quarto.yml` / `_template.yml` split for book and slides.
+* Removed custom template-management layers in favour of ordinary local assets and scripts.
+* Retained the answer/question book profiles, portable class naming and course-specific bibliography exports under `assets/`.
+
+These entries record the project discussion and setup history, rather than upstream extension release dates. Add a dated entry when a reusable behaviour changes, and note any migration required in existing courses.
+
+## References
+
+The procedures use native Git: [fetch](https://git-scm.com/docs/git-fetch), [cherry-pick](https://git-scm.com/docs/git-cherry-pick), [remotes](https://git-scm.com/docs/git-remote) and [interactive staging](https://git-scm.com/docs/git-add). Keep the repository's `GIT_WORKFLOW.md` available as the compact command reference.

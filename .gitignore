@@ -5,6 +5,26 @@ _book/
 slides/*.html
 slides/*.pdf
 slides/*_files/
+*.ipynb
 
 /.quarto/
 **/*.quarto_ipynb
+
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100/
+.Trashes/
+.fseventsd/
+
+# Python bytecode, caches and virtual environments
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
