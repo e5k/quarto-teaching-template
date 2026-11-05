@@ -1,9 +1,12 @@
 <script>
 (function () {
+  const originalTitles = new WeakMap();
+
   function boot() {
     if (!window.Reveal) return setTimeout(boot, 50);
 
     function update() {
+      if (window.courseSlideOptions?.repeatedSlideTitles === false) return;
       const slides = Array.from(document.querySelectorAll(".reveal .slides section"))
         .filter(s => !s.classList.contains("stack"))
         // ignore hidden slides
@@ -14,7 +17,8 @@
       for (const slide of slides) {
         const h = slide.querySelector("h1, h2, h3");
         if (!h) continue;
-        const t = h.textContent.trim();
+        if (!originalTitles.has(h)) originalTitles.set(h, h.textContent.trim());
+        const t = originalTitles.get(h);
         if (!groups.has(t)) groups.set(t, []);
         groups.get(t).push(h);
       }

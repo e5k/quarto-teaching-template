@@ -34,5 +34,6 @@ revealjs-plugins:
 - verticator
 filters:
 - animate
+- course/slide-options
 - course/author-links
 csl: assets/bulletin-of-volcanology.csl

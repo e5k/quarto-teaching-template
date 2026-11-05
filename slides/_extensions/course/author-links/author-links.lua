@@ -1,25 +1,53 @@
--- Personal URLs belong in _quarto.yml; this filter can be shared unchanged.
+-- Personal URLs and visibility choices belong in local YAML, not this filter.
+local function is_false(value)
+  return value == false
+end
+
 function Meta(meta)
-  if not quarto.doc.is_format("revealjs") or not meta["author-links"] then
+  local config = meta["author-links"]
+  if not quarto.doc.is_format("revealjs") or config == nil or is_false(config) then
     return meta
   end
+  -- A map is required; bare true does not provide any profile URLs.
+  if type(config) ~= "table" then return meta end
+
+  local services = {
+    researchgate = {label = "ResearchGate", icon = "fa-brands fa-researchgate"},
+    github = {label = "GitHub", icon = "fa-brands fa-github"},
+    scholar = {label = "Google Scholar", icon = "fa-solid fa-graduation-cap"},
+    website = {label = "Website", icon = "fa-solid fa-globe"}
+  }
+  local order = config.order or {"researchgate", "github", "scholar", "website"}
+  if type(order) ~= "table" then
+    order = {"researchgate", "github", "scholar", "website"}
+  end
   local links = {}
-  for _, item in ipairs({
-    {"researchgate", "ResearchGate", "fa-brands fa-researchgate"},
-    {"github", "GitHub", "fa-brands fa-github"},
-    {"scholar", "Google Scholar", "fa-solid fa-graduation-cap"},
-    {"website", "Website", "fa-solid fa-globe"}
-  }) do
-    local value = meta["author-links"][item[1]]
-    if value then
-      local url = pandoc.utils.stringify(value)
-      if url:match("^https?://") then
-        table.insert(links, {url = url, label = item[2], icon = item[3]})
+  local seen = {}
+  if not is_false(config.enabled) then
+    for _, name in ipairs(order) do
+      local key = pandoc.utils.stringify(name)
+      local service = services[key]
+      local value = config[key]
+      if service and not seen[key] and value ~= nil and not is_false(value) then
+        seen[key] = true
+        local enabled = true
+        local url_value = value
+        if type(value) == "table" and (value.url ~= nil or value.enabled ~= nil) then
+          enabled = not is_false(value.enabled)
+          url_value = value.url
+        end
+        if enabled and url_value ~= nil then
+          local url = pandoc.utils.stringify(url_value)
+          if url:match("^https?://") then
+            table.insert(links, {url = url, label = service.label, icon = service.icon})
+          end
+        end
       end
     end
   end
-  if #links == 0 then return meta end
-  local payload = quarto.json.encode(links):gsub("<", "\\u003c")
+  -- Preserve an array for the browser even when every optional icon is disabled.
+  local payload = #links > 0 and quarto.json.encode(links):gsub("<", "\\u003c") or "[]"
+  local show_orcid = not is_false(config.orcid)
   quarto.doc.include_text("after-body", [[
 <style>
 .reveal .quarto-title-author-name a.author-profile-link,
@@ -47,7 +75,12 @@ function Meta(meta)
     const author = document.querySelector('.quarto-title-author-name');
     if (!author || author.querySelector('.author-profile-link')) return;
     const links = ]] .. payload .. [[;
+    const showOrcid = ]] .. tostring(show_orcid) .. [[;
     let anchor = author.querySelector('.quarto-title-author-orcid');
+    if (anchor && !showOrcid) {
+      anchor.remove();
+      anchor = null;
+    }
     if (anchor) {
       anchor.title = 'ORCID';
       anchor.setAttribute('aria-label', 'ORCID');
