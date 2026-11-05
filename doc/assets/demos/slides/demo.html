@@ -130,6 +130,7 @@
     font-size: 0.9em;
   }
   </style>
+  <script>window.courseSlideOptions = {"repeatedSlideTitles":true};</script>
 </head>
 <body class="quarto-light">
 <script src="mathjax-config.js"></script>
@@ -459,10 +460,13 @@ animation:
     </script>
     <script>
     (function () {
+      const originalTitles = new WeakMap();
+
       function boot() {
         if (!window.Reveal) return setTimeout(boot, 50);
 
         function update() {
+          if (window.courseSlideOptions?.repeatedSlideTitles === false) return;
           const slides = Array.from(document.querySelectorAll(".reveal .slides section"))
             .filter(s => !s.classList.contains("stack"))
             // ignore hidden slides
@@ -473,7 +477,8 @@ animation:
           for (const slide of slides) {
             const h = slide.querySelector("h1, h2, h3");
             if (!h) continue;
-            const t = h.textContent.trim();
+            if (!originalTitles.has(h)) originalTitles.set(h, h.textContent.trim());
+            const t = originalTitles.get(h);
             if (!groups.has(t)) groups.set(t, []);
             groups.get(t).push(h);
           }
@@ -857,7 +862,12 @@ animation:
         const author = document.querySelector('.quarto-title-author-name');
         if (!author || author.querySelector('.author-profile-link')) return;
         const links = [{"icon":"fa-brands fa-researchgate","label":"ResearchGate","url":"https://www.researchgate.net/profile/Sebastien-Biass"},{"icon":"fa-brands fa-github","label":"GitHub","url":"https://github.com/e5k"},{"icon":"fa-solid fa-graduation-cap","label":"Google Scholar","url":"https://scholar.google.com/citations?user=Vs5kVHEAAAAJ"},{"icon":"fa-solid fa-globe","label":"Website","url":"https://e5k.github.io"}];
+        const showOrcid = true;
         let anchor = author.querySelector('.quarto-title-author-orcid');
+        if (anchor && !showOrcid) {
+          anchor.remove();
+          anchor = null;
+        }
         if (anchor) {
           anchor.title = 'ORCID';
           anchor.setAttribute('aria-label', 'ORCID');

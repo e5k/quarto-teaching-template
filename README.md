@@ -169,9 +169,36 @@ From the extracted folder, `quarto preview` works without the course repository.
 
 Links to course pages are reading links and are not required to build the deck. If publishing the deck at another address, update those links to the published course pages where necessary.
 
+## Repeated slide titles
+
+Repeated headings are numbered by default, for example `Terrain (1/3)`. To leave their text unchanged, add this top-level setting to `slides/_quarto.yml` or the front matter of a single presentation:
+
+```yaml
+repeated-slide-titles: false
+```
+
+The reusable implementation includes the `course/slide-options` filter, its extension directory and `slides/assets/after-body.html`. Link handling remains enabled when title numbering is disabled.
+
 ## Profile icons on the title slide
 
 In `slides/_quarto.yml`, the optional `author-links` block defines `researchgate`, `github`, `scholar` and `website` using their full URLs. The icons appear after the first author's ORCID icon; only configured links are displayed. ORCID remains part of the author's standard metadata. The generic template provides commented examples to complete.
+
+Existing URL-only settings remain supported. For additional control:
+
+```yaml
+author-links:
+  enabled: true
+  orcid: true
+  order: [github, scholar, researchgate, website]
+  github: https://github.com/your-account
+  scholar:
+    url: https://scholar.google.com/citations?user=YOUR_ID
+    enabled: false
+  researchgate: false
+  website: https://example.org
+```
+
+Set a service to `false` to hide it, or use `url` and `enabled` to retain its URL while it is hidden. `order` selects and orders the optional links. `enabled: false` hides all optional links; add `orcid: false` to hide the native ORCID icon too. A bare `author-links: false` disables the custom feature and leaves native ORCID unchanged. Use YAML booleans, not quoted strings.
 
 The reusable implementation is the `course/author-links` filter declared in `slides/_template.yml`, together with `slides/_extensions/course/author-links/`. Personal URLs remain in `_quarto.yml`. The filter uses Font Awesome, already loaded by the presentation theme. When transferring the feature, include both the declaration and its extension directory. The `slides/` folder remains self-contained.
 

@@ -7,9 +7,21 @@ project:
 author: Auteur du cours
 bibliography: assets/references.bib
 
+# Repeated headings receive (1/n), (2/n), etc. by default.
+# repeated-slide-titles: false
+
 # Optional links next to the first author's ORCID icon:
 # author-links:
+#   enabled: true
+#   orcid: true
+#   order: [researchgate, github, scholar, website]
 #   researchgate: https://www.researchgate.net/profile/Your-Name
 #   github: https://github.com/your-account
-#   scholar: https://scholar.google.com/citations?user=YOUR_ID
+#   scholar:
+#     url: https://scholar.google.com/citations?user=YOUR_ID
+#     enabled: true
 #   website: https://example.org
+#
+# Set an individual service to false to hide it, or use url + enabled to
+# retain its URL while hiding it. enabled: false hides all optional links;
+# orcid: false independently hides the native ORCID icon.

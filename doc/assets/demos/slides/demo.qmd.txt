@@ -1,10 +1,14 @@
 ---
 title: "Teaching theme demonstrations"
 subtitle: "Layouts and local additions"
+repeated-slide-titles: true
 author:
   - name: Sébastien Biass
     orcid: 0000-0002-1919-9473
 author-links:
+  enabled: true
+  orcid: true
+  order: [researchgate, github, scholar, website]
   researchgate: https://www.researchgate.net/profile/Sebastien-Biass
   github: https://github.com/e5k
   scholar: https://scholar.google.com/citations?user=Vs5kVHEAAAAJ

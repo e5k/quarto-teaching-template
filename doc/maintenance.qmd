@@ -139,7 +139,7 @@ Git does not understand which YAML values are “generic”. The YAML split and 
 | SVG animation | `slides/_extensions/fradav/animate/`, both plugin and filter declarations | SVG resources used by each deck |
 | Vertical navigation | `slides/_extensions/martinomagnifico/verticator/` and settings | The course's heading hierarchy |
 | Profile icons | `slides/_extensions/course/author-links/`, filter declaration and Font Awesome stylesheet | `author` and `author-links` URLs |
-| Repeated headings and link targets | `slides/assets/after-body.html` plus its include declaration | Source slide titles and destinations |
+| Repeated headings and link targets | `slides/assets/after-body.html`, its include declaration, `course/slide-options` filter and extension folder | `repeated-slide-titles`, source slide titles and destinations |
 | Citation formatting | CSL files in root and slide assets; corresponding shared `csl` options | BibTeX filename and entries |
 | Portable slide builds | `scripts/render_slides.py`; local CSL, style and data dependencies | Bibliography exports and datasets |
 | Combined build | `scripts/render_all.py`, both subsidiary scripts and resource patterns | Publication target and consent at the prompt |
@@ -155,7 +155,8 @@ Versions below are read from the installed extension manifests, not claims about
 | `grantmcdermott/clean` | 1.4.1 | Slides via `clean-revealjs` |
 | `fradav/animate` | 0.2.0 | Slide plugin and filter |
 | `martinomagnifico/verticator` | 1.3.1 | Slide plugin |
-| `course/author-links` | 1.0.0 | Slide filter; displays icons only with valid local links |
+| `course/slide-options` | 1.0.0 | Slide filter; passes the repeated-title setting to the browser |
+| `course/author-links` | 1.1.0 | Slide filter; displays icons only with valid local links |
 | `quarto-ext/fontawesome` | 1.3.0 | Bundled in the book; not globally enabled by the starter filter list |
 | `coatless-quarto/custom-callout` | 0.0.1-dev.3 | Book filter and the manual's callout examples |
 
@@ -192,7 +193,8 @@ A successful `--no-execute` render checks the available layout and source proces
 | Number 01 notebook will not build | The current discovery code always excludes 01. Change it deliberately for a course with a first-class practical. |
 | Nothing rendered for a slide selector | The script only warns on missing slide names. Check the actual files and use a matching selector. |
 | Missing references in an extracted deck | Run the slide script before extraction; check `slides/assets/` and the local bibliography path. |
-| Profile icons absent | Supply at least one valid HTTP(S) `author-links` URL; check first-author markup, filter registration and the icon stylesheet. |
+| Profile icons absent | Check `author-links`, global and per-service `enabled` switches, the `order` list, a valid HTTP(S) URL, first-author markup, filter registration and the icon stylesheet. |
+| Repeated-title switch has no effect | Re-render the deck, and transfer both `course/slide-options` and the updated after-body script. An old HTML file does not read new YAML. |
 | SVG animation fails from a local file | Serve the deck over HTTP; verify SVG paths, IDs, the filter and plugin. |
 | Lightbox does not open | `.lightbox` is a marker; enable `lightbox: true` locally as well. |
 | Layout overflows after an image offset | Relative offsets do not alter reserved layout space. Reduce media size or use normal columns before offsets. |
@@ -214,6 +216,12 @@ GitHub Pages uses the GitHub Actions publishing method. The `gh-pages` branch is
 For a manual local publication, run `quarto render doc` followed by `quarto publish gh-pages doc --no-render --no-browser` from the repository root. The automated workflow is preferred for regular updates because it also performs the explicit Pages deployment.
 
 ## Changelog {#changelog}
+
+### 5 November 2026
+
+* Added `repeated-slide-titles` to enable or disable repeated-heading counters per course or deck; repeated updates no longer duplicate the counter suffix.
+* Added global and per-service profile-icon switches, a configurable icon order and independent ORCID visibility. Existing URL-only `author-links` settings remain supported.
+
 
 ### 4 November 2026
 
