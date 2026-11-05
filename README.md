@@ -189,7 +189,7 @@ Existing URL-only settings remain supported. For additional control:
 author-links:
   enabled: true
   orcid: true
-  order: [github, scholar, researchgate, website]
+  order: "github, scholar, researchgate, website"
   github: https://github.com/your-account
   scholar:
     url: https://scholar.google.com/citations?user=YOUR_ID

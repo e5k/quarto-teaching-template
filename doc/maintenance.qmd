@@ -220,7 +220,7 @@ For a manual local publication, run `quarto render doc` followed by `quarto publ
 ### 5 November 2026
 
 * Added `repeated-slide-titles` to enable or disable repeated-heading counters per course or deck; repeated updates no longer duplicate the counter suffix.
-* Added global and per-service profile-icon switches, a configurable icon order and independent ORCID visibility. Existing URL-only `author-links` settings remain supported.
+* Added global and per-service profile-icon switches, a configurable icon order (with a scalar form for reliable per-deck overrides) and independent ORCID visibility. Existing URL-only `author-links` settings remain supported.
 
 
 ### 4 November 2026

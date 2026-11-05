@@ -271,7 +271,7 @@ The existing flat URL syntax above still works. To retain URLs while changing vi
 author-links:
   enabled: true
   orcid: true
-  order: [github, scholar, researchgate, website]
+  order: "github, scholar, researchgate, website"
   researchgate:
     url: https://www.researchgate.net/profile/Sebastien-Biass
     enabled: false
@@ -290,7 +290,7 @@ author-links:
 | A service set to a URL | No URL | Shows that service if the URL starts with `http://` or `https://`. |
 | A service set to `false` | Omitted services do not appear | Hides that service. |
 | A service map with `url` and `enabled` | `enabled: true` | Retains the URL while its boolean controls whether the icon appears. |
-| `order` | `[researchgate, github, scholar, website]` | Selects and orders the optional service keys. Keys absent from this list are not displayed; `[]` shows none. Unknown keys are ignored and duplicates appear once. |
+| `order` | ResearchGate, GitHub, Scholar, Website | A comma-separated string selects and orders the optional service keys, e.g. `"github, scholar"`. Unlisted keys are not displayed; an empty string shows none. Unknown keys are ignored and duplicates appear once. YAML lists are also accepted, but can merge across metadata layers. |
 
 Use actual YAML booleans (`true` / `false`) for these switches. `enabled: false` controls only the optional custom links. To hide every profile icon, including ORCID, use:
 
@@ -300,9 +300,11 @@ author-links:
   orcid: false
 ```
 
+For example, `order: "github, website"` shows only those two configured links in that order.
+
 The four supported service keys are `researchgate`, `github`, `scholar` (Google Scholar) and `website`; their labels and Font Awesome icons remain defined by the extension. Arbitrary new service types are not introduced by this setting. A missing or non-HTTP(S) URL is skipped. A bare `author-links: true` does not supply URLs and adds no icons.
 
-Set a block in `slides/_quarto.yml` for course-wide defaults. A deck can override it in its front matter. Keep the complete intended `order` list in an override because Quarto's metadata merge behaviour for lists can affect inherited values. Always render the actual deck after changing project and document metadata together.
+Set a block in `slides/_quarto.yml` for course-wide defaults. A deck can override it in its front matter. Use the comma-separated string form of `order` in both project and document YAML for reliable replacement. YAML lists can merge across those layers, retaining the inherited order even when the deck supplies a new list. Always render the actual deck after changing project and document metadata together.
 
 The filter targets the **first** `.quarto-title-author-name`. Visible links are inserted after its ORCID icon, or after the name when ORCID is absent or hidden. An active `author-links` map replaces a visible native ORCID graphic with a Font Awesome icon, including when no optional URL is enabled. It does not add a separate set of personal links for every author.
 

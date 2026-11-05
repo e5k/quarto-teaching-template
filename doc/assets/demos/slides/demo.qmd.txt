@@ -8,7 +8,7 @@ author:
 author-links:
   enabled: true
   orcid: true
-  order: [researchgate, github, scholar, website]
+  order: "researchgate, github, scholar, website"
   researchgate: https://www.researchgate.net/profile/Sebastien-Biass
   github: https://github.com/e5k
   scholar: https://scholar.google.com/citations?user=Vs5kVHEAAAAJ

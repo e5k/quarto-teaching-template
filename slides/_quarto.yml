@@ -14,7 +14,7 @@ bibliography: assets/references.bib
 # author-links:
 #   enabled: true
 #   orcid: true
-#   order: [researchgate, github, scholar, website]
+#   order: "researchgate, github, scholar, website"
 #   researchgate: https://www.researchgate.net/profile/Your-Name
 #   github: https://github.com/your-account
 #   scholar:
