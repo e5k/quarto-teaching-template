@@ -118,20 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <style>
-div.callout-answer.callout {
-  border-left-color: #2e8b57;
-}
-div.callout-answer.callout-style-default .callout-header {
-  background-color: rgba(46, 139, 87, 0.13);
-}
-div.callout-answer .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-answer.callout-style-default .callout-icon::before, div.callout-answer.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 7 Free';
-  font-weight: 900;
-  font-style: normal;
-  content: '\f058' !important;
-  background-image: none;
-}
 div.callout-question.callout {
   border-left-color: #6f42c1;
 }
@@ -144,6 +130,20 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
   font-weight: 900;
   font-style: normal;
   content: '\f059' !important;
+  background-image: none;
+}
+div.callout-answer.callout {
+  border-left-color: #2e8b57;
+}
+div.callout-answer.callout-style-default .callout-header {
+  background-color: rgba(46, 139, 87, 0.13);
+}
+div.callout-answer .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-answer.callout-style-default .callout-icon::before, div.callout-answer.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 7 Free';
+  font-weight: 900;
+  font-style: normal;
+  content: '\f058' !important;
   background-image: none;
 }
 </style>
@@ -726,7 +726,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">author-links</span><span class="kw">:</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="at">  </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="at">  </span><span class="fu">orcid</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="at">  </span><span class="fu">order</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">github</span><span class="kw">,</span><span class="at"> scholar</span><span class="kw">,</span><span class="at"> researchgate</span><span class="kw">,</span><span class="at"> website</span><span class="kw">]</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="at">  </span><span class="fu">order</span><span class="kw">:</span><span class="at"> </span><span class="st">"github, scholar, researchgate, website"</span></span>
 <span id="cb13-5"><a href="#cb13-5"></a><span class="at">  </span><span class="fu">researchgate</span><span class="kw">:</span></span>
 <span id="cb13-6"><a href="#cb13-6"></a><span class="at">    </span><span class="fu">url</span><span class="kw">:</span><span class="at"> https://www.researchgate.net/profile/Sebastien-Biass</span></span>
 <span id="cb13-7"><a href="#cb13-7"></a><span class="at">    </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
@@ -781,8 +781,8 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </tr>
 <tr class="odd">
 <td><code>order</code></td>
-<td><code>[researchgate, github, scholar, website]</code></td>
-<td>Selects and orders the optional service keys. Keys absent from this list are not displayed; <code>[]</code> shows none. Unknown keys are ignored and duplicates appear once.</td>
+<td>ResearchGate, GitHub, Scholar, Website</td>
+<td>A comma-separated string selects and orders the optional service keys, e.g.&nbsp;<code>"github, scholar"</code>. Unlisted keys are not displayed; an empty string shows none. Unknown keys are ignored and duplicates appear once. YAML lists are also accepted, but can merge across metadata layers.</td>
 </tr>
 </tbody>
 </table>
@@ -790,8 +790,9 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">author-links</span><span class="kw">:</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="at">  </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="at">  </span><span class="fu">orcid</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For example, <code>order: "github, website"</code> shows only those two configured links in that order.</p>
 <p>The four supported service keys are <code>researchgate</code>, <code>github</code>, <code>scholar</code> (Google Scholar) and <code>website</code>; their labels and Font Awesome icons remain defined by the extension. Arbitrary new service types are not introduced by this setting. A missing or non-HTTP(S) URL is skipped. A bare <code>author-links: true</code> does not supply URLs and adds no icons.</p>
-<p>Set a block in <code>slides/_quarto.yml</code> for course-wide defaults. A deck can override it in its front matter. Keep the complete intended <code>order</code> list in an override because Quarto’s metadata merge behaviour for lists can affect inherited values. Always render the actual deck after changing project and document metadata together.</p>
+<p>Set a block in <code>slides/_quarto.yml</code> for course-wide defaults. A deck can override it in its front matter. Use the comma-separated string form of <code>order</code> in both project and document YAML for reliable replacement. YAML lists can merge across those layers, retaining the inherited order even when the deck supplies a new list. Always render the actual deck after changing project and document metadata together.</p>
 <p>The filter targets the <strong>first</strong> <code>.quarto-title-author-name</code>. Visible links are inserted after its ORCID icon, or after the name when ORCID is absent or hidden. An active <code>author-links</code> map replaces a visible native ORCID graphic with a Font Awesome icon, including when no optional URL is enabled. It does not add a separate set of personal links for every author.</p>
 <p>All five icons use <code>#2F4647</code> at 55% opacity and full opacity on hover or keyboard focus. They receive accessible labels; the optional links open in a new tab. Shared YAML declares <code>course/author-links</code>; its implementation is <code>slides/_extensions/course/author-links/author-links.lua</code> with a companion <code>_extension.yml</code>. Font Awesome is provided by the shared CDN stylesheet. Keep personal URLs, icon choices and display switches local when transferring the reusable filter.</p>
 </section>
