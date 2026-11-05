@@ -18,7 +18,11 @@ function Meta(meta)
     website = {label = "Website", icon = "fa-solid fa-globe"}
   }
   local order = config.order or {"researchgate", "github", "scholar", "website"}
-  if type(order) ~= "table" then
+  if pandoc.utils.type(order) == "Inlines" or type(order) == "string" then
+    local text = pandoc.utils.stringify(order)
+    order = {}
+    for key in text:gmatch("[^,%s]+") do table.insert(order, key) end
+  elseif type(order) ~= "table" then
     order = {"researchgate", "github", "scholar", "website"}
   end
   local links = {}
