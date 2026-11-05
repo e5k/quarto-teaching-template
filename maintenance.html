@@ -409,9 +409,10 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
   <li><a href="#publication" id="toc-publication" class="nav-link" data-scroll-target="#publication"><span class="header-section-number">8</span> Documentation publication</a></li>
   <li><a href="#changelog" id="toc-changelog" class="nav-link" data-scroll-target="#changelog"><span class="header-section-number">9</span> Changelog</a>
   <ul>
-  <li><a href="#november-2026" id="toc-november-2026" class="nav-link" data-scroll-target="#november-2026"><span class="header-section-number">9.1</span> 4 November 2026</a></li>
-  <li><a href="#november-2026-1" id="toc-november-2026-1" class="nav-link" data-scroll-target="#november-2026-1"><span class="header-section-number">9.2</span> 3 November 2026</a></li>
-  <li><a href="#november-2026-2" id="toc-november-2026-2" class="nav-link" data-scroll-target="#november-2026-2"><span class="header-section-number">9.3</span> 2 November 2026</a></li>
+  <li><a href="#november-2026" id="toc-november-2026" class="nav-link" data-scroll-target="#november-2026"><span class="header-section-number">9.1</span> 5 November 2026</a></li>
+  <li><a href="#november-2026-1" id="toc-november-2026-1" class="nav-link" data-scroll-target="#november-2026-1"><span class="header-section-number">9.2</span> 4 November 2026</a></li>
+  <li><a href="#november-2026-2" id="toc-november-2026-2" class="nav-link" data-scroll-target="#november-2026-2"><span class="header-section-number">9.3</span> 3 November 2026</a></li>
+  <li><a href="#november-2026-3" id="toc-november-2026-3" class="nav-link" data-scroll-target="#november-2026-3"><span class="header-section-number">9.4</span> 2 November 2026</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">10</span> References</a></li>
   </ul>
@@ -626,8 +627,8 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </tr>
 <tr class="even">
 <td>Repeated headings and link targets</td>
-<td><code>slides/assets/after-body.html</code> plus its include declaration</td>
-<td>Source slide titles and destinations</td>
+<td><code>slides/assets/after-body.html</code>, its include declaration, <code>course/slide-options</code> filter and extension folder</td>
+<td><code>repeated-slide-titles</code>, source slide titles and destinations</td>
 </tr>
 <tr class="odd">
 <td>Citation formatting</td>
@@ -681,16 +682,21 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <td>Slide plugin</td>
 </tr>
 <tr class="even">
-<td><code>course/author-links</code></td>
+<td><code>course/slide-options</code></td>
 <td>1.0.0</td>
-<td>Slide filter; displays icons only with valid local links</td>
+<td>Slide filter; passes the repeated-title setting to the browser</td>
 </tr>
 <tr class="odd">
+<td><code>course/author-links</code></td>
+<td>1.1.0</td>
+<td>Slide filter; displays icons only with valid local links</td>
+</tr>
+<tr class="even">
 <td><code>quarto-ext/fontawesome</code></td>
 <td>1.3.0</td>
 <td>Bundled in the book; not globally enabled by the starter filter list</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>coatless-quarto/custom-callout</code></td>
 <td>0.0.1-dev.3</td>
 <td>Book filter and the manual’s callout examples</td>
@@ -806,25 +812,29 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </tr>
 <tr class="even">
 <td>Profile icons absent</td>
-<td>Supply at least one valid HTTP(S) <code>author-links</code> URL; check first-author markup, filter registration and the icon stylesheet.</td>
+<td>Check <code>author-links</code>, global and per-service <code>enabled</code> switches, the <code>order</code> list, a valid HTTP(S) URL, first-author markup, filter registration and the icon stylesheet.</td>
 </tr>
 <tr class="odd">
+<td>Repeated-title switch has no effect</td>
+<td>Re-render the deck, and transfer both <code>course/slide-options</code> and the updated after-body script. An old HTML file does not read new YAML.</td>
+</tr>
+<tr class="even">
 <td>SVG animation fails from a local file</td>
 <td>Serve the deck over HTTP; verify SVG paths, IDs, the filter and plugin.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Lightbox does not open</td>
 <td><code>.lightbox</code> is a marker; enable <code>lightbox: true</code> locally as well.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Layout overflows after an image offset</td>
 <td>Relative offsets do not alter reserved layout space. Reduce media size or use normal columns before offsets.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>decktape</code> or <code>gs</code> cannot be found</td>
 <td>Install the required tool or use <code>--no-pdf</code>; use <code>--no-compress</code> when only Ghostscript is missing.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Unexpected template content imported</td>
 <td>Inspect the chosen commit. Cherry-pick copies the entire commit; use focused feature commits and abort unresolved imports if needed.</td>
 </tr>
@@ -845,7 +855,14 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <section id="changelog" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="changelog"><span class="header-section-number">9</span> Changelog</h2>
 <section id="november-2026" class="level3" data-number="9.1">
-<h3 data-number="9.1" class="anchored" data-anchor-id="november-2026"><span class="header-section-number">9.1</span> 4 November 2026</h3>
+<h3 data-number="9.1" class="anchored" data-anchor-id="november-2026"><span class="header-section-number">9.1</span> 5 November 2026</h3>
+<ul>
+<li>Added <code>repeated-slide-titles</code> to enable or disable repeated-heading counters per course or deck; repeated updates no longer duplicate the counter suffix.</li>
+<li>Added global and per-service profile-icon switches, a configurable icon order and independent ORCID visibility. Existing URL-only <code>author-links</code> settings remain supported.</li>
+</ul>
+</section>
+<section id="november-2026-1" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="november-2026-1"><span class="header-section-number">9.2</span> 4 November 2026</h3>
 <ul>
 <li><p>Published the public template repository and documentation; configured automatic <code>doc/</code> builds, the <code>gh-pages</code> output branch and GitHub Pages deployment.</p></li>
 <li><p>Applied the same shared website theme as the course, including its actual typography, light/dark styles, code highlighting and navigation styling.</p></li>
@@ -853,15 +870,15 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <li><p>Established local two-way Git transfer using remotes and reviewed cherry-picks, starting from 53 matching shared files. The initial commits are recorded above.</p></li>
 </ul>
 </section>
-<section id="november-2026-1" class="level3" data-number="9.2">
-<h3 data-number="9.2" class="anchored" data-anchor-id="november-2026-1"><span class="header-section-number">9.2</span> 3 November 2026</h3>
+<section id="november-2026-2" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="november-2026-2"><span class="header-section-number">9.3</span> 3 November 2026</h3>
 <ul>
 <li>Recorded the standalone-slide correction: both courses and the template contain local dependencies, including bibliography copies.</li>
 <li>Added configurable author profile links and applied teal icons at 55% opacity with full-opacity hover/focus behaviour.</li>
 </ul>
 </section>
-<section id="november-2026-2" class="level3" data-number="9.3">
-<h3 data-number="9.3" class="anchored" data-anchor-id="november-2026-2"><span class="header-section-number">9.3</span> 2 November 2026</h3>
+<section id="november-2026-3" class="level3" data-number="9.4">
+<h3 data-number="9.4" class="anchored" data-anchor-id="november-2026-3"><span class="header-section-number">9.4</span> 2 November 2026</h3>
 <ul>
 <li>Adopted the native <code>_quarto.yml</code> / <code>_template.yml</code> split for book and slides.</li>
 <li>Removed custom template-management layers in favour of ordinary local assets and scripts.</li>
