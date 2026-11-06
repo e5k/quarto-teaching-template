@@ -3,6 +3,175 @@ title: "Book guide"
 description: "Profiles, numbered questions, interactive exercises, notebooks, references and appearance."
 ---
 
+## Book structure and chapter numbering {#book-structure}
+
+[Native Quarto book structure · Existing teaching convention]{.origin}
+
+**A teaching block is a part; a class or substantial topic inside it is a chapter.** In the current HTML book, a part-introduction page is unnumbered and does not consume a chapter number. The chapters within it are numbered in reading order. Chapter numbers continue across parts.
+
+This behaviour already works with the shared template. It is controlled by the course's `book.chapters` structure in root `_quarto.yml`; it requires no new filter, filename parser or template option. The generic starter uses a simple chapter list, while Outils informatique II already uses file-backed parts.
+
+### Page roles
+
+| Role | Meaning | Current HTML numbering |
+|---|---|---|
+| Welcome page | Overall course context and practical information | Unnumbered when explicitly configured that way, or when used as a part landing page |
+| Part with an introduction file | A block overview, objectives, prerequisites and links to its classes | No chapter number; its subsections are also unnumbered in the verified example |
+| Part with a text label only | A navigation grouping without its own introduction page | A group title, not a chapter |
+| Chapter | A class, practical or substantial topic listed under `chapters` | Continuous numbers, 1, 2, 3… |
+| Explicitly unnumbered chapter | Optional notes or other prefatory material | No chapter number and no gap in the numbered sequence |
+| Appendix | Supporting material under `book.appendices` | Separate letters, A, B… |
+| References | A bibliography page | Unnumbered when its main heading is explicitly marked `.unnumbered` |
+
+The same source file can play a different role in a different book. Its filename does not permanently declare it to be a part, a chapter or a particular chapter number. Keep that role in each course's book configuration.
+
+### A complete two-block example
+
+```yaml
+book:
+  chapters:
+    - index.qmd
+    - part: course/exploring-introduction.qmd
+      chapters:
+        - course/reading-data.qmd
+        - course/describing-data.qmd
+    - part: course/inference-introduction.qmd
+      chapters:
+        - course/sampling.qmd
+        - course/comparing-groups.qmd
+  appendices:
+    - appendices/reference-sheet.qmd
+    - appendices/references.qmd
+```
+
+Create every listed file. With the welcome and references headings marked unnumbered, the reading structure is:
+
+```text
+Welcome                         unnumbered
+Exploring data                  part introduction, unnumbered
+  1 Reading data
+  2 Describing data
+Statistical inference           part introduction, unnumbered
+  3 Sampling
+  4 Comparing groups
+Appendix A — Reference sheet
+References                      unnumbered
+```
+
+`part:` points to the block introduction. Its nested `chapters:` list supplies the classes. The second part does not reset chapter numbering. Listing a new part or moving a chapter does not require renaming a source file. The top-level `book.appendices` list is separate from the main chapter sequence.
+
+### Write a block introduction
+
+For the file referenced by `part: course/exploring-introduction.qmd`, use a normal title and content:
+
+````markdown
+---
+title: "Exploring data"
+---
+
+## Learning objectives
+
+By the end of this block, students can inspect and describe a dataset.
+
+## Classes in this block
+
+- [Reading data](reading-data.qmd)
+- [Describing data](describing-data.qmd)
+````
+
+The part role supplies the unnumbered block-introduction behaviour. `_intro` in a filename has no such effect by itself. Do not also add the same file as an ordinary chapter to obtain an introduction page; the file-valued `part` already provides it.
+
+If the block only needs a navigation label, use a string instead of a file:
+
+```yaml
+- part: "Statistical inference"
+  chapters:
+    - course/sampling.qmd
+    - course/comparing-groups.qmd
+```
+
+A string label does not create a QMD landing page in which to place objectives or other content.
+
+### Outils informatique II uses this structure already
+
+The current course configuration includes the following block:
+
+```yaml
+- part: course/semaine_03-05_intro.qmd
+  chapters:
+    - course/semaine_03.qmd
+    - course/semaine_04.qmd
+    - course/semaine_05.qmd
+```
+
+The part page is titled “Semaines 3–5 — Statistiques univariées”. It has no generated chapter number. Its first class is chapter 3, “Du catalogue à l'échantillon analysable”, because two numbered chapters precede it elsewhere in the book. The “3–5” in the part's title is manually written teaching-schedule information; it is not the part's generated number.
+
+The course also uses `part: index.qmd` as its home/overview entry. Its local home page disables section numbering explicitly. The shared `assets/book-index-link.html` helper makes that first part label clickable when it finds the expected sidebar structure. A generic book can instead list an unnumbered `index.qmd` directly; the helper is not required for every book layout.
+
+### Chapter numbers, section numbers and sidebar display
+
+The shared `_template.yml` enables `format.html.number-sections: true`. For a normal chapter:
+
+```markdown
+# Reading data {#sec-reading-data}
+
+## Inspect the observations
+
+### Check the units
+```
+
+The chapter's first heading receives its chapter number; the following headings receive hierarchical section numbers. With this file as chapter 1, the first subsection is 1.1. Use the title in YAML instead of the first heading if preferred, but do not manually prefix a title with its generated number.
+
+`number-depth` controls how deeply headings are numbered. `toc-depth` controls how deeply they appear in the table of contents. These are separate settings. A per-page `number-sections` override can affect that page, so inspect its front matter when numbering differs from the shared default.
+
+The left sidebar is another independent layer: `assets/custom.css` hides `.chapter-number` spans there. Chapters remain numbered in page titles, cross-references and section numbering even though the sidebar omits their numeric prefixes. Removing a visible sidebar prefix is not the same as declaring a chapter unnumbered.
+
+The presentation setting `repeated-slide-titles` only controls counters such as “Terrain (1/3)” in slides. It does not affect any book numbers.
+
+### Unnumbered supporting pages and references
+
+For an ordinary page in a `chapters` list that should not count as a chapter:
+
+```markdown
+# Optional notes {.unnumbered}
+```
+
+In the verified example, an optional unnumbered page between chapters 3 and 4 did not consume a number. This is appropriate for prefatory or supporting content; it is not necessary on an introduction that already serves as `part:`.
+
+For a bibliography page:
+
+```markdown
+# References {.unnumbered}
+
+::: {#refs}
+:::
+```
+
+Outils informatique II already uses this form in `appendices/references.qmd`. The page therefore does not receive an appendix letter. Other numbered entries under `book.appendices` use letters rather than continuing the main chapter numbers. Depending on the output language, the generated title prefix can be “Appendix” or “Annexe”.
+
+### Stable cross-references and ordinary links
+
+Give reusable numbered sections stable semantic identifiers, for example `#sec-reading-data`, rather than identifiers such as `#sec-chapter-03`. Refer to the former with `@sec-reading-data`; its displayed number is resolved from the current book order.
+
+Use source links such as `[Block overview](exploring-introduction.qmd)` for unnumbered introductions. Quarto resolves a source QMD link to its rendered page. Keep the path relative to the file containing the link, and retain any explicit anchor when linking to a subsection.
+
+Chapter-based cross-reference numbering has limits in unnumbered pages. Keep figures, tables and exercises that need numbered chapter-based references in numbered chapters, and use ordinary links for prefatory content. See the official [book structure](https://quarto.org/docs/books/book-structure.html) and [book cross-reference](https://quarto.org/docs/books/book-crossrefs.html) references for format-specific details.
+
+### Filenames, sessions and book order are separate
+
+Native book rendering accepts descriptive filenames and optional subdirectories when they are explicitly listed in the book configuration. Directories do not automatically create parts; file numbers do not control chapter numbers. Moving a chapter to another part changes its book position without changing its source filename.
+
+A teaching session is a separate scheduling concept. One session can use several chapters, and one chapter can span several sessions. Slides and notebooks can be authored accordingly, but the current template does not implement a metadata mapping system for arbitrary chapter-to-slide or chapter-to-notebook associations.
+
+The existing notebook automation still requires numbered, top-level filenames and excludes number 01. Therefore the book is already structurally modular, while the notebook pipeline retains the conventions documented under [filenames and script constraints](getting-started.qmd#filenames). Do not rename an entire existing course to descriptive filenames and expect that pipeline to discover them automatically.
+
+### What is and is not changing
+
+No runtime template modification is required for unnumbered part introductions and numbered chapters. The existing native structure is the supported approach. Keep each course's hierarchy in its local `_quarto.yml`; copying the generic starter's chapter list into a course would discard its teaching-block organisation.
+
+This convention has been verified for the current HTML book. Other formats may display parts differently, so inspect those outputs separately before promising identical part presentation. A future change to support arbitrary notebook names, nested discovery or explicit material associations would be a separate build-script enhancement, not a requirement for the numbering described here.
+
+
 ## Profiles {#profiles}
 
 [Native profiles · Local settings]{.origin}

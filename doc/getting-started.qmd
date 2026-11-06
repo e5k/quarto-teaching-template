@@ -7,7 +7,7 @@ description: "Create a course and understand configuration, dependencies and the
 
 [Local]{.origin}
 
-Copy the source files from `_quarto-course-template` into the new course directory. Include hidden source files such as `.gitignore`, but **exclude the template's `.git/` directory**, generated `_book/`, `.quarto/` and presentation output folders. Initialise a new Git repository if the course does not already have one. Copying Git history is different from copying a course starter: do not accidentally give the course the template's remotes.
+Copy the source files from `_quarto-teaching-template` into the new course directory. Include hidden source files such as `.gitignore`, but **exclude the template's `.git/` directory**, generated `_book/`, `.quarto/` and presentation output folders. Initialise a new Git repository if the course does not already have one. Copying Git history is different from copying a course starter: do not accidentally give the course the template's remotes.
 
 The central template currently lives at:
 
@@ -74,6 +74,8 @@ jupyter: python3
 keep-ipynb: false
 ```
 
+A flat chapter list is only the starter example. To organise teaching blocks, use file-backed `part:` entries with nested `chapters:`; their introduction pages remain unnumbered in HTML while classes are numbered continuously. The complete example and the existing Outils informatique II structure are documented in the [book guide](book-guide.qmd#book-structure).
+
 Create each listed chapter before rendering the whole book. The resource patterns copy generated notebooks and presentation files into the book output; they do not generate those files. The build scripts produce them first.
 
 ### Personalise the slides
@@ -136,7 +138,7 @@ The current theme declarations require at least Quarto **1.5.0** because of the 
 
 The template uses Google Fonts, a Font Awesome CDN stylesheet for slides and a MathJax CDN script. A self-contained repository means the required source files live locally; it does not guarantee fully offline typography, icons, mathematics or access to external scientific services.
 
-## Name the files
+## Filenames and build-script constraints {#filenames}
 
 | Material | New naming | Existing supported naming |
 |---|---|---|
@@ -144,7 +146,13 @@ The template uses Google Fonts, a Font Awesome CDN stylesheet for slides and a M
 | Presentation | `slides/slides_class_02.qmd` | `slides/slides_semaine_02.qmd` |
 | Notebook output | `course/class_02.ipynb` | `course/semaine_02.ipynb` |
 
-Use two digits and the same number across the three materials. Keep source filenames simple; displayed titles can contain accents and spaces. Avoid keeping both `class_02.qmd` and `semaine_02.qmd` for the same class: a numeric selector matches both.
+These are the conventions supported by the current automation, not a requirement imposed by Quarto for every book page. Native book rendering also accepts descriptive filenames such as `course/reading-data.qmd` and introduction filenames such as `course/block-overview.qmd` when they are listed in root `_quarto.yml`. That list determines book order and each page’s role; digits in a filename do not determine chapter numbers. See [parts and chapter numbering](book-guide.qmd#book-structure).
+
+When using the existing numbered-file pipeline, use two digits and the same number across associated materials. Avoid keeping both `class_02.qmd` and `semaine_02.qmd` for the same class: a numeric selector matches both. Displayed titles can contain accents and spaces.
+
+`course/` and `slides/` remain the main content folders. Optional subdirectories can organise book sources but do not create parts automatically. The current notebook builder does not recursively discover nested chapters; the slide builder discovers only top-level `slides/*.qmd`. Review resource patterns and relative paths before introducing subdirectories.
+
+For a custom slide filename, change the slide project’s `project.render` list or pattern to cover it. The slide builder can select a matching filename stem, but it does not infer an association from the book chapter list. There is no implemented `slides:` or `notebook:` association field to add to chapter YAML yet.
 
 The notebook script only discovers chapter filenames matching `class_XX.qmd` or `semaine_XX.qmd`. It **always excludes number 01**, even if you explicitly select it. This matches the current first class without a practical; adjust the script if another course needs a first-class notebook.
 

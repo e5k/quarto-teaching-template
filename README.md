@@ -103,6 +103,24 @@ When improving a reusable feature in a course, edit the corresponding shared fil
 
 This workflow works **in both directions**, through deliberately selected changes. Git provides history, review and merging. The configured remotes and `git cherry-pick -x` let you transfer individual feature commits. The build scripts do not push course source commits to GitHub; the combined script offers a separate publication prompt for the rendered book.
 
+## Teaching blocks and chapter numbering
+
+The existing HTML book supports unnumbered teaching-block introductions and continuously numbered classes. Use a QMD file as `part:` and list the classes beneath its `chapters:` key in the local root `_quarto.yml`:
+
+```yaml
+book:
+  chapters:
+    - index.qmd
+    - part: course/block-introduction.qmd
+      chapters:
+        - course/reading-data.qmd
+        - course/describing-data.qmd
+```
+
+The part introduction does not consume a chapter number. Chapter numbers follow the configuration’s reading order and continue across parts; they do not come from filenames. Outils informatique II already uses this structure. No runtime template change is needed.
+
+See [TEMPLATE.md](TEMPLATE.md) for the portable reference and the [full book guide](https://e5k.github.io/quarto-teaching-template/book-guide.html#book-structure) for examples, explicit unnumbered pages, appendices, cross-references and sidebar display.
+
 ## File naming
 
 | Material | Convention |
@@ -111,7 +129,9 @@ This workflow works **in both directions**, through deliberately selected change
 | Presentation | `slides/slides_class_01.qmd` |
 | Notebook | `course/class_01.ipynb` |
 
-Use two digits and the same number for all three materials. Displayed titles may contain spaces and accents; source filenames avoid them.
+The table shows the convention required by the current notebook automation. Native Quarto book rendering also supports arbitrary listed QMD filenames; its chapter order and numbering are independent of those names. The notebook builder currently discovers only top-level `class_XX.qmd` / `semaine_XX.qmd` chapters and excludes number 01.
+
+For that pipeline, use two digits and the same number for associated materials. Displayed titles may contain spaces and accents; keep source filenames simple. Optional subfolders and explicit material associations need separate consideration because the current builders do not implement a generic mapping system.
 
 The historical names `course/semaine_04.qmd` and `slides/slides_semaine_04.qmd` remain supported. The scripts do not require renaming existing *Outils informatique II* files.
 

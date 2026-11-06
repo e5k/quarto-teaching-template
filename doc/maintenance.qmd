@@ -178,10 +178,22 @@ After an import, review `git show --stat HEAD` and the changed lines. Validate t
 
 A successful `--no-execute` render checks the available layout and source processing; it does not validate analytical code. A successful browser demonstration does not establish PDF compatibility.
 
+## Preserve course structure when updating {#course-structure}
+
+Teaching-block parts, their introduction pages and the ordered chapter list belong to the course’s root `_quarto.yml`. They are not reusable theme configuration. Keep this file local when importing shared features. The portable [structure guide](https://github.com/e5k/quarto-teaching-template/blob/main/TEMPLATE.md) can be transferred as documentation without changing the hierarchy.
+
+Outils informatique II already has unnumbered file-backed part introductions and numbered classes. Its shared runtime also includes the slide controls added on 5 November. The structure documentation update therefore does not require reimporting those feature commits or modifying the book’s configuration.
+
+Native Quarto filename flexibility and the current script discovery rules are different contracts. Before renaming sources or adding nested directories, check notebook discovery, slide `project.render`, resource patterns, relative links and any manually maintained material associations. Arbitrary notebook names and generic YAML associations are not implemented by documenting them.
+
 ## Troubleshooting {#troubleshooting}
 
 | Symptom | Check and correction |
 |---|---|
+| A block introduction receives a chapter number | Check that it is the file-valued `part:` entry, not a normal child under `chapters:`. A filename ending in `_intro` has no special numbering meaning. |
+| Chapter numbers are missing only from the sidebar | The shared CSS hides sidebar number spans; inspect the page title or cross-references before changing numbering settings. |
+| A chapter receives an unexpected number | Read `book.chapters` in order, including all earlier numbered chapters. Filenames and teaching-week labels do not set the number. |
+| A renamed chapter no longer produces a notebook | The current notebook builder only discovers top-level numbered `class_XX.qmd` / `semaine_XX.qmd` files and excludes 01. Native book rendering is more flexible. |
 | `Specified Reveal plugin directory 'animate' does not exist` | Confirm you copied `slides/_extensions/fradav/animate/` and are using the slide project's YAML. The whole directory is needed. |
 | Deck renders as an ordinary HTML page | Check that its filename matches `slides/_quarto.yml` → `project.render`; then confirm the separate slide project is loaded. |
 | `clean-revealjs` is not found | Restore `slides/_extensions/grantmcdermott/clean/` and its manifest. |
@@ -216,6 +228,13 @@ GitHub Pages uses the GitHub Actions publishing method. The `gh-pages` branch is
 For a manual local publication, run `quarto render doc` followed by `quarto publish gh-pages doc --no-render --no-browser` from the repository root. The automated workflow is preferred for regular updates because it also performs the explicit Pages deployment.
 
 ## Changelog {#changelog}
+
+### 6 November 2026
+
+* Documented native teaching-block parts, unnumbered introductions, continuous chapter numbering, explicit unnumbered pages and lettered appendices.
+* Clarified book order versus filenames, teaching-session labels, stable references, sidebar-only number hiding and the current build-script limits.
+* Added the portable `TEMPLATE.md` reference for propagation to existing courses; no runtime or course hierarchy change is needed.
+
 
 ### 5 November 2026
 
