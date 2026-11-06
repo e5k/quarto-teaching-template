@@ -117,20 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <style>
-div.callout-question.callout {
-  border-left-color: #6f42c1;
-}
-div.callout-question.callout-style-default .callout-header {
-  background-color: rgba(111, 66, 193, 0.13);
-}
-div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 7 Free';
-  font-weight: 900;
-  font-style: normal;
-  content: '\f059' !important;
-  background-image: none;
-}
 div.callout-answer.callout {
   border-left-color: #2e8b57;
 }
@@ -143,6 +129,20 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
   font-weight: 900;
   font-style: normal;
   content: '\f058' !important;
+  background-image: none;
+}
+div.callout-question.callout {
+  border-left-color: #6f42c1;
+}
+div.callout-question.callout-style-default .callout-header {
+  background-color: rgba(111, 66, 193, 0.13);
+}
+div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 7 Free';
+  font-weight: 900;
+  font-style: normal;
+  content: '\f059' !important;
   background-image: none;
 }
 </style>
@@ -404,17 +404,19 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
   <li><a href="#companion-files" id="toc-companion-files" class="nav-link" data-scroll-target="#companion-files"><span class="header-section-number">3</span> Required companion files</a></li>
   <li><a href="#extension-inventory" id="toc-extension-inventory" class="nav-link" data-scroll-target="#extension-inventory"><span class="header-section-number">4</span> Extension inventory</a></li>
   <li><a href="#verification" id="toc-verification" class="nav-link" data-scroll-target="#verification"><span class="header-section-number">5</span> Verify an update</a></li>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">6</span> Troubleshooting</a></li>
-  <li><a href="#maintain-this-manual" id="toc-maintain-this-manual" class="nav-link" data-scroll-target="#maintain-this-manual"><span class="header-section-number">7</span> Maintain this manual</a></li>
-  <li><a href="#publication" id="toc-publication" class="nav-link" data-scroll-target="#publication"><span class="header-section-number">8</span> Documentation publication</a></li>
-  <li><a href="#changelog" id="toc-changelog" class="nav-link" data-scroll-target="#changelog"><span class="header-section-number">9</span> Changelog</a>
+  <li><a href="#course-structure" id="toc-course-structure" class="nav-link" data-scroll-target="#course-structure"><span class="header-section-number">6</span> Preserve course structure when updating</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">7</span> Troubleshooting</a></li>
+  <li><a href="#maintain-this-manual" id="toc-maintain-this-manual" class="nav-link" data-scroll-target="#maintain-this-manual"><span class="header-section-number">8</span> Maintain this manual</a></li>
+  <li><a href="#publication" id="toc-publication" class="nav-link" data-scroll-target="#publication"><span class="header-section-number">9</span> Documentation publication</a></li>
+  <li><a href="#changelog" id="toc-changelog" class="nav-link" data-scroll-target="#changelog"><span class="header-section-number">10</span> Changelog</a>
   <ul>
-  <li><a href="#november-2026" id="toc-november-2026" class="nav-link" data-scroll-target="#november-2026"><span class="header-section-number">9.1</span> 5 November 2026</a></li>
-  <li><a href="#november-2026-1" id="toc-november-2026-1" class="nav-link" data-scroll-target="#november-2026-1"><span class="header-section-number">9.2</span> 4 November 2026</a></li>
-  <li><a href="#november-2026-2" id="toc-november-2026-2" class="nav-link" data-scroll-target="#november-2026-2"><span class="header-section-number">9.3</span> 3 November 2026</a></li>
-  <li><a href="#november-2026-3" id="toc-november-2026-3" class="nav-link" data-scroll-target="#november-2026-3"><span class="header-section-number">9.4</span> 2 November 2026</a></li>
+  <li><a href="#november-2026" id="toc-november-2026" class="nav-link" data-scroll-target="#november-2026"><span class="header-section-number">10.1</span> 6 November 2026</a></li>
+  <li><a href="#november-2026-1" id="toc-november-2026-1" class="nav-link" data-scroll-target="#november-2026-1"><span class="header-section-number">10.2</span> 5 November 2026</a></li>
+  <li><a href="#november-2026-2" id="toc-november-2026-2" class="nav-link" data-scroll-target="#november-2026-2"><span class="header-section-number">10.3</span> 4 November 2026</a></li>
+  <li><a href="#november-2026-3" id="toc-november-2026-3" class="nav-link" data-scroll-target="#november-2026-3"><span class="header-section-number">10.4</span> 3 November 2026</a></li>
+  <li><a href="#november-2026-4" id="toc-november-2026-4" class="nav-link" data-scroll-target="#november-2026-4"><span class="header-section-number">10.5</span> 2 November 2026</a></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">10</span> References</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">11</span> References</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/e5k/quarto-teaching-template/edit/main/doc/maintenance.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/e5k/quarto-teaching-template/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -752,8 +754,14 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
 </table>
 <p>A successful <code>--no-execute</code> render checks the available layout and source processing; it does not validate analytical code. A successful browser demonstration does not establish PDF compatibility.</p>
 </section>
-<section id="troubleshooting" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">6</span> Troubleshooting</h2>
+<section id="course-structure" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="course-structure"><span class="header-section-number">6</span> Preserve course structure when updating</h2>
+<p>Teaching-block parts, their introduction pages and the ordered chapter list belong to the course’s root <code>_quarto.yml</code>. They are not reusable theme configuration. Keep this file local when importing shared features. The portable <a href="https://github.com/e5k/quarto-teaching-template/blob/main/TEMPLATE.md">structure guide</a> can be transferred as documentation without changing the hierarchy.</p>
+<p>Outils informatique II already has unnumbered file-backed part introductions and numbered classes. Its shared runtime also includes the slide controls added on 5 November. The structure documentation update therefore does not require reimporting those feature commits or modifying the book’s configuration.</p>
+<p>Native Quarto filename flexibility and the current script discovery rules are different contracts. Before renaming sources or adding nested directories, check notebook discovery, slide <code>project.render</code>, resource patterns, relative links and any manually maintained material associations. Arbitrary notebook names and generic YAML associations are not implemented by documenting them.</p>
+</section>
+<section id="troubleshooting" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">7</span> Troubleshooting</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -766,6 +774,22 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td>A block introduction receives a chapter number</td>
+<td>Check that it is the file-valued <code>part:</code> entry, not a normal child under <code>chapters:</code>. A filename ending in <code>_intro</code> has no special numbering meaning.</td>
+</tr>
+<tr class="even">
+<td>Chapter numbers are missing only from the sidebar</td>
+<td>The shared CSS hides sidebar number spans; inspect the page title or cross-references before changing numbering settings.</td>
+</tr>
+<tr class="odd">
+<td>A chapter receives an unexpected number</td>
+<td>Read <code>book.chapters</code> in order, including all earlier numbered chapters. Filenames and teaching-week labels do not set the number.</td>
+</tr>
+<tr class="even">
+<td>A renamed chapter no longer produces a notebook</td>
+<td>The current notebook builder only discovers top-level numbered <code>class_XX.qmd</code> / <code>semaine_XX.qmd</code> files and excludes 01. Native book rendering is more flexible.</td>
+</tr>
 <tr class="odd">
 <td><code>Specified Reveal plugin directory 'animate' does not exist</code></td>
 <td>Confirm you copied <code>slides/_extensions/fradav/animate/</code> and are using the slide project’s YAML. The whole directory is needed.</td>
@@ -841,28 +865,36 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
 </tbody>
 </table>
 </section>
-<section id="maintain-this-manual" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="maintain-this-manual"><span class="header-section-number">7</span> Maintain this manual</h2>
+<section id="maintain-this-manual" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="maintain-this-manual"><span class="header-section-number">8</span> Maintain this manual</h2>
 <p>The documentation is an independent Quarto website under <code>doc/</code> in the template repository. Its render list names exactly four guide pages and the index. The manual loads a local copy of the course’s shared <code>_template.yml</code>, including its actual <code>assets/custom.css</code> and <code>assets/dark.scss</code>, profile files, notebook-link filter, CSL and after-body scripts. Supporting assets also include the custom-callout extension and exercise files required by live examples. These are local snapshots: refresh the shared YAML and its companion files together when the source theme changes. Keep <code>assets/docs.css</code> limited to documentation layout so that it does not replace the course palette or typography. Directory-level <code>_metadata.yml</code> keeps the documentation language and table-of-contents label in English and disables external comments after the shared project metadata has been loaded.</p>
 <p>The embedded slide deck is a pre-rendered demonstration made with the real slide project. Rebuild it when the slide theme changes, keeping the HTML and its dependency directory together under <code>doc/assets/demos/slides/</code>. Its downloadable source is supplied there as <code>demo.qmd.txt</code> to preserve the five-page QMD structure. To rebuild, copy that source into an isolated copy of the template’s slide project, rename it <code>demo.qmd</code>, include <code>demo.qmd</code> in that copy’s <code>project.render</code> list, add the supplied SVG, then render with Quarto. The documentation’s ordinary render does not rebuild the embedded deck.</p>
 </section>
-<section id="publication" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="publication"><span class="header-section-number">8</span> Documentation publication</h2>
+<section id="publication" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="publication"><span class="header-section-number">9</span> Documentation publication</h2>
 <p>The public website is <a href="https://e5k.github.io/quarto-teaching-template/">https://e5k.github.io/quarto-teaching-template/</a>. Sources live on <code>main</code>; only <code>doc/</code> is rendered by <code>.github/workflows/publish-docs.yml</code>. A push affecting <code>doc/**</code> or that workflow starts a build with Quarto 1.8.27. The action updates <code>gh-pages</code> and explicitly deploys the rendered <code>doc/_site/</code> artifact using GitHub Pages. It can also be run manually from the repository’s Actions tab.</p>
 <p>GitHub Pages uses the GitHub Actions publishing method. The <code>gh-pages</code> branch is maintained as the rendered publication output; <code>doc/_site/</code> stays ignored on <code>main</code>. The course starter book at the repository root is not published as this website.</p>
 <p>For a manual local publication, run <code>quarto render doc</code> followed by <code>quarto publish gh-pages doc --no-render --no-browser</code> from the repository root. The automated workflow is preferred for regular updates because it also performs the explicit Pages deployment.</p>
 </section>
-<section id="changelog" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="changelog"><span class="header-section-number">9</span> Changelog</h2>
-<section id="november-2026" class="level3" data-number="9.1">
-<h3 data-number="9.1" class="anchored" data-anchor-id="november-2026"><span class="header-section-number">9.1</span> 5 November 2026</h3>
+<section id="changelog" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="changelog"><span class="header-section-number">10</span> Changelog</h2>
+<section id="november-2026" class="level3" data-number="10.1">
+<h3 data-number="10.1" class="anchored" data-anchor-id="november-2026"><span class="header-section-number">10.1</span> 6 November 2026</h3>
+<ul>
+<li>Documented native teaching-block parts, unnumbered introductions, continuous chapter numbering, explicit unnumbered pages and lettered appendices.</li>
+<li>Clarified book order versus filenames, teaching-session labels, stable references, sidebar-only number hiding and the current build-script limits.</li>
+<li>Added the portable <code>TEMPLATE.md</code> reference for propagation to existing courses; no runtime or course hierarchy change is needed.</li>
+</ul>
+</section>
+<section id="november-2026-1" class="level3" data-number="10.2">
+<h3 data-number="10.2" class="anchored" data-anchor-id="november-2026-1"><span class="header-section-number">10.2</span> 5 November 2026</h3>
 <ul>
 <li>Added <code>repeated-slide-titles</code> to enable or disable repeated-heading counters per course or deck; repeated updates no longer duplicate the counter suffix.</li>
 <li>Added global and per-service profile-icon switches, a configurable icon order (with a scalar form for reliable per-deck overrides) and independent ORCID visibility. Existing URL-only <code>author-links</code> settings remain supported.</li>
 </ul>
 </section>
-<section id="november-2026-1" class="level3" data-number="9.2">
-<h3 data-number="9.2" class="anchored" data-anchor-id="november-2026-1"><span class="header-section-number">9.2</span> 4 November 2026</h3>
+<section id="november-2026-2" class="level3" data-number="10.3">
+<h3 data-number="10.3" class="anchored" data-anchor-id="november-2026-2"><span class="header-section-number">10.3</span> 4 November 2026</h3>
 <ul>
 <li><p>Published the public template repository and documentation; configured automatic <code>doc/</code> builds, the <code>gh-pages</code> output branch and GitHub Pages deployment.</p></li>
 <li><p>Applied the same shared website theme as the course, including its actual typography, light/dark styles, code highlighting and navigation styling.</p></li>
@@ -870,15 +902,15 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
 <li><p>Established local two-way Git transfer using remotes and reviewed cherry-picks, starting from 53 matching shared files. The initial commits are recorded above.</p></li>
 </ul>
 </section>
-<section id="november-2026-2" class="level3" data-number="9.3">
-<h3 data-number="9.3" class="anchored" data-anchor-id="november-2026-2"><span class="header-section-number">9.3</span> 3 November 2026</h3>
+<section id="november-2026-3" class="level3" data-number="10.4">
+<h3 data-number="10.4" class="anchored" data-anchor-id="november-2026-3"><span class="header-section-number">10.4</span> 3 November 2026</h3>
 <ul>
 <li>Recorded the standalone-slide correction: both courses and the template contain local dependencies, including bibliography copies.</li>
 <li>Added configurable author profile links and applied teal icons at 55% opacity with full-opacity hover/focus behaviour.</li>
 </ul>
 </section>
-<section id="november-2026-3" class="level3" data-number="9.4">
-<h3 data-number="9.4" class="anchored" data-anchor-id="november-2026-3"><span class="header-section-number">9.4</span> 2 November 2026</h3>
+<section id="november-2026-4" class="level3" data-number="10.5">
+<h3 data-number="10.5" class="anchored" data-anchor-id="november-2026-4"><span class="header-section-number">10.5</span> 2 November 2026</h3>
 <ul>
 <li>Adopted the native <code>_quarto.yml</code> / <code>_template.yml</code> split for book and slides.</li>
 <li>Removed custom template-management layers in favour of ordinary local assets and scripts.</li>
@@ -887,8 +919,8 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
 <p>These entries record the project discussion and setup history, rather than upstream extension release dates. Add a dated entry when a reusable behaviour changes, and note any migration required in existing courses.</p>
 </section>
 </section>
-<section id="references" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="references"><span class="header-section-number">10</span> References</h2>
+<section id="references" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="references"><span class="header-section-number">11</span> References</h2>
 <p>The procedures use native Git: <a href="https://git-scm.com/docs/git-fetch">fetch</a>, <a href="https://git-scm.com/docs/git-cherry-pick">cherry-pick</a>, <a href="https://git-scm.com/docs/git-remote">remotes</a> and <a href="https://git-scm.com/docs/git-add">interactive staging</a>. Keep the repository’s <code>GIT_WORKFLOW.md</code> available as the compact command reference.</p>
 
 

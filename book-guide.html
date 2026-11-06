@@ -118,20 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <style>
-div.callout-question.callout {
-  border-left-color: #6f42c1;
-}
-div.callout-question.callout-style-default .callout-header {
-  background-color: rgba(111, 66, 193, 0.13);
-}
-div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 7 Free';
-  font-weight: 900;
-  font-style: normal;
-  content: '\f059' !important;
-  background-image: none;
-}
 div.callout-answer.callout {
   border-left-color: #2e8b57;
 }
@@ -144,6 +130,20 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
   font-weight: 900;
   font-style: normal;
   content: '\f058' !important;
+  background-image: none;
+}
+div.callout-question.callout {
+  border-left-color: #6f42c1;
+}
+div.callout-question.callout-style-default .callout-header {
+  background-color: rgba(111, 66, 193, 0.13);
+}
+div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 7 Free';
+  font-weight: 900;
+  font-style: normal;
+  content: '\f059' !important;
   background-image: none;
 }
 </style>
@@ -393,28 +393,40 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#profiles" id="toc-profiles" class="nav-link active" data-scroll-target="#profiles"><span class="header-section-number">1</span> Profiles</a>
+  <li><a href="#book-structure" id="toc-book-structure" class="nav-link active" data-scroll-target="#book-structure"><span class="header-section-number">1</span> Book structure and chapter numbering</a>
   <ul>
-  <li><a href="#written-content-and-execution-are-separate" id="toc-written-content-and-execution-are-separate" class="nav-link" data-scroll-target="#written-content-and-execution-are-separate"><span class="header-section-number">1.1</span> Written content and execution are separate</a></li>
-  <li><a href="#check-document-overrides" id="toc-check-document-overrides" class="nav-link" data-scroll-target="#check-document-overrides"><span class="header-section-number">1.2</span> Check document overrides</a></li>
+  <li><a href="#page-roles" id="toc-page-roles" class="nav-link" data-scroll-target="#page-roles"><span class="header-section-number">1.1</span> Page roles</a></li>
+  <li><a href="#a-complete-two-block-example" id="toc-a-complete-two-block-example" class="nav-link" data-scroll-target="#a-complete-two-block-example"><span class="header-section-number">1.2</span> A complete two-block example</a></li>
+  <li><a href="#write-a-block-introduction" id="toc-write-a-block-introduction" class="nav-link" data-scroll-target="#write-a-block-introduction"><span class="header-section-number">1.3</span> Write a block introduction</a></li>
+  <li><a href="#outils-informatique-ii-uses-this-structure-already" id="toc-outils-informatique-ii-uses-this-structure-already" class="nav-link" data-scroll-target="#outils-informatique-ii-uses-this-structure-already"><span class="header-section-number">1.4</span> Outils informatique II uses this structure already</a></li>
+  <li><a href="#chapter-numbers-section-numbers-and-sidebar-display" id="toc-chapter-numbers-section-numbers-and-sidebar-display" class="nav-link" data-scroll-target="#chapter-numbers-section-numbers-and-sidebar-display"><span class="header-section-number">1.5</span> Chapter numbers, section numbers and sidebar display</a></li>
+  <li><a href="#unnumbered-supporting-pages-and-references" id="toc-unnumbered-supporting-pages-and-references" class="nav-link" data-scroll-target="#unnumbered-supporting-pages-and-references"><span class="header-section-number">1.6</span> Unnumbered supporting pages and references</a></li>
+  <li><a href="#stable-cross-references-and-ordinary-links" id="toc-stable-cross-references-and-ordinary-links" class="nav-link" data-scroll-target="#stable-cross-references-and-ordinary-links"><span class="header-section-number">1.7</span> Stable cross-references and ordinary links</a></li>
+  <li><a href="#filenames-sessions-and-book-order-are-separate" id="toc-filenames-sessions-and-book-order-are-separate" class="nav-link" data-scroll-target="#filenames-sessions-and-book-order-are-separate"><span class="header-section-number">1.8</span> Filenames, sessions and book order are separate</a></li>
+  <li><a href="#what-is-and-is-not-changing" id="toc-what-is-and-is-not-changing" class="nav-link" data-scroll-target="#what-is-and-is-not-changing"><span class="header-section-number">1.9</span> What is and is not changing</a></li>
   </ul></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">2</span> Questions and answers</a>
+  <li><a href="#profiles" id="toc-profiles" class="nav-link" data-scroll-target="#profiles"><span class="header-section-number">2</span> Profiles</a>
   <ul>
-  <li><a href="#number-a-question-and-its-answer" id="toc-number-a-question-and-its-answer" class="nav-link" data-scroll-target="#number-a-question-and-its-answer"><span class="header-section-number">2.1</span> Number a question and its answer</a></li>
-  <li><a href="#titles-and-header-numbering" id="toc-titles-and-header-numbering" class="nav-link" data-scroll-target="#titles-and-header-numbering"><span class="header-section-number">2.2</span> Titles and header numbering</a></li>
+  <li><a href="#written-content-and-execution-are-separate" id="toc-written-content-and-execution-are-separate" class="nav-link" data-scroll-target="#written-content-and-execution-are-separate"><span class="header-section-number">2.1</span> Written content and execution are separate</a></li>
+  <li><a href="#check-document-overrides" id="toc-check-document-overrides" class="nav-link" data-scroll-target="#check-document-overrides"><span class="header-section-number">2.2</span> Check document overrides</a></li>
   </ul></li>
-  <li><a href="#interactive-exercises" id="toc-interactive-exercises" class="nav-link" data-scroll-target="#interactive-exercises"><span class="header-section-number">3</span> Interactive exercises</a>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">3</span> Questions and answers</a>
   <ul>
-  <li><a href="#text-and-numeric-responses" id="toc-text-and-numeric-responses" class="nav-link" data-scroll-target="#text-and-numeric-responses"><span class="header-section-number">3.1</span> Text and numeric responses</a></li>
-  <li><a href="#dropdowns-and-radio-buttons" id="toc-dropdowns-and-radio-buttons" class="nav-link" data-scroll-target="#dropdowns-and-radio-buttons"><span class="header-section-number">3.2</span> Dropdowns and radio buttons</a></li>
-  <li><a href="#check-a-group-and-reveal-an-explanation" id="toc-check-a-group-and-reveal-an-explanation" class="nav-link" data-scroll-target="#check-a-group-and-reveal-an-explanation"><span class="header-section-number">3.3</span> Check a group and reveal an explanation</a></li>
+  <li><a href="#number-a-question-and-its-answer" id="toc-number-a-question-and-its-answer" class="nav-link" data-scroll-target="#number-a-question-and-its-answer"><span class="header-section-number">3.1</span> Number a question and its answer</a></li>
+  <li><a href="#titles-and-header-numbering" id="toc-titles-and-header-numbering" class="nav-link" data-scroll-target="#titles-and-header-numbering"><span class="header-section-number">3.2</span> Titles and header numbering</a></li>
   </ul></li>
-  <li><a href="#notebooks" id="toc-notebooks" class="nav-link" data-scroll-target="#notebooks"><span class="header-section-number">4</span> Notebook links and conversion</a></li>
-  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations"><span class="header-section-number">5</span> Citations and references</a></li>
-  <li><a href="#appearance" id="toc-appearance" class="nav-link" data-scroll-target="#appearance"><span class="header-section-number">6</span> Appearance and authoring helpers</a>
+  <li><a href="#interactive-exercises" id="toc-interactive-exercises" class="nav-link" data-scroll-target="#interactive-exercises"><span class="header-section-number">4</span> Interactive exercises</a>
   <ul>
-  <li><a href="#code-annotations-and-figures" id="toc-code-annotations-and-figures" class="nav-link" data-scroll-target="#code-annotations-and-figures"><span class="header-section-number">6.1</span> Code annotations and figures</a></li>
-  <li><a href="#navigation-and-small-fixes" id="toc-navigation-and-small-fixes" class="nav-link" data-scroll-target="#navigation-and-small-fixes"><span class="header-section-number">6.2</span> Navigation and small fixes</a></li>
+  <li><a href="#text-and-numeric-responses" id="toc-text-and-numeric-responses" class="nav-link" data-scroll-target="#text-and-numeric-responses"><span class="header-section-number">4.1</span> Text and numeric responses</a></li>
+  <li><a href="#dropdowns-and-radio-buttons" id="toc-dropdowns-and-radio-buttons" class="nav-link" data-scroll-target="#dropdowns-and-radio-buttons"><span class="header-section-number">4.2</span> Dropdowns and radio buttons</a></li>
+  <li><a href="#check-a-group-and-reveal-an-explanation" id="toc-check-a-group-and-reveal-an-explanation" class="nav-link" data-scroll-target="#check-a-group-and-reveal-an-explanation"><span class="header-section-number">4.3</span> Check a group and reveal an explanation</a></li>
+  </ul></li>
+  <li><a href="#notebooks" id="toc-notebooks" class="nav-link" data-scroll-target="#notebooks"><span class="header-section-number">5</span> Notebook links and conversion</a></li>
+  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations"><span class="header-section-number">6</span> Citations and references</a></li>
+  <li><a href="#appearance" id="toc-appearance" class="nav-link" data-scroll-target="#appearance"><span class="header-section-number">7</span> Appearance and authoring helpers</a>
+  <ul>
+  <li><a href="#code-annotations-and-figures" id="toc-code-annotations-and-figures" class="nav-link" data-scroll-target="#code-annotations-and-figures"><span class="header-section-number">7.1</span> Code annotations and figures</a></li>
+  <li><a href="#navigation-and-small-fixes" id="toc-navigation-and-small-fixes" class="nav-link" data-scroll-target="#navigation-and-small-fixes"><span class="header-section-number">7.2</span> Navigation and small fixes</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/e5k/quarto-teaching-template/edit/main/doc/book-guide.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/e5k/quarto-teaching-template/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -447,8 +459,173 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
 </header>
 
 
-<section id="profiles" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="profiles"><span class="header-section-number">1</span> Profiles</h2>
+<section id="book-structure" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="book-structure"><span class="header-section-number">1</span> Book structure and chapter numbering</h2>
+<p><span class="origin">Native Quarto book structure · Existing teaching convention</span></p>
+<p><strong>A teaching block is a part; a class or substantial topic inside it is a chapter.</strong> In the current HTML book, a part-introduction page is unnumbered and does not consume a chapter number. The chapters within it are numbered in reading order. Chapter numbers continue across parts.</p>
+<p>This behaviour already works with the shared template. It is controlled by the course’s <code>book.chapters</code> structure in root <code>_quarto.yml</code>; it requires no new filter, filename parser or template option. The generic starter uses a simple chapter list, while Outils informatique II already uses file-backed parts.</p>
+<section id="page-roles" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="page-roles"><span class="header-section-number">1.1</span> Page roles</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Meaning</th>
+<th>Current HTML numbering</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Welcome page</td>
+<td>Overall course context and practical information</td>
+<td>Unnumbered when explicitly configured that way, or when used as a part landing page</td>
+</tr>
+<tr class="even">
+<td>Part with an introduction file</td>
+<td>A block overview, objectives, prerequisites and links to its classes</td>
+<td>No chapter number; its subsections are also unnumbered in the verified example</td>
+</tr>
+<tr class="odd">
+<td>Part with a text label only</td>
+<td>A navigation grouping without its own introduction page</td>
+<td>A group title, not a chapter</td>
+</tr>
+<tr class="even">
+<td>Chapter</td>
+<td>A class, practical or substantial topic listed under <code>chapters</code></td>
+<td>Continuous numbers, 1, 2, 3…</td>
+</tr>
+<tr class="odd">
+<td>Explicitly unnumbered chapter</td>
+<td>Optional notes or other prefatory material</td>
+<td>No chapter number and no gap in the numbered sequence</td>
+</tr>
+<tr class="even">
+<td>Appendix</td>
+<td>Supporting material under <code>book.appendices</code></td>
+<td>Separate letters, A, B…</td>
+</tr>
+<tr class="odd">
+<td>References</td>
+<td>A bibliography page</td>
+<td>Unnumbered when its main heading is explicitly marked <code>.unnumbered</code></td>
+</tr>
+</tbody>
+</table>
+<p>The same source file can play a different role in a different book. Its filename does not permanently declare it to be a part, a chapter or a particular chapter number. Keep that role in each course’s book configuration.</p>
+</section>
+<section id="a-complete-two-block-example" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="a-complete-two-block-example"><span class="header-section-number">1.2</span> A complete two-block example</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">book</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="at">  </span><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> index.qmd</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">part</span><span class="kw">:</span><span class="at"> course/exploring-introduction.qmd</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="at">      </span><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="at">        </span><span class="kw">-</span><span class="at"> course/reading-data.qmd</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="at">        </span><span class="kw">-</span><span class="at"> course/describing-data.qmd</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">part</span><span class="kw">:</span><span class="at"> course/inference-introduction.qmd</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="at">      </span><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="at">        </span><span class="kw">-</span><span class="at"> course/sampling.qmd</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="at">        </span><span class="kw">-</span><span class="at"> course/comparing-groups.qmd</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="at">  </span><span class="fu">appendices</span><span class="kw">:</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="at">    </span><span class="kw">-</span><span class="at"> appendices/reference-sheet.qmd</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="at">    </span><span class="kw">-</span><span class="at"> appendices/references.qmd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Create every listed file. With the welcome and references headings marked unnumbered, the reading structure is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>Welcome                         unnumbered</span>
+<span id="cb2-2"><a href="#cb2-2"></a>Exploring data                  part introduction, unnumbered</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  1 Reading data</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  2 Describing data</span>
+<span id="cb2-5"><a href="#cb2-5"></a>Statistical inference           part introduction, unnumbered</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  3 Sampling</span>
+<span id="cb2-7"><a href="#cb2-7"></a>  4 Comparing groups</span>
+<span id="cb2-8"><a href="#cb2-8"></a>Appendix A — Reference sheet</span>
+<span id="cb2-9"><a href="#cb2-9"></a>References                      unnumbered</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>part:</code> points to the block introduction. Its nested <code>chapters:</code> list supplies the classes. The second part does not reset chapter numbering. Listing a new part or moving a chapter does not require renaming a source file. The top-level <code>book.appendices</code> list is separate from the main chapter sequence.</p>
+</section>
+<section id="write-a-block-introduction" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="write-a-block-introduction"><span class="header-section-number">1.3</span> Write a block introduction</h3>
+<p>For the file referenced by <code>part: course/exploring-introduction.qmd</code>, use a normal title and content:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="an">title:</span><span class="co"> "Exploring data"</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">---</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">## Learning objectives</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a>By the end of this block, students can inspect and describe a dataset.</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="fu">## Classes in this block</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Reading data</span><span class="co">](reading-data.qmd)</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Describing data</span><span class="co">](describing-data.qmd)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The part role supplies the unnumbered block-introduction behaviour. <code>_intro</code> in a filename has no such effect by itself. Do not also add the same file as an ordinary chapter to obtain an introduction page; the file-valued <code>part</code> already provides it.</p>
+<p>If the block only needs a navigation label, use a string instead of a file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">part</span><span class="kw">:</span><span class="at"> </span><span class="st">"Statistical inference"</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="at">  </span><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> course/sampling.qmd</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="at">    </span><span class="kw">-</span><span class="at"> course/comparing-groups.qmd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A string label does not create a QMD landing page in which to place objectives or other content.</p>
+</section>
+<section id="outils-informatique-ii-uses-this-structure-already" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="outils-informatique-ii-uses-this-structure-already"><span class="header-section-number">1.4</span> Outils informatique II uses this structure already</h3>
+<p>The current course configuration includes the following block:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">part</span><span class="kw">:</span><span class="at"> course/semaine_03-05_intro.qmd</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="at">  </span><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="at">    </span><span class="kw">-</span><span class="at"> course/semaine_03.qmd</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="at">    </span><span class="kw">-</span><span class="at"> course/semaine_04.qmd</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="at">    </span><span class="kw">-</span><span class="at"> course/semaine_05.qmd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The part page is titled “Semaines 3–5 — Statistiques univariées”. It has no generated chapter number. Its first class is chapter 3, “Du catalogue à l’échantillon analysable”, because two numbered chapters precede it elsewhere in the book. The “3–5” in the part’s title is manually written teaching-schedule information; it is not the part’s generated number.</p>
+<p>The course also uses <code>part: index.qmd</code> as its home/overview entry. Its local home page disables section numbering explicitly. The shared <code>assets/book-index-link.html</code> helper makes that first part label clickable when it finds the expected sidebar structure. A generic book can instead list an unnumbered <code>index.qmd</code> directly; the helper is not required for every book layout.</p>
+</section>
+<section id="chapter-numbers-section-numbers-and-sidebar-display" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="chapter-numbers-section-numbers-and-sidebar-display"><span class="header-section-number">1.5</span> Chapter numbers, section numbers and sidebar display</h3>
+<p>The shared <code>_template.yml</code> enables <code>format.html.number-sections: true</code>. For a normal chapter:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu"># Reading data {#sec-reading-data}</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">## Inspect the observations</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">### Check the units</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The chapter’s first heading receives its chapter number; the following headings receive hierarchical section numbers. With this file as chapter 1, the first subsection is 1.1. Use the title in YAML instead of the first heading if preferred, but do not manually prefix a title with its generated number.</p>
+<p><code>number-depth</code> controls how deeply headings are numbered. <code>toc-depth</code> controls how deeply they appear in the table of contents. These are separate settings. A per-page <code>number-sections</code> override can affect that page, so inspect its front matter when numbering differs from the shared default.</p>
+<p>The left sidebar is another independent layer: <code>assets/custom.css</code> hides <code>.chapter-number</code> spans there. Chapters remain numbered in page titles, cross-references and section numbering even though the sidebar omits their numeric prefixes. Removing a visible sidebar prefix is not the same as declaring a chapter unnumbered.</p>
+<p>The presentation setting <code>repeated-slide-titles</code> only controls counters such as “Terrain (1/3)” in slides. It does not affect any book numbers.</p>
+</section>
+<section id="unnumbered-supporting-pages-and-references" class="level3" data-number="1.6">
+<h3 data-number="1.6" class="anchored" data-anchor-id="unnumbered-supporting-pages-and-references"><span class="header-section-number">1.6</span> Unnumbered supporting pages and references</h3>
+<p>For an ordinary page in a <code>chapters</code> list that should not count as a chapter:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu"># Optional notes {.unnumbered}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In the verified example, an optional unnumbered page between chapters 3 and 4 did not consume a number. This is appropriate for prefatory or supporting content; it is not necessary on an introduction that already serves as <code>part:</code>.</p>
+<p>For a bibliography page:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu"># References {.unnumbered}</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a>::: {#refs}</span>
+<span id="cb8-4"><a href="#cb8-4"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Outils informatique II already uses this form in <code>appendices/references.qmd</code>. The page therefore does not receive an appendix letter. Other numbered entries under <code>book.appendices</code> use letters rather than continuing the main chapter numbers. Depending on the output language, the generated title prefix can be “Appendix” or “Annexe”.</p>
+</section>
+<section id="stable-cross-references-and-ordinary-links" class="level3" data-number="1.7">
+<h3 data-number="1.7" class="anchored" data-anchor-id="stable-cross-references-and-ordinary-links"><span class="header-section-number">1.7</span> Stable cross-references and ordinary links</h3>
+<p>Give reusable numbered sections stable semantic identifiers, for example <code>#sec-reading-data</code>, rather than identifiers such as <code>#sec-chapter-03</code>. Refer to the former with <code>@sec-reading-data</code>; its displayed number is resolved from the current book order.</p>
+<p>Use source links such as <code>[Block overview](exploring-introduction.qmd)</code> for unnumbered introductions. Quarto resolves a source QMD link to its rendered page. Keep the path relative to the file containing the link, and retain any explicit anchor when linking to a subsection.</p>
+<p>Chapter-based cross-reference numbering has limits in unnumbered pages. Keep figures, tables and exercises that need numbered chapter-based references in numbered chapters, and use ordinary links for prefatory content. See the official <a href="https://quarto.org/docs/books/book-structure.html">book structure</a> and <a href="https://quarto.org/docs/books/book-crossrefs.html">book cross-reference</a> references for format-specific details.</p>
+</section>
+<section id="filenames-sessions-and-book-order-are-separate" class="level3" data-number="1.8">
+<h3 data-number="1.8" class="anchored" data-anchor-id="filenames-sessions-and-book-order-are-separate"><span class="header-section-number">1.8</span> Filenames, sessions and book order are separate</h3>
+<p>Native book rendering accepts descriptive filenames and optional subdirectories when they are explicitly listed in the book configuration. Directories do not automatically create parts; file numbers do not control chapter numbers. Moving a chapter to another part changes its book position without changing its source filename.</p>
+<p>A teaching session is a separate scheduling concept. One session can use several chapters, and one chapter can span several sessions. Slides and notebooks can be authored accordingly, but the current template does not implement a metadata mapping system for arbitrary chapter-to-slide or chapter-to-notebook associations.</p>
+<p>The existing notebook automation still requires numbered, top-level filenames and excludes number 01. Therefore the book is already structurally modular, while the notebook pipeline retains the conventions documented under <a href="./getting-started.html#filenames">filenames and script constraints</a>. Do not rename an entire existing course to descriptive filenames and expect that pipeline to discover them automatically.</p>
+</section>
+<section id="what-is-and-is-not-changing" class="level3" data-number="1.9">
+<h3 data-number="1.9" class="anchored" data-anchor-id="what-is-and-is-not-changing"><span class="header-section-number">1.9</span> What is and is not changing</h3>
+<p>No runtime template modification is required for unnumbered part introductions and numbered chapters. The existing native structure is the supported approach. Keep each course’s hierarchy in its local <code>_quarto.yml</code>; copying the generic starter’s chapter list into a course would discard its teaching-block organisation.</p>
+<p>This convention has been verified for the current HTML book. Other formats may display parts differently, so inspect those outputs separately before promising identical part presentation. A future change to support arbitrary notebook names, nested discovery or explicit material associations would be a separate build-script enhancement, not a requirement for the numbering described here.</p>
+</section>
+</section>
+<section id="profiles" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="profiles"><span class="header-section-number">2</span> Profiles</h2>
 <p><span class="origin">Native profiles · Local settings</span></p>
 <p>The book is one project with two mutually exclusive profiles, <code>answer</code> and <code>question</code>. The profile group is declared in root <code>_template.yml</code>; profile values live in <code>_quarto-answer.yml</code> and <code>_quarto-question.yml</code>.</p>
 <table class="caption-top table">
@@ -492,34 +669,34 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
 </tr>
 </tbody>
 </table>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">quarto</span> render <span class="at">--profile</span> answer</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="ex">quarto</span> render <span class="at">--profile</span> question</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">quarto</span> render <span class="at">--profile</span> answer</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="ex">quarto</span> render <span class="at">--profile</span> question</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Root <code>_template.yml</code> defaults to <code>answers: true</code>. Both builds normally use the same <code>_book/</code> directory, so the most recent render replaces the corresponding output. Archive or copy a completed build if you need to retain both variants.</p>
-<section id="written-content-and-execution-are-separate" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="written-content-and-execution-are-separate"><span class="header-section-number">1.1</span> Written content and execution are separate</h3>
+<section id="written-content-and-execution-are-separate" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="written-content-and-execution-are-separate"><span class="header-section-number">2.1</span> Written content and execution are separate</h3>
 <p>Wrap every written answer that should disappear from the question version:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a>::: {.content-visible when-meta="answers"}</span>
-<span id="cb2-2"><a href="#cb2-2"></a>The pattern supports an association, but does not establish causation.</span>
-<span id="cb2-3"><a href="#cb2-3"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a>::: {.content-visible when-meta="answers"}</span>
+<span id="cb10-2"><a href="#cb10-2"></a>The pattern supports an association, but does not establish causation.</span>
+<span id="cb10-3"><a href="#cb10-3"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Hiding output does not hide ordinary Markdown or Python source. Conditional content also does <strong>not prevent execution</strong> of wrapped cells. For a specific cell, use native execution options deliberately:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#| output: true</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="bu">print</span>(<span class="st">"A displayed result without the source code"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#| echo: false</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co">#| output: true</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="bu">print</span>(<span class="st">"A displayed result without the source code"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>echo</code> controls source display, <code>output</code> controls results and <code>eval</code> controls whether the cell runs. An explicit cell option can override project defaults. Do not use visibility rules as a substitute for execution control.</p>
 </section>
-<section id="check-document-overrides" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="check-document-overrides"><span class="header-section-number">1.2</span> Check document overrides</h3>
+<section id="check-document-overrides" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="check-document-overrides"><span class="header-section-number">2.2</span> Check document overrides</h3>
 <p>A chapter containing the following metadata can behave differently from its selected profile:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">answers</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="at">  </span><span class="fu">output</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">answers</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="at">  </span><span class="fu">output</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This combination is present in some existing course material: written answers can remain visible while cell results stay hidden. Remove overrides when you want profile values to govern the page. Render the actual chapter under both profiles and inspect the result; do not infer visibility only from the command name.</p>
 </section>
 </section>
-<section id="questions" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="questions"><span class="header-section-number">2</span> Questions and answers</h2>
+<section id="questions" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="questions"><span class="header-section-number">3</span> Questions and answers</h2>
 <p><span class="origin">Extension: custom-callout · Native cross-references · Local header integration</span></p>
 <p>The custom-callout extension reads the definitions in <code>_template.yml</code>. Use <strong><code>.question</code></strong> or <strong><code>.answer</code></strong> in the source. The extension converts these into rendered <code>.callout-question</code> and <code>.callout-answer</code> elements. Writing <code>.callout-question</code> directly bypasses this class-to-definition conversion.</p>
 <table class="caption-top table">
@@ -549,19 +726,19 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
 </tr>
 </tbody>
 </table>
-<section id="number-a-question-and-its-answer" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="number-a-question-and-its-answer"><span class="header-section-number">2.1</span> Number a question and its answer</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a>::: {#exr-compare .question title="Compare the two distributions"}</span>
-<span id="cb5-2"><a href="#cb5-2"></a>Which feature changes when the extreme value is removed?</span>
-<span id="cb5-3"><a href="#cb5-3"></a>:::</span>
-<span id="cb5-4"><a href="#cb5-4"></a></span>
-<span id="cb5-5"><a href="#cb5-5"></a>:::: {.content-visible when-meta="answers"}</span>
-<span id="cb5-6"><a href="#cb5-6"></a>::: {#sol-compare .answer title="Réponse"}</span>
-<span id="cb5-7"><a href="#cb5-7"></a>Return to @exr-compare.</span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a>The median changes less than the mean.</span>
-<span id="cb5-10"><a href="#cb5-10"></a>:::</span>
-<span id="cb5-11"><a href="#cb5-11"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="number-a-question-and-its-answer" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="number-a-question-and-its-answer"><span class="header-section-number">3.1</span> Number a question and its answer</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a>::: {#exr-compare .question title="Compare the two distributions"}</span>
+<span id="cb13-2"><a href="#cb13-2"></a>Which feature changes when the extreme value is removed?</span>
+<span id="cb13-3"><a href="#cb13-3"></a>:::</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a>:::: {.content-visible when-meta="answers"}</span>
+<span id="cb13-6"><a href="#cb13-6"></a>::: {#sol-compare .answer title="Réponse"}</span>
+<span id="cb13-7"><a href="#cb13-7"></a>Return to @exr-compare.</span>
+<span id="cb13-8"><a href="#cb13-8"></a></span>
+<span id="cb13-9"><a href="#cb13-9"></a>The median changes less than the mean.</span>
+<span id="cb13-10"><a href="#cb13-10"></a>:::</span>
+<span id="cb13-11"><a href="#cb13-11"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>exr-</code> activates native exercise numbering. <code>sol-</code> activates a solution; the matching suffix <code>compare</code> lets the local header script associate the answer with the question. IDs must be unique throughout the book. Use stable descriptive IDs so links survive title edits. Put the whole answer, including its title and source cells, inside the conditional wrapper. The outer wrapper uses four colons to make nesting clear.</p>
 <p>Rendered example, with answers visible in this manual:</p>
 <div id="exr-docs-compare" class="callout callout-style-default callout-question callout-titled theorem exercise">
@@ -596,101 +773,101 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
 </div>
 </div>
 </section>
-<section id="titles-and-header-numbering" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="titles-and-header-numbering"><span class="header-section-number">2.2</span> Titles and header numbering</h3>
+<section id="titles-and-header-numbering" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="titles-and-header-numbering"><span class="header-section-number">3.2</span> Titles and header numbering</h3>
 <p>Supply <code>title="..."</code> on the source div, or use a first heading inside it. If both are present, the <code>title</code> attribute wins. The extension also accepts <code>icon</code>, <code>appearance</code> and <code>collapse</code> div attributes; the global settings supply defaults.</p>
 <p>The local <code>assets/theme-toggle.html</code> script finds native question/solution labels and moves them into the coloured header. An answer with the matching suffix receives the corresponding question number, with “Question” replaced by “Réponse”. It removes a redundant answer title when that title is simply “Réponse” or “Answer”. Root <code>assets/custom.css</code> suppresses the original separate numbering line.</p>
 <p>Transfer <strong>all three layers</strong> together: the custom-callout extension, the <code>custom-callout</code> definitions in <code>_template.yml</code>, and the CSS/JS header integration. A styled block without an <code>exr-</code> ID is a callout, but is not a numbered exercise.</p>
 <p>The book’s custom types are not configured in <code>slides/_template.yml</code>. To use them in slides, you would need to add their extension and definitions to the slide project; ordinary Quarto callouts already work there.</p>
 </section>
 </section>
-<section id="interactive-exercises" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="interactive-exercises"><span class="header-section-number">3</span> Interactive exercises</h2>
+<section id="interactive-exercises" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="interactive-exercises"><span class="header-section-number">4</span> Interactive exercises</h2>
 <p><span class="origin">Third-party webexercises assets · Course Python integration</span></p>
 <p>Root <code>_template.yml</code> loads <code>assets/webex.css</code> and includes <code>assets/webex.js</code> after the document. These files are derived from <strong>webexercises</strong> and run in the browser. Outils informatique II additionally uses <code>pywebexercises.exercises</code> to generate exercise HTML from Python. That Python package is a separate dependency, not bundled in the template.</p>
 <p>The raw HTML interface below works without Python and describes the contract used by the included JavaScript.</p>
-<section id="text-and-numeric-responses" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="text-and-numeric-responses"><span class="header-section-number">3.1</span> Text and numeric responses</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1"></a><span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">"crs-answer"</span><span class="dt">&gt;</span>LV95 EPSG code<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> id</span><span class="op">=</span><span class="st">"crs-answer"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-solveme"</span><span class="ot"> data-answer</span><span class="op">=</span><span class="st">'["2056"]'</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="text-and-numeric-responses" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="text-and-numeric-responses"><span class="header-section-number">4.1</span> Text and numeric responses</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb14-1"><a href="#cb14-1"></a><span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">"crs-answer"</span><span class="dt">&gt;</span>LV95 EPSG code<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> id</span><span class="op">=</span><span class="st">"crs-answer"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-solveme"</span><span class="ot"> data-answer</span><span class="op">=</span><span class="st">'["2056"]'</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="demo">
 <p><label for="docs-crs-answer">Try it — enter the EPSG code for LV95</label> <input id="docs-crs-answer" class="webex-solveme" data-answer="[&quot;2056&quot;]"></p>
 </div>
 <p><code>data-answer</code> must contain a valid JSON array. Matching is exact by default. Add <code>.ignorecase</code> for case-insensitive input or <code>.nospaces</code> to remove ordinary space characters before matching. The current <code>.nospaces</code> implementation removes spaces, not all whitespace.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> aria-label</span><span class="op">=</span><span class="st">"Rock type"</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="ot">       class</span><span class="op">=</span><span class="st">"webex-solveme ignorecase nospaces"</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="ot">       data-answer</span><span class="op">=</span><span class="st">'["basalt", "basalte"]'</span><span class="dt">&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> aria-label</span><span class="op">=</span><span class="st">"Approximate result"</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="ot">       class</span><span class="op">=</span><span class="st">"webex-solveme"</span><span class="ot"> data-answer</span><span class="op">=</span><span class="st">'[10]'</span><span class="ot"> data-tol</span><span class="op">=</span><span class="st">"0.1"</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> aria-label</span><span class="op">=</span><span class="st">"Rock type"</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="ot">       class</span><span class="op">=</span><span class="st">"webex-solveme ignorecase nospaces"</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="ot">       data-answer</span><span class="op">=</span><span class="st">'["basalt", "basalte"]'</span><span class="dt">&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> aria-label</span><span class="op">=</span><span class="st">"Approximate result"</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="ot">       class</span><span class="op">=</span><span class="st">"webex-solveme"</span><span class="ot"> data-answer</span><span class="op">=</span><span class="st">'[10]'</span><span class="ot"> data-tol</span><span class="op">=</span><span class="st">"0.1"</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Positive <code>data-tol</code> accepts a numeric difference <strong>strictly smaller</strong> than the tolerance. <code>.regex</code> interprets the joined answer strings as a JavaScript regular expression. Use anchored patterns such as <code>^basalt$</code> if a whole response must match. For routine exercises, prefer explicit accepted strings over regular expressions.</p>
 </section>
-<section id="dropdowns-and-radio-buttons" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="dropdowns-and-radio-buttons"><span class="header-section-number">3.2</span> Dropdowns and radio buttons</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1"></a><span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">"unit-choice"</span><span class="dt">&gt;</span>Choose a projected coordinate unit<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> id</span><span class="op">=</span><span class="st">"unit-choice"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-select"</span><span class="dt">&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"blank"</span><span class="dt">&gt;</span>Choose an answer<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"wrong"</span><span class="dt">&gt;</span>Degrees<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"answer"</span><span class="dt">&gt;</span>Metres<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-radiogroup"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"unit-radio"</span><span class="dt">&gt;</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a>  <span class="dt">&lt;</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"radio"</span><span class="ot"> name</span><span class="op">=</span><span class="st">"unit-radio"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"wrong"</span><span class="dt">&gt;</span>Degrees<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>  <span class="dt">&lt;</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"radio"</span><span class="ot"> name</span><span class="op">=</span><span class="st">"unit-radio"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"answer"</span><span class="dt">&gt;</span>Metres<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="dropdowns-and-radio-buttons" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="dropdowns-and-radio-buttons"><span class="header-section-number">4.2</span> Dropdowns and radio buttons</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1"></a><span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">"unit-choice"</span><span class="dt">&gt;</span>Choose a projected coordinate unit<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="dt">&lt;</span><span class="kw">select</span><span class="ot"> id</span><span class="op">=</span><span class="st">"unit-choice"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-select"</span><span class="dt">&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"blank"</span><span class="dt">&gt;</span>Choose an answer<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"wrong"</span><span class="dt">&gt;</span>Degrees<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="dt">&lt;</span><span class="kw">option</span><span class="ot"> value</span><span class="op">=</span><span class="st">"answer"</span><span class="dt">&gt;</span>Metres<span class="dt">&lt;/</span><span class="kw">option</span><span class="dt">&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="dt">&lt;/</span><span class="kw">select</span><span class="dt">&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-radiogroup"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"unit-radio"</span><span class="dt">&gt;</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="dt">&lt;</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"radio"</span><span class="ot"> name</span><span class="op">=</span><span class="st">"unit-radio"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"wrong"</span><span class="dt">&gt;</span>Degrees<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>  <span class="dt">&lt;</span><span class="kw">label</span><span class="dt">&gt;&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"radio"</span><span class="ot"> name</span><span class="op">=</span><span class="st">"unit-radio"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"answer"</span><span class="dt">&gt;</span>Metres<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The correct option must have the literal value <code>answer</code>; dropdown placeholders use <code>blank</code>. Give each radio group a unique, simple ID and use exactly that ID as the <code>name</code> of its inputs. Avoid spaces or punctuation in these IDs because the current script builds a CSS selector from them.</p>
 </section>
-<section id="check-a-group-and-reveal-an-explanation" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="check-a-group-and-reveal-an-explanation"><span class="header-section-number">3.3</span> Check a group and reveal an explanation</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-check webex-box"</span><span class="dt">&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">"group-answer"</span><span class="dt">&gt;</span>LV95 EPSG code<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> id</span><span class="op">=</span><span class="st">"group-answer"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-solveme"</span><span class="ot"> data-answer</span><span class="op">=</span><span class="st">'["2056"]'</span><span class="dt">&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-solution"</span><span class="dt">&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>  <span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> type</span><span class="op">=</span><span class="st">"button"</span><span class="dt">&gt;</span>Explanation<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>LV95 uses EPSG:2056.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="check-a-group-and-reveal-an-explanation" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="check-a-group-and-reveal-an-explanation"><span class="header-section-number">4.3</span> Check a group and reveal an explanation</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-check webex-box"</span><span class="dt">&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="dt">&lt;</span><span class="kw">label</span><span class="ot"> for</span><span class="op">=</span><span class="st">"group-answer"</span><span class="dt">&gt;</span>LV95 EPSG code<span class="dt">&lt;/</span><span class="kw">label</span><span class="dt">&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> id</span><span class="op">=</span><span class="st">"group-answer"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-solveme"</span><span class="ot"> data-answer</span><span class="op">=</span><span class="st">'["2056"]'</span><span class="dt">&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"webex-solution"</span><span class="dt">&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> type</span><span class="op">=</span><span class="st">"button"</span><span class="dt">&gt;</span>Explanation<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>LV95 uses EPSG:2056.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>.webex-check</code> adds a “Show Answers” / “Hide Answers” button and a correct-count indicator. It changes feedback visibility; it does not fill the correct responses into empty controls. <code>.webex-solution</code> requires a button directly inside the container; clicking it toggles the container’s <code>open</code> class.</p>
 <p>These controls provide local feedback, not stored assessment results. The answer values are delivered to the browser in the HTML. Native book profiles do not automatically remove webex answer keys. The current JavaScript also resets response boxes when a page loads and assigns <code>window.onload</code>; another script that replaces that handler can stop exercise setup.</p>
 </section>
 </section>
-<section id="notebooks" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="notebooks"><span class="header-section-number">4</span> Notebook links and conversion</h2>
+<section id="notebooks" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="notebooks"><span class="header-section-number">5</span> Notebook links and conversion</h2>
 <p><span class="origin">Local Lua filter and Python builder</span></p>
 <p>Add the download link in a chapter’s YAML:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">other-links</span><span class="kw">:</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Notebook Jupyter</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="at">    </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> file-earmark-code</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> class_02.ipynb</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">other-links</span><span class="kw">:</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Notebook Jupyter</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="at">    </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> file-earmark-code</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> class_02.ipynb</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The notebook sits beside its source chapter, so the link is relative to that page. The Lua filter <code>scripts/notebook-links.lua</code> inspects the effective <code>answers</code> metadata:</p>
 <ul>
 <li>When it is <code>true</code>, JavaScript adds <code>download</code> to links in <code>.quarto-other-links</code> whose <code>href</code> ends exactly with <code>.ipynb</code>.</li>
 <li>Otherwise, CSS hides <strong>all</strong> <code>.quarto-other-links</code>, including any unrelated links placed there. Links elsewhere in the page are unaffected.</li>
 </ul>
 <p>The filter does not generate notebooks or prevent someone opening a known notebook URL. A query suffix such as <code>.ipynb?download=1</code> does not match its current end-of-string selector.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1"></a><span class="ex">python</span> scripts/render_notebooks.py 2</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="ex">python</span> scripts/render_notebooks.py course/class_02.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="ex">python</span> scripts/render_notebooks.py 2</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="ex">python</span> scripts/render_notebooks.py course/class_02.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The script runs <code>quarto convert</code>, writes an IPYNB next to each chapter, then clears outputs, execution counts and cell metadata. It sets a generic Python 3 kernelspec. It removes <code>#|</code> cell-option lines, selected Quarto div wrappers, heading attributes, image attributes, pagebreak shortcodes and Font Awesome shortcodes.</p>
 <p><strong>Answer source remains in converted notebooks.</strong> The script does not evaluate <code>when-meta="answers"</code> or apply the question profile. It strips wrappers while retaining their content. Its wrapper-cleaning expression recognises exactly three-colon fences; longer nested fences can remain. Inspect a representative notebook before distribution, particularly chapters with nested answers and HTML exercises.</p>
 <p>The book’s <code>resources</code> list must include <code>course/*.ipynb</code> if the generated notebooks should be copied into the published output. <code>keep-ipynb: false</code> concerns Quarto’s execution intermediates; it is separate from notebooks deliberately generated by this script.</p>
 </section>
-<section id="citations" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="citations"><span class="header-section-number">5</span> Citations and references</h2>
+<section id="citations" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="citations"><span class="header-section-number">6</span> Citations and references</h2>
 <p><span class="origin">Native Pandoc citations · Local Zotero convention</span></p>
 <p>Keep each course’s Zotero export in root <code>assets/</code>. Choose its own filename: <code>OI2.bib</code>, <code>geospatial.bib</code> or another appropriate name. Set that path in root <code>_quarto.yml</code>; the shared <code>_template.yml</code> sets the CSL to <code>assets/bulletin-of-volcanology.csl</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a>The interpretation follows previous work <span class="co">[</span><span class="ot">@yourCitationKey</span><span class="co">]</span>.</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a>@yourCitationKey provides the original method.</span>
-<span id="cb12-4"><a href="#cb12-4"></a></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="fu">## References</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a></span>
-<span id="cb12-7"><a href="#cb12-7"></a>::: {#refs}</span>
-<span id="cb12-8"><a href="#cb12-8"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1"></a>The interpretation follows previous work <span class="co">[</span><span class="ot">@yourCitationKey</span><span class="co">]</span>.</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>@yourCitationKey provides the original method.</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">## References</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a></span>
+<span id="cb20-7"><a href="#cb20-7"></a>::: {#refs}</span>
+<span id="cb20-8"><a href="#cb20-8"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use a real key from the bibliography. The <code>#refs</code> container chooses where references appear. A whole-book references appendix can be listed in <code>book.appendices</code>; the filename and chapter organisation belong to the course.</p>
 <p>Do not manually edit Zotero-synchronised entries. Import new references into Zotero and refresh its export. The slide script copies root bibliography files into <code>slides/assets/</code>; see <a href="./slide-guide.html#standalone">standalone slides</a>.</p>
 </section>
-<section id="appearance" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="appearance"><span class="header-section-number">6</span> Appearance and authoring helpers</h2>
+<section id="appearance" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="appearance"><span class="header-section-number">7</span> Appearance and authoring helpers</h2>
 <p><span class="origin">Local CSS and JavaScript · Native HTML theming</span></p>
 <p>The book uses <strong>Cosmo</strong> in light mode and <strong>Darkly plus <code>assets/dark.scss</code></strong> in dark mode. Syntax highlighting is <code>atom-one</code> / <code>dracula</code>. Root <code>assets/custom.css</code> sets Source Sans Pro for text and Roboto Slab for headings, loaded from Google Fonts with local fallback fonts.</p>
 <table class="caption-top table">
@@ -745,27 +922,27 @@ div.callout-answer.callout-style-default .callout-icon::before, div.callout-answ
 </tbody>
 </table>
 <p>Live book highlight: <span class="bg">a shared scientific question</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">[</span><span class="ot">Download data</span><span class="co">](data/samples.csv)</span>{.btn .btn-download download="samples.csv"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">[</span><span class="ot">Download data</span><span class="co">](data/samples.csv)</span>{.btn .btn-download download="samples.csv"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The CSS styles the link; it does not provide the file. To add a Font Awesome icon, enable the bundled <code>fontawesome</code> shortcode extension in that page or project’s <code>filters</code>, then use:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">[</span><span class="ot">{{&lt; fa download &gt;}} Download data</span><span class="co">](data/samples.csv)</span>{.btn .btn-download}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">[</span><span class="ot">{{&lt; fa download &gt;}} Download data</span><span class="co">](data/samples.csv)</span>{.btn .btn-download}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The root starter’s shared filter list contains <code>notebook-links.lua</code> and <code>custom-callout</code>; it does <strong>not</strong> enable <code>fontawesome</code> globally. The installed extension folder alone does not activate its shortcode.</p>
-<section id="code-annotations-and-figures" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="code-annotations-and-figures"><span class="header-section-number">6.1</span> Code annotations and figures</h3>
+<section id="code-annotations-and-figures" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="code-annotations-and-figures"><span class="header-section-number">7.1</span> Code annotations and figures</h3>
 <p>Line numbers and hover annotations are enabled in the HTML book. Use native <code>&lt;1&gt;</code> comments and an immediately following annotation list. The local CSS moves the copy button away from annotations.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="in">```{python}</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>values <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>]  <span class="co"># &lt;1&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>mean <span class="op">=</span> <span class="bu">sum</span>(values) <span class="op">/</span> <span class="bu">len</span>(values)  <span class="co"># &lt;2&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="in">```</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="ss">1. </span>The observations used in the calculation.</span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="ss">2. </span>The arithmetic mean.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1"></a><span class="in">```{python}</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>values <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>]  <span class="co"># &lt;1&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>mean <span class="op">=</span> <span class="bu">sum</span>(values) <span class="op">/</span> <span class="bu">len</span>(values)  <span class="co"># &lt;2&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="in">```</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="ss">1. </span>The observations used in the calculation.</span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="ss">2. </span>The arithmetic mean.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For Matplotlib figures, load the supplied style explicitly; copying the file does not activate it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb16-2"><a href="#cb16-2"></a>plt.style.use(<span class="st">"assets/plots.mplstyle"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb24-2"><a href="#cb24-2"></a>plt.style.use(<span class="st">"assets/plots.mplstyle"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With Quarto’s normal document-relative execution, use <code>../assets/plots.mplstyle</code> from a chapter in <code>course/</code>. If the course sets a project execution directory, adjust the path accordingly. The style sets Roboto, teal labels and a <code>#fafafa</code> figure background; it does not automatically switch plot colours in book dark mode.</p>
 </section>
-<section id="navigation-and-small-fixes" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="navigation-and-small-fixes"><span class="header-section-number">6.2</span> Navigation and small fixes</h3>
+<section id="navigation-and-small-fixes" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="navigation-and-small-fixes"><span class="header-section-number">7.2</span> Navigation and small fixes</h3>
 <p>The template enables section numbering, page navigation, book search and a right-hand table of contents to depth 4. Sidebar chapter numbers are hidden visually; this does not disable section numbering elsewhere. <code>assets/book-index-link.html</code> turns the first sidebar part label into a home link <strong>when the book uses the matching first-part structure</strong>; it does nothing when that element is absent.</p>
 <p><code>assets/theme-toggle.html</code> also wraps Quarto’s colour toggle to restore the scroll position after a theme switch. The same file currently contains the question/answer header integration, so keep it when transferring either feature. Hypothesis comments are enabled under <code>comments.hypothesis</code> in shared YAML and depend on the external service.</p>
 <p>For native behaviour beyond the local configuration, consult <a href="https://quarto.org/docs/authoring/conditional.html">conditional content</a>, <a href="https://quarto.org/docs/authoring/code-annotation.html">code annotations</a> and <a href="https://quarto.org/docs/authoring/citations.html">citations</a>.</p>
